@@ -1390,8 +1390,8 @@ source &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xB294;
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&apos;readlink -f      $0 : &apos;</span><span class="hljs-string">&quot;<span class="hljs-variable">$( readlink -f &quot;$0&quot; )</span>&quot;</span>
 <span class="hljs-built_in">echo</span> 
 
-dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$0</span>&quot;</span>`
-<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xD30C;&#xC77C; &#xC808;&#xB300;&#xACBD;&#xB85C; : <span class="hljs-variable">${dir%/*}</span>&quot;</span>
+path=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$0</span>&quot;</span>`
+<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xD30C;&#xC77C; &#xC808;&#xB300;&#xACBD;&#xB85C; : <span class="hljs-variable">${path%/*}</span>&quot;</span>
 
 <span class="hljs-built_in">cd</span> `dirname <span class="hljs-string">&quot;<span class="hljs-variable">$0</span>&quot;</span>`             <span class="hljs-comment"># &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xB85C; cd</span>
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;&#xD604;&#xC7AC; &#xB514;&#xB809;&#xD1A0;&#xB9AC; : <span class="hljs-variable">$PWD</span>&quot;</span>
