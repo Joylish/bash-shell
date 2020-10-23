@@ -1384,12 +1384,12 @@ $ grep -A2 -B3 <span class="hljs-string">&apos;ddd&apos;</span> sample.txt
 </blockquote>
 <p>&#xD2B9;&#xC815; &#xB514;&#xB809;&#xD1A0;&#xB9AC; &#xC774;&#xD558; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xC744; &#xB300;&#xC0C1;&#xC73C;&#xB85C; &#xB9E4;&#xCE6D;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># ./dir1 ./dir2 &#xB514;&#xB809;&#xD1A0;&#xB9AC; &#xC774;&#xD558; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &apos;hello&apos; &#xB9E4;&#xCE6D;</span>
-$ grep -r <span class="hljs-string">&apos;hello&apos;</span> ./dir1 ./dir2
+$ grep -Iwr <span class="hljs-string">&apos;hello&apos;</span> ./dir1 ./dir2
 
 <span class="hljs-comment"># &#xB514;&#xB809;&#xD1A0;&#xB9AC; &#xC778;&#xC218;&#xB97C; &#xC8FC;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xD604;&#xC7AC; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xAC00; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</span>
-$ grep -r <span class="hljs-string">&apos;hello&apos;</span>
+$ grep -Iwr <span class="hljs-string">&apos;hello&apos;</span>
 
-$ grep -r <span class="hljs-string">&apos;super_block {&apos;</span> /usr/include 
+$ grep -Ir <span class="hljs-string">&apos;super_block {&apos;</span> /usr/include 
 /usr/include/linux/bfs_fs.h:struct bfs_super_block {
 /usr/include/linux/minix_fs.h:struct minix_super_block {
 /usr/include/linux/minix_fs.h:struct minix3_super_block {
@@ -1428,7 +1428,7 @@ $ grep -r --exclude-dir=<span class="hljs-string">&apos;.git&apos;</span> <span 
 <p><b><i> -I </i></b></p>
 </blockquote>
 <pre><code class="lang-bash"><span class="hljs-comment"># &apos;hello&apos; &#xC2A4;&#xD2B8;&#xB9C1;&#xC744; &#xCC3E;&#xC744; &#xB54C; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xD30C;&#xC77C;&#xC740; &#xC81C;&#xC678;&#xD558;&#xACE0; &#xAC80;&#xC0C9;</span>
-$ grep -rI <span class="hljs-string">&apos;hello&apos;</span>
+$ grep -Irw <span class="hljs-string">&apos;hello&apos;</span>
 </code></pre>
 <h4 id="&#xB9E4;&#xCE6D;-&#xC2A4;&#xD2B8;&#xB9C1;&#xB9CC;-&#xD504;&#xB9B0;&#xD2B8;">&#xB9E4;&#xCE6D; &#xC2A4;&#xD2B8;&#xB9C1;&#xB9CC; &#xD504;&#xB9B0;&#xD2B8;</h4>
 <blockquote>
