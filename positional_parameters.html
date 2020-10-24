@@ -1500,10 +1500,9 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;$*&quo
 <span class="hljs-number">11</span>:<span class="hljs-number">22</span>:<span class="hljs-number">33</span>:<span class="hljs-number">44</span>:<span class="hljs-number">55</span> , <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>
 </code></pre>
 <p>&#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; &#xADF8;&#xB300;&#xB85C; &#xB2E4;&#xB978; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xB85C; &#xB2E4;&#xC2DC; &#xC804;&#xB2EC;&#xD558;&#xB824;&#xACE0; &#xD560;&#xB54C;&#xB294; <code>&quot;$@&quot;</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.<br>&#xC678;&#xBD80; &#xBA85;&#xB839;&#xC778; <code>egrep</code>, <code>fgrep</code> &#xC740; shell script &#xD30C;&#xC77C;&#xB85C; &#xD65C;&#xC6A9;&#xBC29;&#xBC95;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash"><span class="hljs-comment"># &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; -E &#xC635;&#xC158;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC11C; &#xB2E4;&#xC2DC; grep &#xBA85;&#xB839;&#xC5D0; &#xC804;&#xB2EC;&#xD55C;&#xB2E4;.</span>
-$ cat /bin/egrep
+<pre><code class="lang-bash">$ cat /bin/egrep
 <span class="hljs-shebang">#!/bin/sh</span>
-<span class="hljs-built_in">exec</span> grep -E <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
+<span class="hljs-built_in">exec</span> grep -E <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>      <span class="hljs-comment"># &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; -E &#xC635;&#xC158;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC11C; &#xB2E4;&#xC2DC; grep &#xBA85;&#xB839;&#xC5D0; &#xC804;&#xB2EC;&#xD55C;&#xB2E4;.</span>
 
 $ cat /bin/fgrep
 <span class="hljs-shebang">#!/bin/sh</span>
@@ -1525,8 +1524,7 @@ $ <span class="hljs-built_in">set</span> -- <span class="hljs-number">11</span> 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span> <span class="hljs-variable">$2</span> <span class="hljs-variable">$3</span>
 <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>
 
-<span class="hljs-comment"># &apos;set --&apos; &#xC740; &#xD604;&#xC7AC; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; positional parameters &#xB97C; &#xBAA8;&#xB450; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</span>
-$ <span class="hljs-built_in">set</span> --
+$ <span class="hljs-built_in">set</span> --            <span class="hljs-comment"># &#xD604;&#xC7AC; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; positional parameters &#xAC00; &#xBAA8;&#xB450; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</span>
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span> <span class="hljs-variable">$2</span> <span class="hljs-variable">$3</span>
 $
 </code></pre>
@@ -1534,8 +1532,7 @@ $
 <pre><code class="lang-bash">--------- test.sh --------
 <span class="hljs-shebang">#!/bin/sh
 </span>
-<span class="hljs-comment"># set &#xBA85;&#xB839;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xC5EC; script &#xB0B4;&#xC5D0;&#xC11C; positional parameters &#xB97C; &#xC124;&#xC815;</span>
-<span class="hljs-built_in">set</span> -- <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>        
+<span class="hljs-built_in">set</span> -- <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>      <span class="hljs-comment"># set &#xBA85;&#xB839;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xC5EC; script &#xB0B4;&#xC5D0;&#xC11C; positional parameters &#xB97C; &#xC124;&#xC815;</span>
 
 <span class="hljs-built_in">echo</span> number of arguments = <span class="hljs-variable">$#</span>
 
