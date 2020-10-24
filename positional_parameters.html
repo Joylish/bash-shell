@@ -1500,7 +1500,7 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;$*&quo
 <span class="hljs-number">11</span>:<span class="hljs-number">22</span>:<span class="hljs-number">33</span>:<span class="hljs-number">44</span>:<span class="hljs-number">55</span> , <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>
 </code></pre>
 <p>&#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; &#xADF8;&#xB300;&#xB85C; &#xB2E4;&#xB978; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xB85C; &#xB2E4;&#xC2DC; &#xC804;&#xB2EC;&#xD558;&#xB824;&#xACE0; &#xD560;&#xB54C;&#xB294; <code>&quot;$@&quot;</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.<br>&#xC678;&#xBD80; &#xBA85;&#xB839;&#xC778; <code>egrep</code>, <code>fgrep</code> &#xC740; shell script &#xD30C;&#xC77C;&#xB85C; &#xD65C;&#xC6A9;&#xBC29;&#xBC95;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash"><span class="hljs-comment"># &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; -E &#xB97C; &#xCD94;&#xAC00;&#xD574;&#xC11C; &#xB2E4;&#xC2DC; grep &#xBA85;&#xB839;&#xC5D0; &#xC804;&#xB2EC;&#xD55C;&#xB2E4;.</span>
+<pre><code class="lang-bash"><span class="hljs-comment"># &#xC804;&#xB2EC;&#xBC1B;&#xC740; &#xC778;&#xC218;&#xB4E4;&#xC744; -E &#xC635;&#xC158;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC11C; &#xB2E4;&#xC2DC; grep &#xBA85;&#xB839;&#xC5D0; &#xC804;&#xB2EC;&#xD55C;&#xB2E4;.</span>
 $ cat /bin/egrep
 <span class="hljs-shebang">#!/bin/sh</span>
 <span class="hljs-built_in">exec</span> grep -E <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
@@ -1510,13 +1510,13 @@ $ cat /bin/fgrep
 <span class="hljs-built_in">exec</span> grep -F <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>
 ---------------------
 
-$ <span class="hljs-function"><span class="hljs-title">f1</span></span>() { <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> ;}
-$ f1 date +%D
-<span class="hljs-number">01</span>/<span class="hljs-number">22</span>/<span class="hljs-number">16</span>
+$ <span class="hljs-function"><span class="hljs-title">run</span></span>() { <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> ;}
+$ run date +%D
+<span class="hljs-number">01</span>/<span class="hljs-number">22</span>/<span class="hljs-number">16</span>                      <span class="hljs-comment"># &quot;date&quot; &#xC740; &#xBA85;&#xB839; &quot;+%D&quot; &#xB294; &#xC778;&#xC218;&#xAC00; &#xB41C;&#xB2E4;.</span>
 
-$ <span class="hljs-function"><span class="hljs-title">f1</span></span>() { <span class="hljs-string">&quot;$*&quot;</span> ;}
-$ f1 date +%D
-date +%D: <span class="hljs-built_in">command</span> not found   <span class="hljs-comment"># &apos;date +%D&apos; &#xAC00; &#xBA85;&#xB839; &#xC774;&#xB984;&#xC774; &#xB41C;&#xB2E4;.</span>
+$ <span class="hljs-function"><span class="hljs-title">run</span></span>() { <span class="hljs-string">&quot;$*&quot;</span> ;}
+$ run date +%D
+date +%D: <span class="hljs-built_in">command</span> not found   <span class="hljs-comment"># &quot;date +%D&quot; &#xAC00; &#xBA85;&#xB839; &#xC774;&#xB984;&#xC774; &#xB41C;&#xB2E4;.</span>
 </code></pre>
 <h2 id="set">set</h2>
 <p>set &#xBA85;&#xB839;&#xC740; &#xBCF4;&#xD1B5; shell &#xC635;&#xC158;&#xC744; &#xC124;&#xC815;&#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0;&#xB9CC; positional paramters &#xB97C; &#xC124;&#xC815;&#xD558;&#xAC70;&#xB098; &#xC0AD;&#xC81C;&#xD560; &#xB54C;&#xB3C4; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
@@ -1647,7 +1647,7 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${@:2:2}</
 <p>shell &#xD568;&#xC218;&#xB294; &#xD638;&#xCD9C;&#xB420; &#xB54C;&#xB9C8;&#xB2E4; &#xC790;&#xB3D9;&#xC73C;&#xB85C; positional parameters &#xAC00; &#xC124;&#xC815;&#xB418;&#xBBC0;&#xB85C;
 &#xD568;&#xC218; A &#xAC00; &#xC2E4;&#xD589; &#xC911;&#xC5D0; B &#xB97C; &#xD638;&#xCD9C;&#xD55C;&#xB2E4;&#xACE0; &#xD558;&#xB354;&#xB77C;&#xB3C4; &#xD568;&#xC218; B &#xC5D0;&#xC11C;&#xB294; &#xD568;&#xC218; A &#xC758;
 positional parameters &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xB530;&#xB77C;&#xC11C; &#xC774;&#xB54C;&#xB294; &#xD568;&#xC218; A &#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC218;&#xB4E4;&#xC744; <code>&quot;$@&quot;</code> &#xBCC0;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD574; 
+&#xB530;&#xB77C;&#xC11C; &#xC774;&#xB54C;&#xB294; &#xD568;&#xC218; A &#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC218;&#xB4E4;&#xC744; <code>&quot;$@&quot;</code> &#xBCC0;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C;
 &#xD568;&#xC218; B &#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C;&#xB3C4; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-shebang">#!/bin/bash
 </span>
@@ -1679,7 +1679,7 @@ $                      <span class="hljs-comment"># foo &#xD568;&#xC218;&#xC758;
 <span class="hljs-function"><span class="hljs-title">foo</span></span> () {
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function foo()&quot;</span>
     <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
-    bar <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>           <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; positional parameters &#xB97C; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</span>
+    bar <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>           <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; positional parameters &#xB97C; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</span>
 }
 
 <span class="hljs-comment">###########  &#xC2E4;&#xD589; &#xACB0;&#xACFC;  ###########</span>
