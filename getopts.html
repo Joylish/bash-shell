@@ -1841,6 +1841,68 @@ $ ./test.sh -h hello.c -p /usr/bin --name=<span class="hljs-string">&apos;foo ba
 hello.c --bbb
 </code></pre>
 <h1 id="quiz">Quiz</h1>
+<p>&#xBA85;&#xB839;&#xC5D0; &#xC635;&#xC158;&#xC744; &#xC804;&#xB2EC;&#xD560; &#xB54C; command line &#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xD30C;&#xC774;&#xD504;&#xB098; redirection &#xC744; &#xC774;&#xC6A9;&#xD574;
+STDIN &#xC73C;&#xB85C; &#xBD80;&#xD130;&#xB3C4; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD558;&#xB824;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C; &#xD560;&#xAE4C;&#xC694;?</p>
+<p>STDIN &#xC73C;&#xB85C;&#xBD80;&#xD130; &#xAC12;&#xC744; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xAE30; &#xC704;&#xD574; &#xB2E8;&#xC21C;&#xD788; read &#xBA85;&#xB839;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74;
+&#xC804;&#xB2EC;&#xB418;&#xB294; &#xAC12;&#xC774; &#xC5C6;&#xC744; &#xACBD;&#xC6B0; &#xC785;&#xB825; &#xB300;&#xAE30; &#xC0C1;&#xD0DC;&#xB85C; &#xBE14;&#xB85D;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.
+&#xB530;&#xB77C;&#xC11C; &#xC774;&#xB54C;&#xB294; read &#xBA85;&#xB839;&#xC5D0;&#xC11C; <code>-t</code> ( timeout ) &#xC635;&#xC158; &#xAC12;&#xC744; <code>0</code> &#xC73C;&#xB85C; &#xC124;&#xC815;&#xD558;&#xBA74; 
+read &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xBA3C;&#xC800; STDIN &#xC73C;&#xB85C;&#xBD80;&#xD130; &#xC77D;&#xC5B4;&#xB4E4;&#xC77C; &#xB77C;&#xC778;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xD14C;&#xC2A4;&#xD2B8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash"><span class="hljs-shebang">#!/bin/bash
+</span>
+<span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> != <span class="hljs-number">0</span> &amp;&amp; { 
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;from command line&quot;</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+}
+
+<span class="hljs-built_in">set</span> --
+
+<span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { opts=<span class="hljs-string">&quot;&quot;</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> opts+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-variable">$opts</span>; <span class="hljs-built_in">set</span> +f
+}
+
+<span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> != <span class="hljs-number">0</span> &amp;&amp; {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;from STDIN&quot;</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+}
+
+----------------------------------------------------------------
+
+$ ./test.sh <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>                  $ <span class="hljs-built_in">echo</span> <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> | ./test.sh       
+from <span class="hljs-built_in">command</span> line                     from STDIN
+<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>                               <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+<span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>                               <span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+<span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>                               <span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+
+                                      $ ./test.sh &lt;&lt;&lt; <span class="hljs-string">&quot;11 22 33&quot;</span> 
+                                      from STDIN
+                                      <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+                                      <span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+                                      <span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+
+                                      $ ./test.sh &lt;&lt;\EOF
+                                      &gt; <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>
+                                      &gt; EOF
+                                      from STDIN
+                                      <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+                                      <span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+                                      <span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+
+                       $ ./test.sh <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> &lt;&lt;\EOF
+                       foo
+                       bar
+                       zoo
+                       EOF
+                       from <span class="hljs-built_in">command</span> line
+                       <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+                       <span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+                       <span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+                       from STDIN
+                       <span class="hljs-variable">$1</span> : foo
+                       <span class="hljs-variable">$2</span> : bar
+                       <span class="hljs-variable">$3</span> : zoo
+</code></pre>
+<h1 id="2-">2 .</h1>
 <p>objdump &#xBA85;&#xB839;&#xC744; &#xC774;&#xC6A9;&#xD574; disassemble &#xC744; &#xD574;&#xBCF4;&#xB824;&#xBA74; &#xBA3C;&#xC800; &#xCEF4;&#xD30C;&#xC77C; &#xACFC;&#xC815;&#xC744; &#xAC70;&#xCCD0;&#xC11C;
 object &#xD30C;&#xC77C;&#xC774;&#xB098; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xB418;&#xB294;&#xB370;&#xC694;.
 &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC774;&#xC6A9;&#xD574; C &#xC18C;&#xC2A4; &#xD30C;&#xC77C;&#xC744; &#xC9C1;&#xC811; objdump &#xD569;&#xB2C8;&#xB2E4;.

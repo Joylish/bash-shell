@@ -1380,7 +1380,7 @@ $ AA=aaa:bbb:ccc
 
 $ IFS=: <span class="hljs-built_in">eval</span> <span class="hljs-built_in">set</span> -- <span class="hljs-string">&apos;$AA&apos;</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span> : <span class="hljs-variable">${#@}</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$2</span> : <span class="hljs-variable">$#</span>
 bbb : <span class="hljs-number">3</span>
 
 $ <span class="hljs-built_in">echo</span> -n <span class="hljs-string">&quot;<span class="hljs-variable">$IFS</span>&quot;</span> | od <span class="hljs-operator">-a</span>
