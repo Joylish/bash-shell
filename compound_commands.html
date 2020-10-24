@@ -1531,15 +1531,11 @@ num=$( ... )
 &#xD558;&#xC9C0;&#xB9CC; &#xC870;&#xAE08; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xB450; &#xBC88;&#xC9F8;&#xC758; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; <code>[ 1 = 1 ]</code> &#xAC00; &#xCC38;&#xC774;&#xC5B4;&#xC11C; command1 &#xC774; &#xC2E4;&#xD589;&#xB420; &#xACBD;&#xC6B0;
 &#xB9CC;&#xC57D;&#xC5D0; command1 &#xC774; &#xC624;&#xB958;&#xB85C; &#xC885;&#xB8CC;&#xD558;&#xAC8C; &#xB418;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash"><span class="hljs-keyword">if</span> [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ]; <span class="hljs-keyword">then</span>
-    <span class="hljs-built_in">command</span>1 ...
+<pre><code class="lang-bash"><span class="hljs-keyword">if</span> [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ]; <span class="hljs-keyword">then</span>                  <span class="hljs-comment"># [ 1 = 1 ] &#xAC00; &#xCC38;&#xC774;&#xACE0; command1 &#xC774; &#xC624;&#xB958;&#xB85C;</span>
+    <span class="hljs-built_in">command</span>1 ...                    <span class="hljs-comment"># &#xC885;&#xB8CC;&#xD558;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xC774; &#xB41C;&#xB2E4;.</span>
 <span class="hljs-keyword">else</span>
-    <span class="hljs-built_in">command</span>2 ...
+    <span class="hljs-built_in">command</span>2 ...                    [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; <span class="hljs-built_in">command</span>1 ... || <span class="hljs-built_in">command</span>2 ...
 <span class="hljs-keyword">fi</span>
-
-----------------------------------------
-                                            <span class="hljs-comment"># [ 1 = 1 ] &#xAC00; &#xCC38;&#xC774;&#xACE0; command1 &#xC774; &#xC624;&#xB958;&#xB85C;</span>
-[ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; <span class="hljs-built_in">command</span>1 ... || <span class="hljs-built_in">command</span>2 ...   <span class="hljs-comment"># &#xC885;&#xB8CC;&#xD558;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xC774; &#xB41C;&#xB2E4;.</span>
 </code></pre>
 <h3 id="case">case</h3>
 <blockquote>
