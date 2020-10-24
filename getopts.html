@@ -1856,7 +1856,7 @@ read &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xBA3C;&#xC800; STDIN &#xC73C;&#xB85C;&#
 
 <span class="hljs-built_in">set</span> --
 
-<span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { opts=<span class="hljs-string">&quot;&quot;</span>
+<span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { opts=<span class="hljs-string">&quot;&quot;</span>      <span class="hljs-comment"># read &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xBA3C;&#xC800; &#xC77D;&#xC5B4;&#xB4E4;&#xC77C; &#xB77C;&#xC778;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xD14C;&#xC2A4;&#xD2B8; </span>
     <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> opts+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
     <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-variable">$opts</span>; <span class="hljs-built_in">set</span> +f
 }
