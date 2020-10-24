@@ -1851,7 +1851,7 @@ read &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xBA3C;&#xC800; STDIN &#xC73C;&#xB85C;&#
 </span>
 <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> != <span class="hljs-number">0</span> &amp;&amp; { 
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;from command line&quot;</span>
-    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
 }
 
 <span class="hljs-built_in">set</span> --
@@ -1866,7 +1866,7 @@ read &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xBA3C;&#xC800; STDIN &#xC73C;&#xB85C;&#
 
 <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> != <span class="hljs-number">0</span> &amp;&amp; {
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;from STDIN&quot;</span>
-    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
 }
 
 ----------------------------------------------------------------

@@ -1653,13 +1653,13 @@ positional parameters &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC5C6
 </span>
 <span class="hljs-function"><span class="hljs-title">foo</span></span> () {
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function foo()&quot;</span>
-    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
     bar      <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;</span>
 }
 
 <span class="hljs-function"><span class="hljs-title">bar</span></span> () {
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function bar()&quot;</span>
-    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
 }
 
 foo <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>
@@ -1678,7 +1678,7 @@ $                      <span class="hljs-comment"># foo &#xD568;&#xC218;&#xC758;
 <span class="hljs-comment"># foo &#xD568;&#xC218;&#xB97C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC218;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-function"><span class="hljs-title">foo</span></span> () {
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function foo()&quot;</span>
-    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;\$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>&quot;</span>; <span class="hljs-keyword">done</span>
     bar <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>           <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; positional parameters &#xB97C; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</span>
 }
 
