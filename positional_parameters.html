@@ -1642,6 +1642,58 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${@:3}</sp
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${@:2:2}</span>
 <span class="hljs-number">22</span> <span class="hljs-number">33</span>
 </code></pre>
+<h1 id="quiz">Quiz</h1>
+<p>&#xD568;&#xC218; A &#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC218;&#xB4E4;&#xC744; &#xC2E4;&#xD589; &#xC911;&#xC5D0; &#xD568;&#xC218; B &#xB97C; &#xD638;&#xCD9C;&#xD574;&#xC11C; &#xCC98;&#xB9AC;&#xD558;&#xAC8C; &#xD558;&#xB824;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C; &#xD560;&#xAE4C;&#xC694;?</p>
+<p>shell &#xD568;&#xC218;&#xB294; &#xD638;&#xCD9C;&#xB420; &#xB54C;&#xB9C8;&#xB2E4; &#xC790;&#xB3D9;&#xC73C;&#xB85C; positional parameters &#xAC00; &#xC124;&#xC815;&#xB418;&#xBBC0;&#xB85C;
+&#xD568;&#xC218; A &#xAC00; &#xC2E4;&#xD589; &#xC911;&#xC5D0; B &#xB97C; &#xD638;&#xCD9C;&#xD55C;&#xB2E4;&#xACE0; &#xD558;&#xB354;&#xB77C;&#xB3C4; &#xD568;&#xC218; B &#xC5D0;&#xC11C;&#xB294; &#xD568;&#xC218; A &#xC758;
+positional parameters &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.
+&#xB530;&#xB77C;&#xC11C; &#xC774;&#xB54C;&#xB294; &#xD568;&#xC218; A &#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC218;&#xB4E4;&#xC744; <code>&quot;$@&quot;</code> &#xBCC0;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD574; 
+&#xD568;&#xC218; B &#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C;&#xB3C4; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash"><span class="hljs-shebang">#!/bin/bash
+</span>
+<span class="hljs-function"><span class="hljs-title">foo</span></span> () {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function foo()&quot;</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    bar      <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">bar</span></span> () {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function bar()&quot;</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+}
+
+foo <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>
+
+<span class="hljs-comment">###########  &#xC2E4;&#xD589; &#xACB0;&#xACFC;  ###########</span>
+
+$ ./test.sh
+<span class="hljs-keyword">function</span> foo()
+<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+<span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+<span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+<span class="hljs-keyword">function</span> bar()         <span class="hljs-comment"># foo &#xD568;&#xC218; &#xC2E4;&#xD589;&#xC911;&#xC5D0; bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD588;&#xC9C0;&#xB9CC; bar &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294;</span>
+$                      <span class="hljs-comment"># foo &#xD568;&#xC218;&#xC758; positional parameters &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xB2E4;.</span>
+------------------------------------------------------------
+
+<span class="hljs-comment"># foo &#xD568;&#xC218;&#xB97C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC218;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</span>
+<span class="hljs-function"><span class="hljs-title">foo</span></span> () {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;function foo()&quot;</span>
+    <span class="hljs-keyword">for</span> (( i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-variable">$#</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> \$<span class="hljs-variable">$i</span> : <span class="hljs-variable">${!i}</span>; <span class="hljs-keyword">done</span>
+    bar <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>           <span class="hljs-comment"># bar &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; positional parameters &#xB97C; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</span>
+}
+
+<span class="hljs-comment">###########  &#xC2E4;&#xD589; &#xACB0;&#xACFC;  ###########</span>
+
+$ ./test.sh
+<span class="hljs-keyword">function</span> foo()
+<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+<span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+<span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+<span class="hljs-keyword">function</span> bar()
+<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
+<span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
+<span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
+</code></pre>
 
                     
                     </section>
