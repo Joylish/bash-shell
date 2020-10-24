@@ -1515,9 +1515,20 @@ num=$( ... )
     ...
 <span class="hljs-keyword">fi</span>
 </code></pre>
-<p>&#xC544;&#xB798; &#xB450; &#xBA85;&#xB839;&#xC740; &#xB3D9;&#xC77C;&#xD55C; &#xAE30;&#xB2A5;&#xC744; &#xD558;&#xB294; &#xAC83;&#xCC98;&#xB7FC; &#xBCF4;&#xC774;&#xB294;&#xB370;&#xC694;.
+<p><code>if</code> &#xBB38;&#xC5D0; <code>else</code> &#xAC00; &#xC0AC;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB2E4;&#xC74C; &#xB450; &#xBA85;&#xB839;&#xBB38;&#xC740; &#xC2E4;&#xC9C8;&#xC801;&#xC73C;&#xB85C; &#xAC19;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash"><span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-number">1</span> = <span class="hljs-number">1</span>; <span class="hljs-keyword">then</span>                  <span class="hljs-built_in">test</span> <span class="hljs-number">1</span> = <span class="hljs-number">1</span> &amp;&amp; {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>                           <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
+<span class="hljs-keyword">fi</span>                                   }
+
+-----------------------------------------------------
+
+<span class="hljs-keyword">if</span> ! <span class="hljs-built_in">test</span> <span class="hljs-number">1</span> = <span class="hljs-number">2</span>; <span class="hljs-keyword">then</span>                ! <span class="hljs-built_in">test</span> <span class="hljs-number">1</span> = <span class="hljs-number">2</span> &amp;&amp; {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>                           <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;yes&quot;</span>
+<span class="hljs-keyword">fi</span>                                   }
+</code></pre>
+<p>&#xC544;&#xB798; &#xB450; &#xBA85;&#xB839;&#xBB38;&#xC740; &#xB3D9;&#xC77C;&#xD55C; &#xAE30;&#xB2A5;&#xC744; &#xD558;&#xB294; &#xAC83;&#xCC98;&#xB7FC; &#xBCF4;&#xC774;&#xB294;&#xB370;&#xC694;.
 <code>[ 1 = 1 ]</code> &#xAC00; &#xCC38;&#xC774;&#xBA74; command1 &#xC774; &#xC2E4;&#xD589;&#xB418;&#xACE0; &#xAC70;&#xC9D3;&#xC774;&#xBA74; command2 &#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.
-&#xD558;&#xC9C0;&#xB9CC; &#xC870;&#xAE08; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xB294;&#xB370;&#xC694;.
+&#xD558;&#xC9C0;&#xB9CC; &#xC870;&#xAE08; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xB450; &#xBC88;&#xC9F8;&#xC758; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; <code>[ 1 = 1 ]</code> &#xAC00; &#xCC38;&#xC774;&#xC5B4;&#xC11C; command1 &#xC774; &#xC2E4;&#xD589;&#xB420; &#xACBD;&#xC6B0;
 &#xB9CC;&#xC57D;&#xC5D0; command1 &#xC774; &#xC624;&#xB958;&#xB85C; &#xC885;&#xB8CC;&#xD558;&#xAC8C; &#xB418;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-keyword">if</span> [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ]; <span class="hljs-keyword">then</span>
@@ -1526,9 +1537,9 @@ num=$( ... )
     <span class="hljs-built_in">command</span>2 ...
 <span class="hljs-keyword">fi</span>
 
--------------------
+----------------------------------------
                                             <span class="hljs-comment"># [ 1 = 1 ] &#xAC00; &#xCC38;&#xC774;&#xACE0; command1 &#xC774; &#xC624;&#xB958;&#xB85C;</span>
-[ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; <span class="hljs-built_in">command</span>1 ... || <span class="hljs-built_in">command</span>2 ...   <span class="hljs-comment"># &#xC885;&#xB8CC;&#xD558;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.</span>
+[ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; <span class="hljs-built_in">command</span>1 ... || <span class="hljs-built_in">command</span>2 ...   <span class="hljs-comment"># &#xC885;&#xB8CC;&#xD558;&#xBA74; command2 &#xB3C4; &#xC2E4;&#xD589;&#xC774; &#xB41C;&#xB2E4;.</span>
 </code></pre>
 <h3 id="case">case</h3>
 <blockquote>
@@ -1635,7 +1646,7 @@ BBB                                      CCC
 <li>select &#xBB38;&#xC740; <code>select</code>, <code>in</code>, <code>do</code>, <code>done</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li><code>PS3</code> &#xBCC0;&#xC218;&#xB294; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xB97C; &#xC124;&#xC815;&#xD558;&#xB294;&#xB370; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</li>
 <li><code>REPLY</code> &#xBCC0;&#xC218;&#xC5D0;&#xB294; &#xC785;&#xB825;&#xD55C; &#xAC12;&#xC774; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;.</li>
-<li><code>in words</code> &#xBD80;&#xBD84;&#xC744; &#xC0DD;&#xB7B5;&#xD558;&#xBA74; <code>in &quot;$@&quot;</code> &#xC640; &#xAC19;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li><code>in words</code> &#xBD80;&#xBD84;&#xC744; &#xC0DD;&#xB7B5;&#xD558;&#xBA74; <code>in &quot;$@&quot;</code> &#xC640; &#xAC19;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</li>
 <li>&#xAC12;&#xC744; &#xC785;&#xB825;&#xD558;&#xC9C0; &#xC54A;&#xACE0; enter &#xB97C; &#xD558;&#xBA74; &#xB2E4;&#xC2DC; &#xBAA9;&#xB85D;&#xC744; &#xD45C;&#xC2DC;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li>Ctrl-d &#xB294; select loop &#xB97C; &#xC885;&#xB8CC;&#xD558;&#xACE0; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li>select &#xB294; &#xBC18;&#xBCF5;&#xD574;&#xC11C; &#xC785;&#xB825;&#xC744; &#xBC1B;&#xC73C;&#xBBC0;&#xB85C; &#xC120;&#xD0DD;&#xC744; &#xC644;&#xB8CC;&#xD558;&#xACE0; &#xB2E4;&#xC74C;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; break &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xC885;&#xB8CC;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>
@@ -1786,7 +1797,7 @@ curl -O <span class="hljs-string">&quot;<span class="hljs-variable">$hostname</s
 <ul>
 <li>for &#xBB38;&#xC740; <code>for</code>, <code>in</code>, <code>do</code>, <code>done</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li>words &#xAC1C;&#xC218;&#xB9CC;&#xD07C; &#xBC18;&#xBCF5;&#xD558;&#xACE0; &#xB9E4; &#xBC18;&#xBCF5; &#xB54C;&#xB9C8;&#xB2E4; name &#xAC12;&#xC774; &#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</li>
-<li><code>in words</code> &#xBD80;&#xBD84;&#xC744; &#xC0DD;&#xB7B5;&#xD558;&#xBA74; <code>in &quot;$@&quot;</code> &#xC640; &#xAC19;&#xAC8C;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li><code>in words</code> &#xBD80;&#xBD84;&#xC744; &#xC0DD;&#xB7B5;&#xD558;&#xBA74; <code>in &quot;$@&quot;</code> &#xC640; &#xAC19;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</li>
 </ul>
 <pre><code class="lang-bash">$ <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> <span class="hljs-number">100</span> <span class="hljs-number">200</span> <span class="hljs-number">300</span>                       $ <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>.{<span class="hljs-number">0</span>..<span class="hljs-number">5</span>} 
 <span class="hljs-keyword">do</span>                                           <span class="hljs-keyword">do</span>
