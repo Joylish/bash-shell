@@ -1386,7 +1386,7 @@ $ find -type f -print0 | xargs -<span class="hljs-number">0</span> -i ls <span c
 
 
 <pre><code class="lang-bash"><span class="hljs-built_in">alias</span> gccx=<span class="hljs-string">&apos;gcc -g -xc - &lt;&lt;\@ &amp;&amp; ./a.out; rm -f a.out&apos;</span>
-<span class="hljs-built_in">alias</span> gcco=<span class="hljs-string">&apos;cat &gt; a.c &lt;&lt;\@ &amp;&amp; gcc -g -c a.c &amp;&amp; objdump -S a.o; rm -f a.c a.o&apos;</span>
+<span class="hljs-built_in">alias</span> gcco=<span class="hljs-string">&apos;cat &gt; a.c &lt;&lt;\@ &amp;&amp; gcc -g -c a.c &amp;&amp; objdump -S a.o | less; rm -f a.c a.o&apos;</span>
 
 <span class="hljs-comment"># ~/.inputrc &#xC5D0;&#xC11C; F2 &#xD0A4; &#xBC14;&#xC778;&#xB529;. </span>
 <span class="hljs-comment"># &#xD604;&#xC7AC; &#xBA85;&#xB839;&#xD589; &#xC0C1;&#xC5D0;&#xC11C; &#xC791;&#xC131; &#xC911;&#xC778; &#xB0B4;&#xC6A9;&#xACFC; &#xD568;&#xAED8; vi &#xC5D0;&#xB514;&#xD130;&#xAC00; &#xC5F4;&#xB9BD;&#xB2C8;&#xB2E4;.</span>
