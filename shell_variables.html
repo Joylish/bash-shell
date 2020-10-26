@@ -1588,6 +1588,8 @@ set uid &#xBE44;&#xD2B8;&#xAC00; &#xC124;&#xC815;&#xB41C; &#xD504;&#xB85C;&#xADF
 <p>&#xD604;&#xC7AC; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xD568;&#xC218; &#xC774;&#xB984;&#xC758; call stack &#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; array &#xBCC0;&#xC218;&#xC785;&#xB2C8;&#xB2E4;.
 &#xAC00;&#xB839; <code>aaa()</code> &#xD568;&#xC218;&#xAC00; <code>bbb()</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; <code>bbb()</code> &#xD568;&#xC218;&#xAC00; <code>ccc()</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xD604;&#xC7AC; 
 &#xC2E4;&#xD589; &#xC911;&#xC774;&#xB77C;&#xBA74; &#xC774;&#xB54C; <code>${FUNCNAME[0]}</code> &#xC740; <code>ccc()</code> &#xAC00;&#xB418;&#xACE0; <code>${FUNCNAME[1]}</code> &#xC740; <code>bbb()</code> &#xAC00; ... &#xB418;&#xB294; &#xC2DD;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4; foo(), bar() &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xACF5;&#xD1B5;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xD568;&#xC218; common() &#xC774; &#xC788;&#xC744; &#xACBD;&#xC6B0;
+common() &#xD568;&#xC218; &#xB0B4;&#xC5D0;&#xC11C; &#xC5B4;&#xB5A4; &#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xD588;&#xB294;&#xC9C0; &#xC54C;&#xB824;&#xBA74; <code>${FUNCNAME[1]}</code> &#xAC12;&#xC744; &#xC870;&#xD68C;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-shebang">#!/bin/bash
 </span>
 <span class="hljs-function"><span class="hljs-title">ccc</span></span>() { 
