@@ -1763,9 +1763,28 @@ $ <span class="hljs-built_in">cd</span> ~
 <h4 id="random">RANDOM</h4>
 <p> 0 ~ 32767 &#xC0AC;&#xC774;&#xC758; random number &#xB97C; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;.  </p>
 <h4 id="readlineline">READLINE_LINE</h4>
-<p> readline script &#xC744; &#xC791;&#xC131;&#xD560;&#xB54C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xBCC0;&#xC218;&#xB85C; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC744; &#xC785;&#xB825;&#xD560;&#xB54C; &#xD604;&#xC7AC;&#xB77C;&#xC778;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</p>
+<p> The contents of the readline line buffer ( &#xD504;&#xB86C;&#xD504;&#xD2B8; &#xC0C1;&#xC758; &#xD604;&#xC7AC; &#xBA85;&#xB839;&#xB77C;&#xC778; &#xB0B4;&#xC6A9; ) 
+ &#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xBCC0;&#xC218;&#xC785;&#xB2C8;&#xB2E4;.
+ <code>bind -x</code> &#xC6A9; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC791;&#xC131;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xBCC0;&#xC218;&#xB85C; &#xC77C;&#xBC18; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h4 id="readlinepoint">READLINE_POINT</h4>
-<p> readline script &#xC744; &#xC791;&#xC131;&#xD560;&#xB54C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xBCC0;&#xC218;&#xB85C; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC744; &#xC785;&#xB825;&#xD560;&#xB54C; &#xD604;&#xC7AC; &#xCEE4;&#xC11C;&#xAC00; &#xC704;&#xCE58;&#xD55C; <code>&#xBB38;&#xC790;</code>&#xC758; index &#xB97C; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.</p>
+<p>The insertion point in the readline line buffer ( &#xD504;&#xB86C;&#xD504;&#xD2B8; &#xC0C1;&#xC758; &#xD604;&#xC7AC; &#xCEE4;&#xC11C;&#xAC00; &#xC704;&#xCE58;&#xD55C; &#xC778;&#xB371;&#xC2A4; )
+&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xBCC0;&#xC218;&#xC785;&#xB2C8;&#xB2E4;.
+<code>bind -x</code> &#xC6A9; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC791;&#xC131;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xBCC0;&#xC218;&#xB85C; &#xC77C;&#xBC18; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C; &#xB0B4;&#xC6A9;&#xC744; &#xD504;&#xB86C;&#xD504;&#xD2B8; &#xC0C1;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD55C; &#xD6C4;&#xC5D0; ( &#xB610;&#xB294; .bashrc &#xC5D0; &#xC785;&#xB825; ) 
+<code>&quot;</code> , <code>&apos;</code> , <code>&lt;</code> , <code>(</code> , <code>[</code> , <code>{</code> 
+&#xBB38;&#xC790;&#xB97C; &#xC785;&#xB825;&#xD574; &#xBCF4;&#xBA74; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xB2EB;&#xB294; &#xBB38;&#xC790;&#xAC00; &#xC785;&#xB825;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">readline-<span class="hljs-function"><span class="hljs-title">brackets</span></span>() {
+    READLINE_LINE=<span class="hljs-string">&quot;<span class="hljs-variable">${READLINE_LINE:0:$READLINE_POINT}</span><span class="hljs-variable">${1}</span><span class="hljs-variable">${READLINE_LINE:$READLINE_POINT}</span>&quot;</span>
+    ((READLINE_POINT+=<span class="hljs-number">1</span>))
+}
+
+<span class="hljs-built_in">bind</span> -x <span class="hljs-string">&apos;&quot;\&quot;&quot; : &quot;readline-brackets \&quot;\&quot;&quot;&apos;</span>
+<span class="hljs-built_in">bind</span> -x $<span class="hljs-string">&apos;&quot;\047&quot; : &quot;readline-brackets \\\047\\\047&quot;&apos;</span>    <span class="hljs-comment"># single quotes</span>
+<span class="hljs-built_in">bind</span> -x <span class="hljs-string">&apos;&quot;&lt;&quot; : &quot;readline-brackets \&lt;\&gt;&quot;&apos;</span>
+<span class="hljs-built_in">bind</span> -x <span class="hljs-string">&apos;&quot;(&quot; : &quot;readline-brackets \(\)&quot;&apos;</span>
+<span class="hljs-built_in">bind</span> -x <span class="hljs-string">&apos;&quot;[&quot; : &quot;readline-brackets []&quot;&apos;</span>
+<span class="hljs-built_in">bind</span> -x <span class="hljs-string">&apos;&quot;{&quot; : &quot;readline-brackets {}&quot;&apos;</span>
+</code></pre>
 <h4 id="reply">REPLY</h4>
 <p> <code>read</code> &#xBA85;&#xB839;&#xC744; &#xC0AC;&#xC6A9;&#xD560;&#xB54C; &#xAC12;&#xC774; &#xC800;&#xC7A5;&#xB420; &#xBCC0;&#xC218;&#xB97C; &#xC9C0;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xC774;&#xBCC0;&#xC218;&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <h4 id="seconds">SECONDS</h4>
