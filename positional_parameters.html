@@ -1567,8 +1567,9 @@ $ <span class="hljs-built_in">echo</span> &#xC624;&#xB298;&#xC740; <span class="
 <p>shift [n]</p>
 </blockquote>
 <p>shift &#xBA85;&#xB839;&#xC740; &#xD604;&#xC7AC; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; positional parameters &#xB97C; &#xC88C;&#xCE21;&#xC73C;&#xB85C; <code>n</code> &#xB9CC;&#xD07C; &#xC774;&#xB3D9;&#xC2DC;&#xD0B5;&#xB2C8;&#xB2E4;.<br>&#xACB0;&#xACFC;&#xB85C; <code>n</code> &#xAC1C;&#xC758; positional parameters &#xAC00; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.
-&#xD604;&#xC7AC; positional parameters &#xAC1C;&#xC218; &#xBCF4;&#xB2E4; <code>n</code> &#xAC12;&#xC774; &#xD06C;&#xBA74; &#xC0AD;&#xC81C;&#xAC00; &#xC77C;&#xC5B4;&#xB098;&#xC9C0; &#xC54A;&#xACE0; &#xBCC0;&#xD654;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.
-<code>n</code> &#xAC12;&#xC744; &#xC8FC;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB514;&#xD3F4;&#xD2B8;&#xB294; 1 &#xC774;&#xB429;&#xB2C8;&#xB2E4;.</p>
+&#xD604;&#xC7AC; positional parameters &#xAC1C;&#xC218; &#xBCF4;&#xB2E4; <code>n</code> &#xAC12;&#xC774; &#xD06C;&#xBA74; &#xC0AD;&#xC81C;&#xAC00; &#xC77C;&#xC5B4;&#xB098;&#xC9C0; &#xC54A;&#xACE0;
+&#xC885;&#xB8CC; &#xC0C1;&#xD0DC; &#xAC12;&#xC740; <code>1</code> &#xC774; &#xB429;&#xB2C8;&#xB2E4;.
+<code>n</code> &#xAC12;&#xC744; &#xC8FC;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB514;&#xD3F4;&#xD2B8;&#xB294; 1 &#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">set</span> -- <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>
 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$@</span>
@@ -1602,27 +1603,27 @@ $ <span class="hljs-built_in">shift</span>
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$1</span>
 $             &lt;---- &#xBAA8;&#xB4E0; &#xC778;&#xC218;&#xAC00; <span class="hljs-built_in">shift</span> &#xB418;&#xBA74; &#xB2E4;&#xC74C; &#xAC12;&#xC740; empty &#xAC00; &#xB41C;&#xB2E4;.
 </code></pre>
-<p>shift &#xB294; for loop &#xBB38; &#xAC12;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xC8FC;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
-<pre><code class="lang-bash"><span class="hljs-function"><span class="hljs-title">fun</span></span> () {
-    <span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span> <span class="hljs-keyword">do</span> 
-        <span class="hljs-built_in">echo</span> forloop : <span class="hljs-variable">$arg</span>
-        <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$1</span> : <span class="hljs-variable">$1</span>
-        <span class="hljs-built_in">shift</span> <span class="hljs-number">2</span>
-    <span class="hljs-keyword">done</span>
+<p>shift &#xB294; for &#xBC18;&#xBCF5;&#xBB38; &#xAC12;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xC8FC;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="lang-bash"><span class="hljs-function"><span class="hljs-title">fun</span></span> () {                                <span class="hljs-function"><span class="hljs-title">fun2</span></span> () {                                          
+    <span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-keyword">do</span>                     <span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> <span class="hljs-string">&quot;<span class="hljs-variable">$@</span>&quot;</span>; <span class="hljs-keyword">do</span> 
+        <span class="hljs-built_in">echo</span> forloop : <span class="hljs-variable">$arg</span>                     <span class="hljs-built_in">echo</span> forloop : <span class="hljs-variable">$arg</span>
+        <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$1</span> : <span class="hljs-variable">$1</span>                           <span class="hljs-built_in">shift</span> <span class="hljs-number">2</span> &amp;&amp; <span class="hljs-built_in">echo</span> \<span class="hljs-variable">$1</span> : <span class="hljs-variable">$1</span>
+        <span class="hljs-built_in">shift</span> <span class="hljs-number">2</span>                             <span class="hljs-keyword">done</span>
+    <span class="hljs-keyword">done</span>                                }
 }
---------------------------------
+-----------------------------------------------------------------------------------
 
-$ fun <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span> <span class="hljs-number">66</span>                   $ fun <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>
-forloop : <span class="hljs-number">11</span>                              forloop : <span class="hljs-number">11</span>
-<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>                                   <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
-forloop : <span class="hljs-number">22</span>                              forloop : <span class="hljs-number">22</span>
-<span class="hljs-variable">$1</span> : <span class="hljs-number">33</span>                                   <span class="hljs-variable">$1</span> : <span class="hljs-number">33</span>
-forloop : <span class="hljs-number">33</span>                              forloop : <span class="hljs-number">33</span>
-<span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                                   <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>
-forloop : <span class="hljs-number">44</span>                              forloop : <span class="hljs-number">44</span>
-<span class="hljs-variable">$1</span> :                                      <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>
-forloop : <span class="hljs-number">55</span>                              forloop : <span class="hljs-number">55</span>
-<span class="hljs-variable">$1</span> :                                      <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>
+$ fun <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span> <span class="hljs-number">66</span>     $ fun <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>       $ fun2 <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> <span class="hljs-number">55</span>       
+forloop : <span class="hljs-number">11</span>                forloop : <span class="hljs-number">11</span>               forloop : <span class="hljs-number">11</span>                
+<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>                     <span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>                    <span class="hljs-variable">$1</span> : <span class="hljs-number">33</span>                     
+forloop : <span class="hljs-number">22</span>                forloop : <span class="hljs-number">22</span>               forloop : <span class="hljs-number">22</span>                
+<span class="hljs-variable">$1</span> : <span class="hljs-number">33</span>                     <span class="hljs-variable">$1</span> : <span class="hljs-number">33</span>                    <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                     
+forloop : <span class="hljs-number">33</span>                forloop : <span class="hljs-number">33</span>               forloop : <span class="hljs-number">33</span>                
+<span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                     <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                    forloop : <span class="hljs-number">44</span>                
+forloop : <span class="hljs-number">44</span>                forloop : <span class="hljs-number">44</span>               forloop : <span class="hljs-number">55</span>                
+<span class="hljs-variable">$1</span> :                        <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                           
+forloop : <span class="hljs-number">55</span>                forloop : <span class="hljs-number">55</span>                      
+<span class="hljs-variable">$1</span> :                        <span class="hljs-variable">$1</span> : <span class="hljs-number">55</span>                           
 forloop : <span class="hljs-number">66</span>
 <span class="hljs-variable">$1</span> :
 </code></pre>
