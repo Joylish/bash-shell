@@ -1722,6 +1722,11 @@ prepend <span class="hljs-built_in">test</span>
 <span class="hljs-number">22222</span>
 
 $ { rm <span class="hljs-operator">-f</span> x;  { <span class="hljs-built_in">echo</span> AAAAA; <span class="hljs-built_in">echo</span> BBBBB; cat ;} &gt; x ;} &lt; x
+<span class="hljs-comment"># &#xB610;&#xB294;</span>
+$ { rm <span class="hljs-operator">-f</span> x;  { cat &lt;&lt;\EOF; cat ;} &gt; x ;} &lt; x
+AAAAA
+BBBBB
+EOF
 
 $ cat x
 AAAAA
