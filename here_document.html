@@ -1282,6 +1282,14 @@
 <p><code>sh</code> &#xC5D0;&#xC11C;&#xB294; <code>&lt;&lt;</code> &#xB9CC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
 <p><img src="images/here_document.png" alt=""></p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">stat</span> -L -c <span class="hljs-string">&quot;%F&quot;</span> /dev/stdin &lt;&lt;EOF
+<span class="hljs-number">123</span>
+EOF
+regular file
+
+$ <span class="hljs-built_in">stat</span> -L -c <span class="hljs-string">&quot;%F&quot;</span> /dev/stdin &lt;&lt;&lt; <span class="hljs-number">123</span>
+regular file
+</code></pre>
 <p><code>&lt;&lt;</code>, <code>&lt;&lt;&lt;</code> &#xC67C;&#xCABD;&#xC5D0; &#xACF5;&#xBC31;&#xC5C6;&#xC774; &#xBD99;&#xC5EC;&#xC11C; file descriptor &#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="images/here_document2.png" alt=""></p>
 <pre><code class="lang-bash">$ <span class="hljs-number">3</span>&lt;&lt;&lt; hello &lt;&amp;<span class="hljs-number">3</span> cat       <span class="hljs-comment"># &lt;&amp;3 &#xB294; 0&lt;&amp;3 &#xC640; &#xAC19;&#xC740; &#xAC83;&#xC784;</span>
