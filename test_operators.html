@@ -1676,7 +1676,7 @@ j(n,x)   The Bessel function of integer order n of x.
 &#xB098;&#xBA38;&#xC9C0;&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xAD6C;&#xBD84;&#xD560; &#xC218; &#xC788;&#xC744;&#xAE4C;&#xC694;? </p>
 <pre><code class="lang-bash">$ <span class="hljs-function"><span class="hljs-title">check</span></span>() {
     <span class="hljs-keyword">case</span> `<span class="hljs-built_in">stat</span> -L -c <span class="hljs-string">&quot;%F&quot;</span> /dev/stdin` <span class="hljs-keyword">in</span>
-        <span class="hljs-string">&quot;character special file&quot;</span>) <span class="hljs-built_in">echo</span> terminal ;;
+        <span class="hljs-string">&quot;character special file&quot;</span>) <span class="hljs-built_in">test</span> -t <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-built_in">echo</span> terminal ;;
         <span class="hljs-string">&quot;fifo&quot;</span>)                   <span class="hljs-built_in">echo</span> pipe ;;
         <span class="hljs-string">&quot;regular file&quot;</span>)           <span class="hljs-built_in">echo</span> file ;;
     <span class="hljs-keyword">esac</span>
