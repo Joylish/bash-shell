@@ -1907,6 +1907,16 @@ from <span class="hljs-built_in">command</span> line                     from ST
                        <span class="hljs-variable">$2</span> : bar
                        <span class="hljs-variable">$3</span> : zoo
 </code></pre>
+<p><code>read -t 0</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xB294; <code>sh</code> &#xC5D0;&#xC11C;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xBCC0;&#xACBD;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">read</span> -t <span class="hljs-number">0</span> &amp;&amp; { args=<span class="hljs-string">&quot;&quot;</span>
+    <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r line; <span class="hljs-keyword">do</span> args+=<span class="hljs-string">&quot; <span class="hljs-variable">$line</span>&quot;</span>; <span class="hljs-keyword">done</span>
+    <span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
+}
+-----------------------------------------------
+
+args=$( dd iflag=nonblock <span class="hljs-number">2</span>&gt; /dev/null ) || <span class="hljs-literal">true</span>
+<span class="hljs-built_in">set</span> <span class="hljs-operator">-f</span>; <span class="hljs-built_in">set</span> -- <span class="hljs-variable">$args</span>; <span class="hljs-built_in">set</span> +f
+</code></pre>
 <h1 id="2-">2 .</h1>
 <p>objdump &#xBA85;&#xB839;&#xC744; &#xC774;&#xC6A9;&#xD574; disassemble &#xC744; &#xD574;&#xBCF4;&#xB824;&#xBA74; &#xBA3C;&#xC800; &#xCEF4;&#xD30C;&#xC77C; &#xACFC;&#xC815;&#xC744; &#xAC70;&#xCCD0;&#xC11C;
 object &#xD30C;&#xC77C;&#xC774;&#xB098; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xB418;&#xB294;&#xB370;&#xC694;.
