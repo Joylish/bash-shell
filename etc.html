@@ -1452,13 +1452,15 @@ $ <span class="hljs-built_in">echo</span> net.ipv4.icmp_<span class="hljs-built_
 <pre><code class="lang-bash"><span class="hljs-comment"># /proc, /sys &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0; &#xC788;&#xB294; &#xD56D;&#xBAA9;&#xB4E4;&#xC740; &#xB300;&#xBD80;&#xBD84; cat &#xBA85;&#xB839;&#xC73C;&#xB85C; read &#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-comment"># &#xB2E4;&#xC74C; &#xD568;&#xC218;&#xB294; &#xD2B9;&#xC815; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD56D;&#xBAA9;&#xB4E4;&#xC744; &#xC77C;&#xAD04; &#xCD9C;&#xB825;&#xD574; &#xC90D;&#xB2C8;&#xB2E4;. ( -r &#xC635;&#xC158;&#xC740; recursive )</span>
 $ <span class="hljs-function"><span class="hljs-title">syscat</span></span>() {
-    <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-built_in">set</span> -- .
-    <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">1</span> <span class="hljs-operator">-a</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> != <span class="hljs-string">&quot;-r&quot;</span>; <span class="hljs-keyword">then</span>
-        sudo find -L <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> -maxdepth <span class="hljs-number">1</span> ! -type d \
+    <span class="hljs-built_in">local</span> dir
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> != <span class="hljs-string">&quot;-r&quot;</span>; <span class="hljs-keyword">then</span>
+        <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">0</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$1</span>
+        sudo find -L <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span> -maxdepth <span class="hljs-number">1</span> ! -type d \
             -exec sh -c <span class="hljs-string">&apos;echo &quot;$(echo &quot;\e[36m[ $(basename &quot;{}&quot;) ]\e[0m&quot;)&quot;; \
              printf &quot;%s\n&quot; &quot;$(timeout 1 cat &quot;{}&quot; | tr -cd &quot;[:print:][:space:]&quot;)&quot;&apos;</span> \;
-    <span class="hljs-keyword">elif</span> <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">2</span> <span class="hljs-operator">-a</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> = <span class="hljs-string">&quot;-r&quot;</span>; <span class="hljs-keyword">then</span>
-        <span class="hljs-built_in">local</span> dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$2</span>&quot;</span>`
+    <span class="hljs-keyword">else</span>
+        <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">1</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$2</span>
+        dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span>`
         sudo find <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span> \( -path <span class="hljs-string">&quot;*/tracing&quot;</span> -o -path <span class="hljs-string">&quot;*/debug&quot;</span> \) -prune -o \
              ! -type d,l -exec sh -c <span class="hljs-string">&apos;echo &quot;\e[36m[ $(echo &quot;{}&quot; | 
              sed &quot;s#^&apos;</span><span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span><span class="hljs-string">&apos;/##&quot;) ]\e[0m&quot;; printf &quot;%s\n&quot; &quot;$(timeout 1 cat &quot;{}&quot; |
