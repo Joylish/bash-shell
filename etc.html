@@ -1457,14 +1457,13 @@ $ <span class="hljs-function"><span class="hljs-title">syscat</span></span>() {
         <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">0</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$1</span>
         sudo find -L <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span> -maxdepth <span class="hljs-number">1</span> ! -type d \
             -exec sh -c <span class="hljs-string">&apos;echo &quot;$(echo &quot;\e[36m[ $(basename &quot;{}&quot;) ]\e[0m&quot;)&quot;; \
-             printf &quot;%s\n&quot; &quot;$(timeout 1 cat &quot;{}&quot; | tr -cd &quot;[:print:][:space:]&quot;)&quot;&apos;</span> \;
+             printf &quot;%s\n&quot; &quot;$(timeout 1 cat &quot;{}&quot; | tr -cd &quot;[:print:][ \t\n]&quot;)&quot;&apos;</span> \;
     <span class="hljs-keyword">else</span>
-        <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">1</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$2</span>
-        dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span>`
+        <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">1</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$2</span>; dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span>`
         sudo find <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span> \( -path <span class="hljs-string">&quot;*/tracing&quot;</span> -o -path <span class="hljs-string">&quot;*/debug&quot;</span> \) -prune -o \
              ! -type d,l -exec sh -c <span class="hljs-string">&apos;echo &quot;\e[36m[ $(echo &quot;{}&quot; | 
              sed &quot;s#^&apos;</span><span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span><span class="hljs-string">&apos;/##&quot;) ]\e[0m&quot;; printf &quot;%s\n&quot; &quot;$(timeout 1 cat &quot;{}&quot; |
-             tr -cd &quot;[:print:][:space:]&quot;)&quot;&apos;</span> \; <span class="hljs-number">2</span>&gt; /dev/null
+             tr -cd &quot;[:print:][ \t\n]&quot;)&quot;&apos;</span> \; <span class="hljs-number">2</span>&gt; /dev/null
     <span class="hljs-keyword">fi</span>
 }
 
