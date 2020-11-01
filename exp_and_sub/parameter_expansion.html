@@ -1367,7 +1367,7 @@ $ nl=<span class="hljs-string">&apos;
 $ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">${AA%%$nl*}</span>&quot;</span>
 title
 </code></pre>
-<p>Array[@] &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xC804;&#xCCB4; &#xC6D0;&#xC18C;&#xC5D0; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p><code>array[@]</code>, <code>array[*]</code>, <code>$@</code>, <code>$*</code> &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ \ls /usr/bin/bas*
 /usr/bin/base32  /usr/bin/base64  /usr/bin/basename  /usr/bin/bashbug
 
@@ -1728,7 +1728,7 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${@:2:2}</
 <p>&#xBCC0;&#xC218;&#xAC00; &#xAC00;&#xC9C0;&#xB294; &#xAC12;&#xC744; &#xD328;&#xD134;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xB9E4;&#xCE6D;&#xB418;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xB2E4;&#xB978; &#xC2A4;&#xD2B8;&#xB9C1;&#xC73C;&#xB85C; &#xBC14;&#xAFB8;&#xAC70;&#xB098; &#xC0AD;&#xC81C;&#xD560;&#xB54C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.
 &#xB9E4;&#xCE6D;&#xB418;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC5EC;&#xB7EC;&#xAD70;&#xB300; &#xB098;&#xD0C0;&#xB0A0;&#xC218; &#xC788;&#xB294;&#xB370; <code>//</code> &#xAE30;&#xD638;&#xB294; <code>&#xBAA8;&#xB450;</code>&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xACE0; <code>/</code> &#xB294; <code>&#xCCAB;&#xBC88;&#xC9F8; &#xD558;&#xB098;&#xB9CC;</code> &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;.
 &#xBC14;&#xAFB8;&#xB294; &#xC2A4;&#xD2B8;&#xB9C1; &#xAC12;&#xC744; &#xC8FC;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB9E4;&#xCE6D;&#xB418;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.
-array[@] &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<code>array[@]</code>, <code>array[*]</code>, <code>$@</code>, <code>$*</code> &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ AA=<span class="hljs-string">&quot;Arch Linux Ubuntu Linux Fedora Linux&quot;</span>
 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/Linux/XXX}</span>                <span class="hljs-comment"># Arch Linux &#xB9CC; &#xBC14;&#xB00C;&#xC600;&#xB2E4;.</span>
@@ -1772,7 +1772,7 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/#?}</
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/%?}</span>
 X12345
 </code></pre>
-<p>Array[@] &#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xBCC4;&#xB85C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>Array &#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xBCC4;&#xB85C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ AA=<span class="hljs-string">&quot;aaa.c bbb.c ccc.c&quot;</span>
 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/#/common/}</span>          <span class="hljs-comment"># AA &#xAC00; array &#xAC00; &#xC544;&#xB2D0;&#xACBD;&#xC6B0;</span>
@@ -1792,7 +1792,7 @@ Arch L<span class="hljs-keyword">in</span>Xx UbXntu Linux Fedora L<span class="h
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA[@]//u/X}</span>                  <span class="hljs-comment"># &#xC774;&#xC81C; &#xBAA8;&#xB450; &#xBC14;&#xB00C;&#xC600;&#xB2E4;</span>
 Arch L<span class="hljs-keyword">in</span>Xx UbXntX L<span class="hljs-keyword">in</span>Xx Fedora L<span class="hljs-keyword">in</span>Xx
 </code></pre>
-<p>Array[@] &#xCC98;&#xB9AC;&#xACB0;&#xACFC;&#xB97C; array &#xBCC0;&#xC218;&#xC5D0; &#xB300;&#xC785;&#xD558;&#xB824;&#xBA74; &#xD56D;&#xC0C1; <code>=( )</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Array &#xCC98;&#xB9AC;&#xACB0;&#xACFC;&#xB97C; array &#xBCC0;&#xC218;&#xC5D0; &#xB300;&#xC785;&#xD558;&#xB824;&#xBA74; &#xD56D;&#xC0C1; <code>=( )</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ AA=( aaa.c bbb.c ccc.c )
 
 $ BB=<span class="hljs-variable">${AA[@]/#/common/}</span>               <span class="hljs-comment"># BB &#xB294; array &#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
