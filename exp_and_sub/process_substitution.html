@@ -1421,6 +1421,17 @@ LIBFOO_1.<span class="hljs-number">0</span> {
 };
 @
 ) -o libfoo.so foo.c
+
+<span class="hljs-comment"># &#xB610;&#xB294; </span>
+$ cat &lt;&lt;\@ | gcc <span class="hljs-operator">-f</span>PIC -shared -Wl,--version-script=&lt;(cat) -o libfoo.so foo.c
+LIBFOO_1.<span class="hljs-number">0</span> { 
+    global: 
+        libfoo_init; libfoo_doit; libfoo_<span class="hljs-keyword">done</span>;
+
+    <span class="hljs-built_in">local</span>:
+        *;
+};
+@
 </code></pre>
 <p>&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC791;&#xC131; &#xC2DC;&#xC5D0; &#xBA85;&#xB839; &#xC2E4;&#xD589; &#xACB0;&#xACFC;&#xB97C; &#xBC1B;&#xC544;&#xC11C; &#xCC98;&#xB9AC;&#xD558;&#xACE0;&#xC790; &#xD560;&#xB54C; &#xD30C;&#xC774;&#xD504;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370;&#xC694;.
 &#xD30C;&#xC774;&#xD504;&#xB294; &#xC5F0;&#xACB0;&#xB41C; &#xBAA8;&#xB4E0; &#xBA85;&#xB839;&#xB4E4;&#xC774; &#xAC01;&#xC790;&#xC758; subshell &#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xC5B4; parent &#xBCC0;&#xC218;&#xC5D0; &#xC5F0;&#xC0B0; &#xACB0;&#xACFC;&#xB97C; &#xC800;&#xC7A5;&#xD560; &#xC218;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. 
