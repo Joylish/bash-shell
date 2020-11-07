@@ -1468,7 +1468,9 @@ $ ps ax | grep irq[/]       <span class="hljs-comment"># irq &#xC2A4;&#xB808;&#x
 <span class="hljs-number">21241</span> ?        S      <span class="hljs-number">0</span>:<span class="hljs-number">00</span> [irq/<span class="hljs-number">39</span>-mei_me]
 <span class="hljs-number">21242</span> ?        S      <span class="hljs-number">0</span>:<span class="hljs-number">00</span> [irq/<span class="hljs-number">18</span>-mmc0]
 
-$ ps ax | grep kworke[r]    <span class="hljs-comment"># worker &#xC2A4;&#xB808;&#xB4DC; : work &#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; workqueue &#xC804;&#xC6A9; &#xD504;&#xB85C;&#xC138;&#xC2A4;</span>
+<span class="hljs-comment"># worker &#xC2A4;&#xB808;&#xB4DC; : work &#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; workqueue &#xC804;&#xC6A9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB85C;</span>
+<span class="hljs-comment"># watch -d -n.5 &apos;ps ax | grep kworke[r]&apos; &#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xC2A4;&#xB808;&#xB4DC; &#xC774;&#xB984;&#xC774; &#xACC4;&#xC18D; &#xBCC0;&#xACBD;&#xB418;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
+$ ps ax | grep kworke[r]
    <span class="hljs-number">26</span> ?        I&lt;     <span class="hljs-number">0</span>:<span class="hljs-number">00</span> [kworker/<span class="hljs-number">2</span>:<span class="hljs-number">0</span>H-kblockd]
    <span class="hljs-number">44</span> ?        I&lt;     <span class="hljs-number">0</span>:<span class="hljs-number">00</span> [kworker/<span class="hljs-number">5</span>:<span class="hljs-number">0</span>H-kblockd]
   <span class="hljs-number">178</span> ?        I&lt;     <span class="hljs-number">0</span>:<span class="hljs-number">00</span> [kworker/u17:<span class="hljs-number">0</span>]
