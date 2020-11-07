@@ -1342,10 +1342,10 @@ lrwx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-nu
 lrwx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-number">64</span> <span class="hljs-number">2017</span>-<span class="hljs-number">02</span>-<span class="hljs-number">18</span> <span class="hljs-number">05</span>:<span class="hljs-number">06</span> <span class="hljs-number">255</span> -&gt; /dev/pts/<span class="hljs-number">2</span>
 </code></pre>
 <p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774;&#xD558;&#xBA74; &#xD604;&#xC7AC; libcairo.so &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9; &#xC911;&#xC778; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBAA9;&#xB85D;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ sudo grep libcairo.so /proc/[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]*/maps
+<pre><code class="lang-bash">$ sudo grep libcairo.so /proc/[<span class="hljs-number">1</span>-<span class="hljs-number">9</span>]*/maps
 </code></pre>
 <p>&#xD604;&#xC7AC; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC0DD;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xC804;&#xCCB4; &#xC2A4;&#xB808;&#xB4DC;&#xC758; waiting channel &#xD1B5;&#xACC4;.</p>
-<pre><code class="lang-bash">$ <span class="hljs-keyword">for</span> tid <span class="hljs-keyword">in</span> /proc/[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]*/task/*; <span class="hljs-keyword">do</span> cat <span class="hljs-variable">$tid</span>/wchan; <span class="hljs-built_in">echo</span>; <span class="hljs-keyword">done</span> | sort | uniq -c | sort -r
+<pre><code class="lang-bash">$ <span class="hljs-keyword">for</span> tid <span class="hljs-keyword">in</span> /proc/[<span class="hljs-number">1</span>-<span class="hljs-number">9</span>]*/task/*; <span class="hljs-keyword">do</span> cat <span class="hljs-variable">$tid</span>/wchan; <span class="hljs-built_in">echo</span>; <span class="hljs-keyword">done</span> | sort | uniq -c | sort -r
     <span class="hljs-number">688</span> futex_<span class="hljs-built_in">wait</span>_queue_me
     <span class="hljs-number">357</span> <span class="hljs-number">0</span>                         <span class="hljs-comment"># &#xAC12;&#xC774; 0 &#xC778;&#xAC83;&#xC740; &#xD604;&#xC7AC; wait &#xC0C1;&#xD0DC;&#xAC00; &#xC544;&#xB2D8;</span>
     <span class="hljs-number">269</span> <span class="hljs-keyword">do</span>_poll.constprop.<span class="hljs-number">0</span>
@@ -1358,14 +1358,14 @@ lrwx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-nu
       <span class="hljs-number">2</span> unix_stream_data_<span class="hljs-built_in">wait</span>
       <span class="hljs-number">1</span> <span class="hljs-keyword">do</span>_signal_stop
 </code></pre>
-<p><code>/proc/[0-9]*/stat</code> &#xC744; &#xC774;&#xC6A9;&#xD574; gdm3 &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xC790;&#xC190; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB4E4;&#xC744; &#xCD9C;&#xB825;.</p>
+<p><code>/proc/[1-9]*/stat</code> &#xC744; &#xC774;&#xC6A9;&#xD574; gdm3 &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xC790;&#xC190; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB4E4;&#xC744; &#xCD9C;&#xB825;.</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># $1 &#xB294; PID, $4 &#xB294; PPID </span>
 $ awk -v PPID=`pidof gdm3` -v FPAT=<span class="hljs-string">&apos;[^ ]+|\\([^\\)]*\\)&apos;</span> <span class="hljs-string">&apos;
     { a[$1] = $4 } END{ print PPID; desc(PPID) }
 function desc( ppid,   i) {
     for ( i in a ) { if ( a[i] == ppid ) { print i; desc(i) }}
 }
-&apos;</span> /proc/[<span class="hljs-number">0</span>-<span class="hljs-number">9</span>]*/<span class="hljs-built_in">stat</span> | xargs ps f
+&apos;</span> /proc/[<span class="hljs-number">1</span>-<span class="hljs-number">9</span>]*/<span class="hljs-built_in">stat</span> | xargs ps f
   PID TTY      STAT   TIME COMMAND
  <span class="hljs-number">1510</span> ?        Ssl    <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/sbin/gdm3
  <span class="hljs-number">1679</span> ?        Sl     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>  \_ gdm-session-worker [pam/gdm-autologin]
