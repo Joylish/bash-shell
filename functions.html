@@ -1454,7 +1454,7 @@ BB : <span class="hljs-number">200</span>
 <pre><code class="lang-bash"><span class="hljs-comment"># &#xC790;&#xC190; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xD504;&#xB9B0;&#xD2B8;&#xD558;&#xAE30;</span>
 <span class="hljs-function"><span class="hljs-title">list_descendants</span></span> ()
 {
-    <span class="hljs-built_in">local</span> children=$( ps -o pid= --ppid <span class="hljs-variable">$1</span> )
+    <span class="hljs-built_in">local</span> children=$( cat <span class="hljs-string">&quot;/proc/<span class="hljs-variable">$1</span>/task/<span class="hljs-variable">$1</span>/children&quot;</span> )
     <span class="hljs-keyword">for</span> pid <span class="hljs-keyword">in</span> <span class="hljs-variable">$children</span>
     <span class="hljs-keyword">do</span>
         list_descendants <span class="hljs-variable">$pid</span>
@@ -1462,7 +1462,16 @@ BB : <span class="hljs-number">200</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-variable">$children</span>
 }
 
+$ PID=`pidof gdm3`
+
 $ ps f <span class="hljs-variable">$PID</span> $(list_descendants <span class="hljs-variable">$PID</span>)
+    PID TTY      STAT   TIME COMMAND
+   <span class="hljs-number">1492</span> ?        Ssl    <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/sbin/gdm3
+   <span class="hljs-number">1498</span> ?        Sl     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>  \_ gdm-session-worker [pam/gdm-autologin]
+   <span class="hljs-number">1531</span> tty2     Ssl+   <span class="hljs-number">0</span>:<span class="hljs-number">00</span>      \_ /usr/libexec/gdm-x-session --register-session ...
+   <span class="hljs-number">1533</span> tty2     Sl+   <span class="hljs-number">27</span>:<span class="hljs-number">25</span>          \_ /usr/lib/xorg/Xorg vt2 -displayfd <span class="hljs-number">3</span> ...
+   <span class="hljs-number">1640</span> tty2     Sl+    <span class="hljs-number">0</span>:<span class="hljs-number">00</span>          \_ /usr/bin/startplasma-x11
+   <span class="hljs-number">1745</span> ?        Ss     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>              \_ /usr/bin/ssh-agent /usr/bin/
 </code></pre>
 <h4 id="shell-&#xC740;-dynamic-scoping-&#xC744;-&#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;">Shell &#xC740; dynamic scoping &#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</h4>
 <p>Shell &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; local &#xB85C; &#xC124;&#xC815;&#xD55C; &#xBCC0;&#xC218;&#xB97C; child &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xC77D;&#xACE0; &#xC4F8;&#xC218;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.<br>&#xADF8;&#xB9AC;&#xACE0; &#xBCC0;&#xACBD;&#xD55C; &#xAC12;&#xB3C4; parent &#xD568;&#xC218;&#xC5D0; &#xC801;&#xC6A9;&#xC774; &#xB429;&#xB2C8;&#xB2E4;. ( sh &#xC5D0;&#xC11C;&#xB3C4; &#xB3D9;&#xC77C;&#xD558;&#xAC8C; &#xB3D9;&#xC791;&#xD569;&#xB2C8;&#xB2E4; )</p>
