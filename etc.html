@@ -1366,14 +1366,13 @@ function desc( ppid,   i) {
     for ( i in a ) { if ( a[i] == ppid ) { print i; desc(i) }}
 }
 &apos;</span> /proc/[<span class="hljs-number">1</span>-<span class="hljs-number">9</span>]*/<span class="hljs-built_in">stat</span> | xargs ps f
-  PID TTY      STAT   TIME COMMAND
- <span class="hljs-number">1510</span> ?        Ssl    <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/sbin/gdm3
- <span class="hljs-number">1679</span> ?        Sl     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>  \_ gdm-session-worker [pam/gdm-autologin]
- <span class="hljs-number">1882</span> tty2     Ssl+   <span class="hljs-number">0</span>:<span class="hljs-number">00</span>      \_ /usr/lib/gdm3/gdm-x-session --register-session ...
- <span class="hljs-number">1890</span> tty2     Sl+    <span class="hljs-number">5</span>:<span class="hljs-number">26</span>          \_ /usr/lib/xorg/Xorg vt2 -displayfd <span class="hljs-number">3</span> -auth ...
- <span class="hljs-number">2380</span> tty2     S+     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>          \_ /bin/sh /usr/bin/startkde
- <span class="hljs-number">2586</span> ?        Ss     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>              \_ /usr/bin/ssh-agent /usr/bin/im-launch ...
- <span class="hljs-number">3106</span> tty2     S+     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>              \_ kwrapper5 /usr/bin/ksmserver
+    PID TTY      STAT   TIME COMMAND
+   <span class="hljs-number">1492</span> ?        Ssl    <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/sbin/gdm3
+   <span class="hljs-number">1498</span> ?        Sl     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>  \_ gdm-session-worker [pam/gdm-autologin]
+   <span class="hljs-number">1531</span> tty2     Ssl+   <span class="hljs-number">0</span>:<span class="hljs-number">00</span>      \_ /usr/libexec/gdm-x-session --register-session ...
+   <span class="hljs-number">1533</span> tty2     Sl+   <span class="hljs-number">28</span>:<span class="hljs-number">21</span>          \_ /usr/lib/xorg/Xorg vt2 -displayfd <span class="hljs-number">3</span> ...
+   <span class="hljs-number">1640</span> tty2     Sl+    <span class="hljs-number">0</span>:<span class="hljs-number">00</span>          \_ /usr/bin/startplasma-x11
+   <span class="hljs-number">1745</span> ?        Ss     <span class="hljs-number">0</span>:<span class="hljs-number">00</span>              \_ /usr/bin/ssh-agent /usr/bin/im-launch ...
 </code></pre>
 <h4 id="procself">/proc/self</h4>
 <p>/proc/self &#xB294; &#xC2EC;&#xBCFC;&#xB9AD;&#xB9C1;&#xD06C; &#xC778;&#xB370; &#xD56D;&#xC0C1; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC790;&#xC2E0;&#xC758; PID &#xBC88;&#xD638;&#xC5D0; &#xC5F0;&#xACB0;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
