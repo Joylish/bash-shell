@@ -1464,7 +1464,7 @@ $ <span class="hljs-built_in">echo</span> net.ipv4.icmp_<span class="hljs-built_
 $ <span class="hljs-function"><span class="hljs-title">syscat</span></span>() {
     <span class="hljs-built_in">local</span> -x dir
     <span class="hljs-built_in">local</span> cmd=<span class="hljs-string">&apos;cdir={}; echo &quot;\e[36m[ ${cdir#$dir/} ]\e[0m&quot;; \
-               echo &quot;$(timeout 1 cat &quot;{}&quot; | tr -c &quot;[:print:][\t\n]&quot; &quot;.&quot;)&quot;&apos;</span>
+               echo &quot;$(timeout 1 cat &quot;{}&quot; | tr -cd &quot;[:print:][\t\n]&quot;)&quot;&apos;</span>
     <span class="hljs-keyword">if</span> <span class="hljs-built_in">test</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> != <span class="hljs-string">&quot;-r&quot;</span>; <span class="hljs-keyword">then</span>
         <span class="hljs-built_in">test</span> <span class="hljs-variable">$#</span> = <span class="hljs-number">0</span> &amp;&amp; dir=. || dir=<span class="hljs-variable">$1</span>; dir=`readlink <span class="hljs-operator">-f</span> <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span>`
         sudo -E find -L <span class="hljs-string">&quot;<span class="hljs-variable">$dir</span>&quot;</span> -maxdepth <span class="hljs-number">1</span> ! -type d -exec sh -c <span class="hljs-string">&quot;<span class="hljs-variable">$cmd</span>&quot;</span> \;
