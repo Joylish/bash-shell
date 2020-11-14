@@ -1667,6 +1667,56 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
 <li><p>9&#xBC88;: &#xC774;&#xB54C;&#xBD80;&#xD130;&#xB294; FD 0 &#xBC88; STDIN &#xC744; read &#xD558;&#xBA74; &#xD30C;&#xC774;&#xD504;&#xB85C;&#xBD80;&#xD130; read &#xAC00; &#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
+<pre><code class="lang-c"><span class="hljs-comment">/*
+ *  &#xB2E4;&#xC74C;&#xC740; &quot;cat /proc/self/maps | grep libc&quot; &#xBA85;&#xB839;&#xACFC; &#xAC19;&#xC740; &#xC5ED;&#xD560;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.
+ *  child &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; maps &#xD30C;&#xC77C;&#xC744; &#xC77D;&#xC5B4;&#xC11C; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xCD9C;&#xB825;&#xC744; &#xD558;&#xBA74; parent &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; 
+ *  &#xD30C;&#xC774;&#xD504;&#xB97C; &#xD1B5;&#xD574; &#xB77C;&#xC778;&#xC744; &#xBC1B;&#xC544;&#xC11C; &quot;libc&quot; &#xC2A4;&#xD2B8;&#xB9C1;&#xC774; &#xC874;&#xC7AC;&#xD560; &#xACBD;&#xC6B0; &#xCD9C;&#xB825;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.
+**/</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span>
+</span>{
+    <span class="hljs-keyword">pid_t</span> childpid;
+    <span class="hljs-keyword">int</span> fd[<span class="hljs-number">2</span>]; pipe(fd);
+
+    <span class="hljs-keyword">if</span> ((childpid = fork()) == -<span class="hljs-number">1</span>) { perror(<span class="hljs-string">&quot;fork&quot;</span>); <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>); }
+
+    <span class="hljs-keyword">char</span> *line = <span class="hljs-literal">NULL</span>; <span class="hljs-keyword">size_t</span> len = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">if</span> (childpid == <span class="hljs-number">0</span>)    <span class="hljs-comment">// child &#xD504;&#xB85C;&#xC138;&#xC2A4; </span>
+    {
+        dup2(fd[<span class="hljs-number">1</span>], STDOUT_FILENO); close(fd[<span class="hljs-number">0</span>]); close(fd[<span class="hljs-number">1</span>]);
+        FILE *file = fopen (<span class="hljs-string">&quot;/proc/self/maps&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+        <span class="hljs-keyword">while</span> ((getline(&amp;line, &amp;len, file)) != -<span class="hljs-number">1</span>) 
+            <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);     <span class="hljs-comment">// &#xC774;&#xC81C; stdout &#xC73C;&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xBA74; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xC4F0;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
+        fclose(file); <span class="hljs-built_in">free</span>(line);
+    }
+    <span class="hljs-keyword">else</span>                  <span class="hljs-comment">// parent &#xD504;&#xB85C;&#xC138;&#xC2A4;</span>
+    {
+        dup2(fd[<span class="hljs-number">0</span>], STDIN_FILENO); close(fd[<span class="hljs-number">0</span>]); close(fd[<span class="hljs-number">1</span>]);
+        <span class="hljs-keyword">while</span> ((getline(&amp;line, &amp;len, <span class="hljs-built_in">stdin</span>)) != -<span class="hljs-number">1</span>)    <span class="hljs-comment">// stdin &#xC744; &#xC77D;&#xC73C;&#xBA74; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xBD80;&#xD130;</span>
+        {                                              <span class="hljs-comment">// &#xC77D;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
+            <span class="hljs-keyword">if</span> (argc &gt; <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strstr</span>(line, argv[<span class="hljs-number">1</span>]) != <span class="hljs-literal">NULL</span>) <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);
+            } <span class="hljs-keyword">else</span>
+                <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);
+        }
+        <span class="hljs-built_in">free</span>(line);
+    }
+    <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+}
+----------------------------
+
+$ gcc pipe.c
+
+$ ./a.out libc
+<span class="hljs-number">7f</span>b00b520000-<span class="hljs-number">7f</span>b00b546000 r--p <span class="hljs-number">00000000</span> . . . /usr/lib/x86_64-linux-gnu/libc-<span class="hljs-number">2.32</span>.so
+<span class="hljs-number">7f</span>b00b546000-<span class="hljs-number">7f</span>b00b6b3000 r-xp <span class="hljs-number">00026000</span> . . . /usr/lib/x86_64-linux-gnu/libc-<span class="hljs-number">2.32</span>.so
+<span class="hljs-number">7f</span>b00b6b3000-<span class="hljs-number">7f</span>b00b6ff000 r--p <span class="hljs-number">00193000</span> . . . /usr/lib/x86_64-linux-gnu/libc-<span class="hljs-number">2.32</span>.so
+. . .
+</code></pre>
 <p><a name="bash-sh"></a></p>
 <h3 id="bash-&#xC640;-sh-&#xC5D0;&#xC11C;&#xC758;-int-signal-handler-&#xAC00;-&#xCC98;&#xB9AC;&#xB418;&#xB294;-&#xBC29;&#xC2DD;&#xC758;-&#xCC28;&#xC774;&#xC810;">bash &#xC640; sh &#xC5D0;&#xC11C;&#xC758; INT signal handler &#xAC00; &#xCC98;&#xB9AC;&#xB418;&#xB294; &#xBC29;&#xC2DD;&#xC758; &#xCC28;&#xC774;&#xC810;</h3>
 <p><a href="signals_and_traps.html">Signals and Traps</a> &#xBA54;&#xB274;&#xC5D0; &#xBCF4;&#xBA74; a.sh -&gt; b.sh -&gt; c.sh &#xC21C;&#xC11C;&#xB85C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xAC00;
