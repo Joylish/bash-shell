@@ -1682,7 +1682,7 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
     <span class="hljs-keyword">pid_t</span> childpid;
     <span class="hljs-keyword">int</span> fd[<span class="hljs-number">2</span>]; pipe(fd);  <span class="hljs-comment">// &#xD30C;&#xC774;&#xD504; &#xC0DD;&#xC131;</span>
 
-    <span class="hljs-keyword">if</span> ((childpid = fork()) == -<span class="hljs-number">1</span>) { perror(<span class="hljs-string">&quot;fork&quot;</span>); <span class="hljs-built_in">exit</span>(<span class="hljs-number">1</span>); }
+    childpid = fork();
 
     <span class="hljs-keyword">char</span> *line = <span class="hljs-literal">NULL</span>; <span class="hljs-keyword">size_t</span> len = <span class="hljs-number">0</span>;
     <span class="hljs-keyword">if</span> (childpid == <span class="hljs-number">0</span>)    <span class="hljs-comment">// child &#xD504;&#xB85C;&#xC138;&#xC2A4; </span>
