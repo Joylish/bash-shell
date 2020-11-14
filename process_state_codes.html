@@ -1585,11 +1585,12 @@ $ sudo rtcwake -m mem -t `date +%s <span class="hljs-operator">-d</span> <span c
 
 <span class="hljs-comment"># hardware clock &#xC2DC;&#xAC04;&#xC740; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xD574;&#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-comment"># &#xD55C;&#xAD6D;&#xC77C; &#xACBD;&#xC6B0; &#xD604;&#xC7AC; &#xC2DC;&#xAC04;&#xBCF4;&#xB2E4; 9 &#xC2DC;&#xAC04; &#xC801;&#xC73C;&#xBA74; UTC &#xC785;&#xB2C8;&#xB2E4;.</span>
-$ sudo hwclock
-<span class="hljs-number">2020</span>-<span class="hljs-number">03</span>-<span class="hljs-number">29</span> <span class="hljs-number">04</span>:<span class="hljs-number">29</span>:<span class="hljs-number">20.151255</span>+<span class="hljs-number">09</span>:<span class="hljs-number">00</span>
-
+$ cat /proc/driver/rtc
+rtc_time        : <span class="hljs-number">01</span>:<span class="hljs-number">10</span>:<span class="hljs-number">10</span>
+rtc_date        : <span class="hljs-number">2020</span>-<span class="hljs-number">11</span>-<span class="hljs-number">14</span>
+. . .
 $ date <span class="hljs-string">&apos;+%F %T&apos;</span>
-<span class="hljs-number">2020</span>-<span class="hljs-number">03</span>-<span class="hljs-number">29</span> <span class="hljs-number">13</span>:<span class="hljs-number">29</span>:<span class="hljs-number">28</span>
+<span class="hljs-number">2020</span>-<span class="hljs-number">11</span>-<span class="hljs-number">14</span> <span class="hljs-number">10</span>:<span class="hljs-number">10</span>:<span class="hljs-number">12</span>
 -----------------------------------------------------------------
 
 <span class="hljs-comment"># suspend &#xC911;&#xAC04;&#xC5D0; &#xB2E4;&#xC2DC; &#xCEF4;&#xD4E8;&#xD130;&#xB97C; &#xD0AC;&#xACBD;&#xC6B0;&#xC5D0;&#xB3C4; &apos;&amp;&amp;&apos; &#xC5F0;&#xC0B0;&#xC790;&#xB85C; &#xC124;&#xC815;&#xD55C; &#xBA85;&#xB839;&#xC774; &#xC2E4;&#xD589;&#xB418;&#xB294;&#xB370;</span>
