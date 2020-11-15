@@ -1703,7 +1703,7 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
                 <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strstr</span>(line, argv[<span class="hljs-number">1</span>]) != <span class="hljs-literal">NULL</span>) <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);
             } <span class="hljs-keyword">else</span>
                 <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);
-        }
+        }   <span class="hljs-comment">// while &#xBB38; &#xB300;&#xC2E0;&#xC5D0; system(&quot;wc&quot;); &#xB97C; &#xD574;&#xB3C4; &#xB41C;&#xB2E4;.</span>
         <span class="hljs-built_in">free</span>(line);
         <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
     }
