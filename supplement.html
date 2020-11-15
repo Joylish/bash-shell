@@ -1692,8 +1692,7 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
         FILE *file = fopen (<span class="hljs-string">&quot;/proc/self/maps&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
         <span class="hljs-keyword">while</span> ((getline(&amp;line, &amp;len, file)) != -<span class="hljs-number">1</span>) 
             <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);     <span class="hljs-comment">// &#xC774;&#xC81C; stdout &#xC73C;&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xBA74; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xC4F0;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
-        fflush(<span class="hljs-built_in">stdout</span>); fclose(file); <span class="hljs-built_in">free</span>(line);
-        _exit(EXIT_SUCCESS);
+        fflush(<span class="hljs-built_in">stdout</span>); _exit(EXIT_SUCCESS);
     }
     <span class="hljs-keyword">else</span>    <span class="hljs-comment">// parent &#xD504;&#xB85C;&#xC138;&#xC2A4;</span>
     {
@@ -1705,8 +1704,7 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
             } <span class="hljs-keyword">else</span>
                 <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);
         }   <span class="hljs-comment">// while &#xBB38; &#xB300;&#xC2E0;&#xC5D0; system(&quot;wc&quot;); &#xB97C; &#xD574;&#xB3C4; &#xB41C;&#xB2E4;.</span>
-        <span class="hljs-built_in">free</span>(line); wait(<span class="hljs-literal">NULL</span>);
-        <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+        wait(<span class="hljs-literal">NULL</span>); <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
     }
 }
 ----------------------------
