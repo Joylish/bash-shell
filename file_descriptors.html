@@ -1327,18 +1327,18 @@ $ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&lt;
 <h4 id="fd-3-&#xBC88;&#xC744;-&#xB9CC;&#xB4E4;&#xACE0;-outfile-&#xD30C;&#xC77C;&#xC744;-&#xCD9C;&#xB825;&#xC73C;&#xB85C;-&#xC5F0;&#xACB0;">FD 3 &#xBC88;&#xC744; &#xB9CC;&#xB4E4;&#xACE0; outfile &#xD30C;&#xC77C;&#xC744; &#xCD9C;&#xB825;&#xC73C;&#xB85C; &#xC5F0;&#xACB0;</h4>
 <p>&#xCD9C;&#xB825;&#xC774;&#xBBC0;&#xB85C; &#xC774;&#xB54C; outfile &#xD30C;&#xC77C;&#xC5D0; &#xB0B4;&#xC6A9;&#xC774; &#xC788;&#xB2E4;&#xBA74; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;. &#xC0AD;&#xC81C;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xACE0; append &#xB418;&#xAC8C; &#xD558;&#xB824;&#xBA74;
 <code>&gt;&gt;</code> &#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. <code>&gt;</code> &#xB294; &#xB370;&#xC774;&#xD130;&#xB97C; &#xD30C;&#xC77C;&#xC758; &#xCC98;&#xC74C;&#xBD80;&#xD130; &#xC4F0;&#xAE30; &#xC2DC;&#xC791;&#xD558;&#xBA70;, <code>&gt;&gt;</code> &#xB294; &#xAE30;&#xC874;&#xC758; &#xB0B4;&#xC6A9;&#xC5D0; &#xB4A4;&#xC774;&#xC5B4;&#xC11C; &#xC4F0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt; outfile
+<pre><code class="lang-bash">$ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt; outfile    <span class="hljs-comment"># FD &#xB97C; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xC740; &#xBBF8;&#xB9AC; &#xD30C;&#xC77C;&#xC744; open &#xD574;&#xB193;&#xB294;&#xB2E4;&#xB294; &#xC758;&#xBBF8;</span>
 
 <span class="hljs-comment"># write &#xC73C;&#xB85C; &#xC5F0;&#xACB0; &#xD558;&#xC600;&#xC73C;&#xBBC0;&#xB85C; &#xD37C;&#xBBF8;&#xC158;&#xC740; `l-wx------` &#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</span>
 $ ls <span class="hljs-operator">-l</span> /proc/$$/fd/<span class="hljs-number">3</span>
 l-wx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-number">64</span> <span class="hljs-number">04.07</span>.<span class="hljs-number">2015</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span> /proc/<span class="hljs-number">9363</span>/fd/<span class="hljs-number">3</span> -&gt; /home/mug896/outfile
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&amp;<span class="hljs-number">3</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&amp;<span class="hljs-number">3</span>       <span class="hljs-comment"># FD &#xB97C; &#xD1B5;&#xD574; &#xC774;&#xBBF8; open &#xB41C; &#xD30C;&#xC77C;&#xC5D0; &#xC4F0;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
 $ cat outfile 
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt;&amp;<span class="hljs-number">3</span>
-$ cat outfile        <span class="hljs-comment"># &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC774;&#xB3D9;&#xD558;&#xC5EC; &#xB2E4;&#xC74C; &#xB77C;&#xC778;&#xC5D0; &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt;&amp;<span class="hljs-number">3</span>       <span class="hljs-comment"># &#xD30C;&#xC77C;&#xC774; open &#xB41C; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; &#xACC4;&#xC18D; &#xC4F0;&#xAE30;&#xAC00; &#xB418;&#xB294;&#xAC83;&#xC774;&#xBBC0;&#xB85C;</span>
+$ cat outfile        <span class="hljs-comment"># &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC774;&#xB3D9;&#xD558;&#xC5EC; &#xB2E4;&#xC74C; &#xB77C;&#xC778;&#xC5D0; &#xCD94;&#xAC00;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-number">111</span>
 <span class="hljs-number">222</span>
 
@@ -1348,16 +1348,17 @@ $ cat outfile
 <span class="hljs-number">222</span>
 <span class="hljs-number">333</span>
 </code></pre>
-<p>FD &#xAC00; &#xC544;&#xB2C8;&#xACE0; &#xD30C;&#xC77C;&#xB85C; &#xCD9C;&#xB825;&#xD560; &#xACBD;&#xC6B0;&#xB294; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; &#xCCAB; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
+<p>FD &#xAC00; &#xC544;&#xB2C8;&#xACE0; <code>&gt;</code> &#xB97C; &#xC774;&#xC6A9;&#xD574; &#xC9C1;&#xC811; &#xD30C;&#xC77C;&#xB85C; &#xC4F0;&#xAE30;&#xB97C; &#xD558;&#xBA74; &#xB9E4;&#xBC88; open -&gt; write -&gt; close &#xAC00; &#xB418;&#xBBC0;&#xB85C;
+&#xD30C;&#xC77C;&#xC5D0; &#xB77C;&#xC778;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xCCAB; &#xBC88;&#xC9F8; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9C0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; outfile
 $ cat outfile
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt; outfile
-$ cat outfile               <span class="hljs-comment"># &#xB77C;&#xC778;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xCCAB; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9C4;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt; outfile      <span class="hljs-comment"># &#xC4F8;&#xB54C;&#xB9C8;&#xB2E4; open -&gt; write -&gt; close &#xAC00; &#xB418;&#xBBC0;&#xB85C;</span>
+$ cat outfile             <span class="hljs-comment"># &#xB77C;&#xC778;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xCCAB; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9C4;&#xB2E4;.</span>
 <span class="hljs-number">222</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span> &gt;&gt; outfile       <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; append &#xB429;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span> &gt;&gt; outfile     <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; append &#xAC00; &#xB41C;&#xB2E4;.</span>
 $ cat outfile
 <span class="hljs-number">222</span>
 <span class="hljs-number">333</span>
@@ -1365,7 +1366,7 @@ $ cat outfile
 
 $ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt; outfile
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; /dev/fd/<span class="hljs-number">3</span>       <span class="hljs-comment"># /dev/fd/&#xBC88;&#xD638; &#xC0AC;&#xC6A9;&#xC740; &#xC704;&#xC640; &#xAC19;&#xC740; &#xACB0;&#xACFC;&#xB97C; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; /dev/fd/<span class="hljs-number">3</span>       <span class="hljs-comment"># /dev/fd/&#xBC88;&#xD638; &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xB3C4; &#xC704;&#xC640; &#xAC19;&#xC740; &#xACB0;&#xACFC;&#xB97C; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
 $ cat outfile
 <span class="hljs-number">111</span>
 
@@ -1391,23 +1392,24 @@ ls: cannot access /proc/<span class="hljs-number">9363</span>/fd/<span class="hl
 $ ls <span class="hljs-operator">-l</span> /proc/$$/fd/<span class="hljs-number">4</span>
 lr-x------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-number">64</span> <span class="hljs-number">04.07</span>.<span class="hljs-number">2015</span> <span class="hljs-number">10</span>:<span class="hljs-number">56</span> /proc/<span class="hljs-number">9363</span>/fd/<span class="hljs-number">4</span> -&gt; /home/mug896/infile
 </code></pre>
-<p>&#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xB77C;&#xC778;&#xC744; &#xC77D;&#xC5B4; &#xB4E4;&#xC77C;&#xB54C; FD &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xAC83;&#xACFC; &#xB2E8;&#xC21C;&#xD788; <code>&lt;</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xAC83;&#xC740; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xB77C;&#xC778;&#xC744; &#xC77D;&#xC5B4; &#xB4E4;&#xC77C;&#xB54C;&#xB3C4; &#xBBF8;&#xB9AC; &#xD30C;&#xC77C;&#xC744; open &#xD574;&#xB193;&#xACE0; FD &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xAC83;&#xACFC;
+<code>&lt;</code> &#xB97C; &#xC774;&#xC6A9;&#xD574; &#xC9C1;&#xC811; &#xD30C;&#xC77C;&#xC744; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xB294;&#xAC83;&#xC740;  &#xCC28;&#xC774;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;</p>
 <pre><code class="lang-bash">$ cat infile
 <span class="hljs-number">111</span>
 <span class="hljs-number">222</span>
 <span class="hljs-number">333</span>
 
-$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>  
+$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xB9E4;&#xBC88; open -&gt; read -&gt; close &#xB418;&#xB294;&#xAC83;&#xACFC; &#xAC19;&#xC73C;&#xBBC0;&#xB85C;</span>
 <span class="hljs-number">111</span>
-$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xC77D;&#xC744;&#xB54C; &#xB9C8;&#xB2E4; &#xC0C8;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xBA85;&#xB839;&#xACFC; &#xAC19;&#xC544; &#xB3D9;&#xC77C;&#xD55C; &#xAC12;&#xC774; &#xCD9C;&#xB825;&#xB41C;&#xB2E4;  </span>
+$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xC77D;&#xC744; &#xB54C;&#xB9C8;&#xB2E4; &#xCCAB; &#xB77C;&#xC778;&#xB9CC; &#xCD9C;&#xB825;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">exec</span> <span class="hljs-number">4</span>&lt; infile                  <span class="hljs-comment"># FD 4 &#xBC88;&#xC744; infile &#xD30C;&#xC77C;&#xC5D0; &#xC785;&#xB825;&#xC73C;&#xB85C; &#xC5F0;&#xACB0;.</span>
+$ <span class="hljs-built_in">exec</span> <span class="hljs-number">4</span>&lt; infile                  <span class="hljs-comment"># &#xD30C;&#xC77C;&#xC744; open &#xD574;&#xC11C; FD 4 &#xBC88;&#xC744; &#xC0DD;&#xC131;</span>
 
 $ <span class="hljs-built_in">read</span> var &lt;&amp;<span class="hljs-number">4</span>; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>         
 <span class="hljs-number">111</span>
-$ <span class="hljs-built_in">read</span> var &lt;&amp;<span class="hljs-number">4</span>; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>         <span class="hljs-comment"># FD &#xC774;&#xBBC0;&#xB85C; &#xD55C;&#xBC88; &#xC77D;&#xC73C;&#xBA74; &#xC548;&#xC758; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.</span>
-<span class="hljs-number">222</span>
+$ <span class="hljs-built_in">read</span> var &lt;&amp;<span class="hljs-number">4</span>; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>         <span class="hljs-comment"># FD &#xB97C; &#xD1B5;&#xD574; &#xBBF8;&#xB9AC; open &#xB41C; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xACC4;&#xC18D; &#xC77D;&#xAE30;&#xAC00; &#xB418;&#xBBC0;&#xB85C;</span>
+<span class="hljs-number">222</span>                               <span class="hljs-comment"># &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC774;&#xB3D9;&#xD55C;&#xB2E4;.</span>
 $ <span class="hljs-built_in">read</span> var &lt;&amp;<span class="hljs-number">4</span>; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>
 <span class="hljs-number">333</span>
 -------------------------------------
