@@ -1776,7 +1776,7 @@ num_of_<span class="hljs-built_in">jobs</span>=<span class="hljs-number">10</spa
 
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> `seq <span class="hljs-variable">$num_of_jobs</span>`; <span class="hljs-keyword">do</span>
 ( 
-    <span class="hljs-built_in">trap</span> <span class="hljs-string">&quot;echo job<span class="hljs-variable">$i</span> ---------- exit status: \$? &gt; <span class="hljs-variable">$mypipe</span>&quot;</span> EXIT
+    <span class="hljs-built_in">trap</span> <span class="hljs-string">&quot;echo job<span class="hljs-variable">$i</span> ---------- exit status: \$? &gt;&amp; <span class="hljs-variable">$fd1</span>&quot;</span> EXIT
     <span class="hljs-keyword">do</span>_job 
 ) &amp;
 <span class="hljs-keyword">done</span>
@@ -1786,14 +1786,15 @@ i=<span class="hljs-number">1</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$res</span>&quot;</span>
     [ <span class="hljs-variable">$i</span> <span class="hljs-operator">-eq</span> <span class="hljs-variable">$num_of_jobs</span> ] &amp;&amp; <span class="hljs-built_in">break</span> 
     <span class="hljs-built_in">let</span> i++
-<span class="hljs-keyword">done</span> &lt; <span class="hljs-variable">$mypipe</span>
+<span class="hljs-keyword">done</span> &lt;&amp; <span class="hljs-variable">$fd1</span>
 
 <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span> <span class="hljs-built_in">jobs</span> <span class="hljs-keyword">done</span> !!!
 </code></pre>
 <blockquote>
 <ol>
-<li><code>&gt; $mypipe</code> &#xC640; <code>&lt; $mypipe</code> &#xB300;&#xC2E0;&#xC5D0; <code>&gt;&amp; $fd1</code> &#xC640; <code>&lt;&amp; $fd1</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xB3C4; &#xB429;&#xB2C8;&#xB2E4;. &#xC704; &#xC608;&#xC81C;&#xC5D0;&#xC11C; &#xCC98;&#xB7FC; &#xC9C1;&#xC811; named pipe ( $mypipe ) &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xAC83; &#xBCF4;&#xB2E4;&#xB294; FD ( $fd1 ) &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xC2B5;&#xB2C8;&#xB2E4;.  </li>
-<li>&#xC774; &#xBC29;&#xBC95;&#xC740; while &#xBB38;&#xC5D0;&#xC11C; $mypipe &#xB97C; done &#xD0A4;&#xC6CC;&#xB4DC;&#xC5D0; &#xC5F0;&#xACB0;&#xD558;&#xC9C0; &#xC54A;&#xACE0; <code>read res &lt;&amp; $fd1</code>  &#xB610;&#xB294; <code>read res &lt; $mypipe</code> &#xC640; &#xAC19;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><code>&gt;&amp; $fd1</code> &#xC640; <code>&lt;&amp; $fd1</code> &#xB300;&#xC2E0;&#xC5D0; <code>&gt; $mypipe</code> &#xC640; <code>&lt; $mypipe</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xB3C4; &#xB418;&#xC9C0;&#xB9CC;
+<code>$mypipe</code> &#xB97C; &#xC774;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC740; &#xB9E4;&#xBC88; open, close &#xACFC;&#xC815;&#xC744; &#xAC70;&#xCE58;&#xAC8C; &#xB418;&#xBBC0;&#xB85C; <code>$fd1</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xC2B5;&#xB2C8;&#xB2E4;.  </li>
+<li>&#xC774; &#xBC29;&#xBC95;&#xC740; while &#xBB38;&#xC5D0;&#xC11C; <code>$fd1</code> &#xC744; done &#xD0A4;&#xC6CC;&#xB4DC;&#xC5D0; &#xC5F0;&#xACB0;&#xD558;&#xC9C0; &#xC54A;&#xACE0; <code>read res &lt;&amp; $fd1</code> &#xC640; &#xAC19;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
 </blockquote>
 <hr>
