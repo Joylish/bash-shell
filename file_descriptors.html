@@ -1294,9 +1294,9 @@ shell &#xC5D0;&#xC11C;&#xB294; FD &#xB97C; &#xD30C;&#xC77C;&#xC5D0; &#xC5F0;&#xA
 <p>FD &#xB97C; &#xC124;&#xC815;&#xD560;&#xB54C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBA54;&#xD0C0;&#xBB38;&#xC790;</p>
 <ul>
 <li>&#xC785;&#xB825; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;: <code>&lt;</code></li>
-<li>&#xCD9C;&#xB825; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;: <code>&gt;</code> &#xA0;&#xA0;(&#xC774; &#xAE30;&#xD638;&#xB97C; &#xD30C;&#xC77C;&#xB85C; &#xC5F0;&#xACB0;&#xD558;&#xBA74; &#xBA3C;&#xC800; &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;)</li>
-<li>append : <code>&gt;&gt;</code> (&#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xC774;&#xD6C4;&#xBD80;&#xD130; append &#xB429;&#xB2C8;&#xB2E4;)</li>
-<li>&#xC785;, &#xCD9C;&#xB825; : <code>&lt;&gt;</code> (&#xC774; &#xAE30;&#xD638;&#xB294; <code>&lt;</code> + <code>&gt;</code> &#xC640; &#xAC19;&#xC9C0;&#xB9CC; &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB418;&#xC9C0;&#xB294; &#xC54A;&#xACE0; &#xCD9C;&#xB825;&#xC2DC; &#xCCAB;&#xB77C;&#xC778; &#xBD80;&#xD130; overwrite &#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.)</li>
+<li>&#xCD9C;&#xB825; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;: <code>&gt;</code> &#xA0;&#xA0;( &#xC774; &#xAE30;&#xD638;&#xB97C; &#xD30C;&#xC77C;&#xB85C; &#xC5F0;&#xACB0;&#xD558;&#xBA74; &#xBA3C;&#xC800; &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4; )</li>
+<li>append : <code>&gt;&gt;</code> ( &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xC774;&#xD6C4;&#xBD80;&#xD130; append &#xB429;&#xB2C8;&#xB2E4; )</li>
+<li>&#xC785;, &#xCD9C;&#xB825; : <code>&lt;&gt;</code> ( &#xC774; &#xAE30;&#xD638;&#xB294; <code>&lt;</code> + <code>&gt;</code> &#xC640; &#xAC19;&#xC9C0;&#xB9CC; &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xC0AD;&#xC81C;&#xB418;&#xC9C0;&#xB294; &#xC54A;&#xACE0; &#xCD9C;&#xB825;&#xC2DC; &#xCCAB;&#xB77C;&#xC778; &#xBD80;&#xD130; overwrite &#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. )</li>
 </ul>
 <p>&#xC774; &#xBA54;&#xD0C0;&#xBB38;&#xC790;&#xC758; &#xBC29;&#xD5A5;&#xC131;&#xC740; &#xC2E4;&#xC81C; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xC5F0;&#xACB0;&#xD560; &#xB54C;&#xB9CC; &#xC758;&#xBBF8;&#xB97C; &#xAC16;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xC774;&#xD6C4;&#xC5D0; FD &#xB07C;&#xB9AC; &#xC11C;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xAC70;&#xB098; &#xC0AD;&#xC81C;&#xD560; &#xB54C;&#xB294; &#xBB34;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;
@@ -1336,46 +1336,46 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &
 $ cat outfile 
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&amp;<span class="hljs-number">3</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt;&amp;<span class="hljs-number">3</span>
 $ cat outfile        <span class="hljs-comment"># &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC774;&#xB3D9;&#xD558;&#xC5EC; &#xB2E4;&#xC74C; &#xB77C;&#xC778;&#xC5D0; &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-number">111</span>
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&amp;<span class="hljs-number">3</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span> &gt;&amp;<span class="hljs-number">3</span>
 $ cat outfile
 <span class="hljs-number">111</span>
-<span class="hljs-number">111</span>
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
+<span class="hljs-number">333</span>
 </code></pre>
 <p>FD &#xAC00; &#xC544;&#xB2C8;&#xACE0; &#xD30C;&#xC77C;&#xB85C; &#xCD9C;&#xB825;&#xD560; &#xACBD;&#xC6B0;&#xB294; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; &#xCCAB; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; outfile
 $ cat outfile
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; outfile
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt; outfile
 $ cat outfile               <span class="hljs-comment"># &#xB77C;&#xC778;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xCCAB; &#xB77C;&#xC778;&#xC5D0;&#xB9CC; &#xC4F0;&#xC5EC;&#xC9C4;&#xB2E4;.</span>
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&gt; outfile       <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; append &#xB429;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span> &gt;&gt; outfile       <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; append &#xB429;&#xB2C8;&#xB2E4;.</span>
 $ cat outfile
-<span class="hljs-number">111</span>
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
+<span class="hljs-number">333</span>
 --------------------------------------
 
 $ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt; outfile
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; /dev/fd/<span class="hljs-number">3</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; /dev/fd/<span class="hljs-number">3</span>       <span class="hljs-comment"># &#xC704;&#xC640; &#xAC19;&#xC740; &#xACB0;&#xACFC;</span>
 $ cat outfile
 <span class="hljs-number">111</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt; /dev/fd/<span class="hljs-number">3</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &gt; /dev/fd/<span class="hljs-number">3</span>
 $ cat outfile
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
 
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &gt;&gt; /dev/fd/<span class="hljs-number">3</span>      <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xC0AC;&#xC6A9;</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span> &gt;&gt; /dev/fd/<span class="hljs-number">3</span>      <span class="hljs-comment"># &apos;&gt;&gt;&apos; &#xC0AC;&#xC6A9;</span>
 $ cat outfile
-<span class="hljs-number">111</span>
-<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
+<span class="hljs-number">333</span>
 </code></pre>
 <h4 id="fd-3-&#xBC88;&#xC744;-&#xC0AC;&#xC6A9;&#xD6C4;-&#xC0AD;&#xC81C;&#xD558;&#xAE30;">FD 3 &#xBC88;&#xC744; &#xC0AC;&#xC6A9;&#xD6C4; &#xC0AD;&#xC81C;&#xD558;&#xAE30;</h4>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt;&amp;-
@@ -1487,8 +1487,8 @@ YYY
 <span class="hljs-number">555</span>
 </code></pre>
 <p><code>&lt;&gt;</code> &#xB294; &#xC77D;&#xAC70;&#xB098; &#xC4F0;&#xAC8C;&#xB418;&#xBA74; &#xACC4;&#xC18D;&#xD574;&#xC11C; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC774; &#xC544;&#xB798;&#xB85C; &#xC774;&#xB3D9;&#xD569;&#xB2C8;&#xB2E4;.
-&#xADF8;&#xB7EC;&#xBBC0;&#xB85C; &#xC717;&#xBD80;&#xBD84;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB2E4;&#xC2DC; &#xC77D;&#xC73C;&#xB824;&#xBA74; exec &#xC73C;&#xB85C; &#xB2E4;&#xC2DC; FD &#xB97C; &#xC5F0;&#xACB0;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.
-(&#xC774;&#xB54C; &#xBA3C;&#xC800; FD &#xB97C; &#xC0AD;&#xC81C;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.)
+&#xADF8;&#xB7EC;&#xBBC0;&#xB85C; &#xC717;&#xBD80;&#xBD84;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB2E4;&#xC2DC; &#xC77D;&#xC73C;&#xB824;&#xBA74; exec &#xC73C;&#xB85C; &#xB2E4;&#xC2DC; FD &#xB97C; &#xC5F0;&#xACB0;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;
+( &#xC774;&#xB54C; &#xBA3C;&#xC800; FD &#xB97C; &#xC0AD;&#xC81C;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. )
 &#xD558;&#xB098;&#xC758; &#xD30C;&#xC77C;&#xC5D0; &#xB450;&#xAC1C;&#xC758; FD &#xB97C; &#xC5F0;&#xACB0;&#xD558;&#xBA74; &#xAC01;&#xAC01; &#xB3C5;&#xB9BD;&#xC801;&#xC73C;&#xB85C; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h3 id="pipe-&#xB098;-socket-&#xC758;-&#xC5F0;&#xACB0;&#xC744;-&#xC720;&#xC9C0;&#xD560;-&#xC218;-&#xC788;&#xB2E4;">pipe &#xB098; socket &#xC758; &#xC5F0;&#xACB0;&#xC744; &#xC720;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xB2E4;.</h3>
 <p>Shell &#xC5D0;&#xC11C; FD &#xB97C; pipe &#xB098; socket &#xC5D0; &#xC5F0;&#xACB0;&#xD558;&#xBA74; &#xC77D;&#xC5B4;&#xB4E4;&#xC77C; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC5C6;&#xC5B4;&#xB3C4; &#xC5F0;&#xACB0;&#xC744; &#xC720;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
