@@ -1383,7 +1383,8 @@ $ cat outfile
 <span class="hljs-number">333</span>
 </code></pre>
 <h4 id="fd-3-&#xBC88;&#xC744;-&#xC0AC;&#xC6A9;&#xD6C4;-&#xC0AD;&#xC81C;&#xD558;&#xAE30;">FD 3 &#xBC88;&#xC744; &#xC0AC;&#xC6A9;&#xD6C4; &#xC0AD;&#xC81C;&#xD558;&#xAE30;</h4>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt;&amp;-
+<pre><code class="lang-bash"><span class="hljs-comment"># FD &#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xB294; &#xAC83;&#xC740; &#xD30C;&#xC77C;&#xC744; close &#xD558;&#xB294; &#xAC83;&#xACFC; &#xAC19;&#xB2E4;.</span>
+$ <span class="hljs-built_in">exec</span> <span class="hljs-number">3</span>&gt;&amp;-
 
 $ ls <span class="hljs-operator">-l</span> /proc/$$/fd/<span class="hljs-number">3</span>
 ls: cannot access /proc/<span class="hljs-number">9363</span>/fd/<span class="hljs-number">3</span>: No such file or directory
@@ -1404,7 +1405,7 @@ lr-x------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-nu
 
 $ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xB9E4;&#xBC88; open -&gt; read -&gt; close &#xB418;&#xB294;&#xAC83;&#xACFC; &#xAC19;&#xC73C;&#xBBC0;&#xB85C;</span>
 <span class="hljs-number">111</span>
-$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xC77D;&#xC744; &#xB54C;&#xB9C8;&#xB2E4; &#xCCAB; &#xB77C;&#xC778;&#xB9CC; &#xCD9C;&#xB825;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">read</span> var &lt; infile; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$var</span>    <span class="hljs-comment"># &#xC77D;&#xC744; &#xB54C;&#xB9C8;&#xB2E4; &#xCCAB; &#xB77C;&#xC778;&#xB9CC; &#xCD9C;&#xB825;&#xC774; &#xB41C;&#xB2E4;.</span>
 <span class="hljs-number">111</span>
 
 $ <span class="hljs-built_in">exec</span> <span class="hljs-number">4</span>&lt; infile                  <span class="hljs-comment"># &#xD30C;&#xC77C;&#xC744; open &#xD574;&#xC11C; FD 4 &#xBC88;&#xC744; &#xC0DD;&#xC131;</span>
