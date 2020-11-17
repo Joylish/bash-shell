@@ -1536,6 +1536,21 @@ num=$( ... )
 <span class="hljs-keyword">else</span>
     <span class="hljs-built_in">command</span>2 ...                     [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; <span class="hljs-built_in">command</span>1 ... || <span class="hljs-built_in">command</span>2 ...
 <span class="hljs-keyword">fi</span>
+
+------------------------------------------------
+$ AA=<span class="hljs-number">100</span>
+
+$ <span class="hljs-keyword">if</span> [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ]; <span class="hljs-keyword">then</span> AA=`date -@`; <span class="hljs-keyword">else</span> AA=<span class="hljs-number">300</span>; <span class="hljs-keyword">fi</span>
+date: invalid option -- <span class="hljs-string">&apos;@&apos;</span>
+. . .
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$AA</span>
+$
+
+$ [ <span class="hljs-number">1</span> = <span class="hljs-number">1</span> ] &amp;&amp; AA=`date -@` || AA=<span class="hljs-number">300</span>
+date: invalid option -- <span class="hljs-string">&apos;@&apos;</span>
+. . .
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$AA</span>
+<span class="hljs-number">300</span>
 </code></pre>
 <h3 id="case">case</h3>
 <blockquote>
