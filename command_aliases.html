@@ -1392,7 +1392,19 @@ $ find -type f -print0 | xargs -<span class="hljs-number">0</span> -i ls <span c
 <span class="hljs-comment"># ~/.inputrc &#xC5D0;&#xC11C; F2 &#xD0A4; &#xBC14;&#xC778;&#xB529;. </span>
 <span class="hljs-comment"># &#xD604;&#xC7AC; &#xBA85;&#xB839;&#xD589; &#xC0C1;&#xC5D0;&#xC11C; &#xC791;&#xC131; &#xC911;&#xC778; &#xB0B4;&#xC6A9;&#xACFC; &#xD568;&#xAED8; vi &#xC5D0;&#xB514;&#xD130;&#xAC00; &#xC5F4;&#xB9BD;&#xB2C8;&#xB2E4;.</span>
 <span class="hljs-string">&quot;\eOQ&quot;</span>: edit-and-execute-command
-</code></pre>
+
+----------------------------------------------------------------
+
+<span class="hljs-comment"># vi &#xC5D0;&#xB514;&#xD130;&#xC5D0;&#xC11C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; C/C++ highlight &#xD558;&#xB824;&#xBA74; &#xB2E4;&#xC74C; &#xB0B4;&#xC6A9;&#xC744; &#xCD94;&#xAC00;&#xD574; &#xC8FC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</span>
+$ sudo vi /usr/share/vim/vim82/scripts.vim 
+
+    <span class="hljs-string">&quot; C/C++
+  elseif s:line1 =~# &apos;gcc\|g++\|clang\|clang++&apos;
+    \ || s:line1 =~# &apos;^\s*#include&apos;
+    \ || s:line2 =~# &apos;^\s*#include&apos;
+    \ || s:line3 =~# &apos;^\s*#include&apos;
+    set ft=cpp
+</span></code></pre>
 <video width="776" height="428" controls preload="auto">
   <source src="images/alias_example2.mp4" type="video/mp4">
   Your browser does not support the video tag.
