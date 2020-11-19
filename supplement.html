@@ -1291,6 +1291,8 @@
 </li>
 <li><p><a href="#zombie"><strong>Zombie &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; wait &#xC2DC;&#xC2A4;&#xD15C;&#xCF5C; &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xD14C;&#xC774;&#xBE14;&#xC5D0;&#xC11C; &#xC815;&#xB9AC;&#xB418;&#xB294; &#xACFC;&#xC815;</strong></a></p>
 </li>
+<li><p><a href="#flock"><strong>File lock</strong></a></p>
+</li>
 <li><p><a href="#thread"><strong>Thread</strong></a></p>
 </li>
 </ul>
@@ -1898,9 +1900,58 @@ A.sh &#xC758; &#xB098;&#xBA38;&#xC9C0; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;
 </video>
 
 
+<p><a name="flock"></a></p>
+<h3 id="file-lock">File lock</h3>
+<p><a href="mutual_exclusion.html">Mutual Exclusion</a> &#xBA54;&#xB274;&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xB41C; <code>flock</code> &#xBA85;&#xB839;&#xC740; <code>flock</code> &#xC2DC;&#xC2A4;&#xD15C; &#xCF5C;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.
+tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>0</code> &#xC744; &#xC785;&#xB825;&#xD55C; &#xB2E4;&#xC74C; 3 &#xAC1C;&#xC758; background &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xC11C;
+&#xB3D9;&#xC2DC;&#xC5D0; <code>read ---&gt; &#xC77D;&#xC740; &#xAC12;&#xC5D0; +1 ---&gt; write</code> &#xC744; &#xAC01;&#xAC01; 100,000 &#xD68C;&#xC529; &#xBC18;&#xBCF5;&#xD574;&#xBCF4;&#xBA74;
+&#xC77D;&#xACE0;, &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC774; &#xACB9;&#xCCD0;&#xC11C; &#xACB0;&#xACFC;&#xAC00; 300,000 &#xC774; &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.
+&#xC774;&#xB54C; flock &#xC744; &#xC774;&#xC6A9;&#xD574; lock &#xC744; &#xAC78;&#xBA74; &#xD558;&#xB098;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB9CC; tmp.txt &#xD30C;&#xC77C;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-c">$ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &lt;&lt;\@ &amp;&amp; \
+{ ./a.out &amp; ./a.out &amp; ./a.out &amp; } | cat; cat tmp.txt
 
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
+    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
+    FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
+        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        fgets( buf, <span class="hljs-number">19</span>, file);
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> num = strtol( buf, <span class="hljs-literal">NULL</span>, <span class="hljs-number">10</span>) + <span class="hljs-number">1</span>;
+        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%ld\n&quot;</span>, num); 
+    }
+}
+@
 
+<span class="hljs-number">151132</span>      <span class="hljs-comment">// &#xC77D;&#xACE0; &#xC4F0;&#xAE30;&#xAC00; &#xACB9;&#xCCD0;&#xC11C; 300,000 &#xC774; &#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
 
+---------------------------------------------------
+
+$ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &lt;&lt;\@ &amp;&amp; \
+{ ./a.out &amp; ./a.out &amp; ./a.out &amp; } | cat; cat tmp.txt 
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/file.h&gt;</span> </span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
+    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
+    FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
+    flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// flock &#xC2DC;&#xC2A4;&#xD15C; &#xCF5C;&#xC744; &#xC0AC;&#xC6A9;</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
+        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        fgets( buf, <span class="hljs-number">19</span>, file);
+        <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> num = strtol( buf, <span class="hljs-literal">NULL</span>, <span class="hljs-number">10</span>) + <span class="hljs-number">1</span>;
+        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%ld\n&quot;</span>, num); 
+    }
+    flock( fileno(file), LOCK_UN);           <span class="hljs-comment">// flock &#xD574;&#xC81C;</span>
+}
+@
+
+<span class="hljs-number">300000</span>
+</code></pre>
 <p><a name="thread"></a></p>
 <h3 id="thread">Thread</h3>
 <p>&#xB2E4;&#xC74C;&#xC740; pthread &#xB97C; &#xC774;&#xC6A9;&#xD574; 2 &#xAC1C;&#xC758; &#xC2A4;&#xB808;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xC778;&#xB370;&#xC694;.
