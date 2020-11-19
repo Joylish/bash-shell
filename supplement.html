@@ -1917,7 +1917,7 @@ tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
-        fgets( buf, <span class="hljs-number">19</span>, file);
+        fgets( buf, <span class="hljs-number">20</span>, file);
         <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> num = strtol( buf, <span class="hljs-literal">NULL</span>, <span class="hljs-number">10</span>) + <span class="hljs-number">1</span>;
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
         <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%ld\n&quot;</span>, num); 
@@ -1941,7 +1941,7 @@ $ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &
     flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// flock &#xC2DC;&#xC2A4;&#xD15C; &#xCF5C;&#xC744; &#xC0AC;&#xC6A9;</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
-        fgets( buf, <span class="hljs-number">19</span>, file);
+        fgets( buf, <span class="hljs-number">20</span>, file);
         <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> num = strtol( buf, <span class="hljs-literal">NULL</span>, <span class="hljs-number">10</span>) + <span class="hljs-number">1</span>;
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
         <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%ld\n&quot;</span>, num); 
