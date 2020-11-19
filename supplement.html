@@ -1906,7 +1906,7 @@ A.sh &#xC758; &#xB098;&#xBA38;&#xC9C0; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;
 tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>0</code> &#xC744; &#xC785;&#xB825;&#xD55C; &#xB2E4;&#xC74C; 3 &#xAC1C;&#xC758; background &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xC11C;
 &#xB3D9;&#xC2DC;&#xC5D0; <code>read ---&gt; &#xC77D;&#xC740; &#xAC12;&#xC5D0; +1 ---&gt; write</code> &#xC744; &#xAC01;&#xAC01; 100,000 &#xD68C;&#xC529; &#xBC18;&#xBCF5;&#xD574;&#xBCF4;&#xBA74;
 &#xC77D;&#xACE0;, &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC774; &#xACB9;&#xCCD0;&#xC11C; &#xACB0;&#xACFC;&#xAC00; 300,000 &#xC774; &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xC774;&#xB54C; flock &#xC744; &#xC774;&#xC6A9;&#xD574; lock &#xC744; &#xAC78;&#xBA74; &#xD558;&#xB098;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB9CC; tmp.txt &#xD30C;&#xC77C;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+&#xC774;&#xB54C; flock &#xC744; &#xC774;&#xC6A9;&#xD574; lock &#xC744; &#xAC78;&#xBA74; &#xD558;&#xB098;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB9CC; tmp.txt &#xD30C;&#xC77C;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-c">$ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &lt;&lt;\@ &amp;&amp; \
 { ./a.out &amp; ./a.out &amp; ./a.out &amp; } | cat; cat tmp.txt
 
