@@ -1377,79 +1377,6 @@ $
 $ { ./test.sh | ./test.sh ;} <span class="hljs-number">2</span>&gt; /dev/null
 $
 </code></pre>
-<h3 id="-&#xB294;-&#xC77C;&#xC885;&#xC758;-&#xADF8;&#xB8F9;&#xC744;-&#xD615;&#xC131;&#xD55C;&#xB2E4;">&amp;  &#xB294; &#xC77C;&#xC885;&#xC758; &#xADF8;&#xB8F9;&#xC744; &#xD615;&#xC131;&#xD55C;&#xB2E4;.</h3>
-<p><code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB294; background &#xB85C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC0DD;&#xC131;&#xB3FC;&#xC57C; &#xD558;&#xBBC0;&#xB85C; 
-&#xC2E4;&#xD589;&#xC740; <code>echo 111</code> &#xAC00; &#xBA3C;&#xC800; &#xB418;&#xC9C0;&#xB9CC; &#xCD9C;&#xB825;&#xC740; <code>echo 222</code> &#xBCF4;&#xB2E4; &#xB2A6;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> 
-<span class="hljs-number">222</span>
-<span class="hljs-number">111</span>
-</code></pre>
-<p>&#xB2E4;&#xC74C;&#xC744; &#xBCF4;&#xBA74; &#xBA3C;&#xC800; <code>echo 111</code> &#xAC00; &#xC2E4;&#xD589;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xD6C4;&#xC5D0;
-<code>echo 222</code> &#xAC00; background &#xB85C; &#xC2E4;&#xD589;&#xB418;&#xACE0; <code>echo 333</code> &#xC774; &#xC2E4;&#xD589;&#xB418;&#xC5B4; 
-&#xCD9C;&#xB825;&#xC774; 111 --&gt; 333 --&gt; 222 &#xC21C;&#xC774; &#xB420;&#xAC83; &#xAC19;&#xC9C0;&#xB9CC; <code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790; &#xC55E;&#xC5D0; &#xC788;&#xB294; &#xBA85;&#xB839;&#xB4E4;&#xC740;
-&#xC77C;&#xC885;&#xC758; &#xADF8;&#xB8F9;&#xC744; &#xD615;&#xC131;&#xD558;&#xAC8C; &#xB418;&#xC5B4; 333 &#xC774; &#xC81C;&#xC77C; &#xBA3C;&#xC800; &#xCD9C;&#xB825;&#xB418;&#xACE0;
-&#xADF8;&#xB2E4;&#xC74C; &#xCC28;&#xB840;&#xB85C; 111, 222 &#xAC00; &#xCD9C;&#xB825;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span>
-<span class="hljs-number">333</span>
-<span class="hljs-number">111</span>
-<span class="hljs-number">222</span>
-</code></pre>
-<p><img src="images/precedence1.png" alt=""></p>
-<pre><code class="lang-bash"><span class="hljs-comment"># &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &amp;&amp;, ||, | &#xC55E;&#xC5D0;&#xC11C;&#xB294; &amp; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
-bash: syntax error near unexpected token <span class="hljs-string">&apos;&amp;&amp;&apos;</span>    <span class="hljs-comment"># ERROR</span>
-
-<span class="hljs-comment"># &#xC704; &#xC624;&#xB958;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</span>
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> ; &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
-bash: syntax error near unexpected token <span class="hljs-string">&apos;&amp;&amp;&apos;</span>
-
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; || <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
-bash: syntax error near unexpected token <span class="hljs-string">&apos;||&apos;</span>    <span class="hljs-comment"># ERROR</span>
-
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; | <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
-bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>     <span class="hljs-comment"># ERROR</span>
-
-<span class="hljs-comment"># &amp; &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; { } &#xD0A4;&#xC6CC;&#xB4DC;&#xB098; ( ) &#xBA54;&#xD0C0;&#xBB38;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</span>
-$ { <span class="hljs-built_in">echo</span> x<span class="hljs-variable">$BASHPID</span> &amp; } &amp;&amp; <span class="hljs-built_in">echo</span> y<span class="hljs-variable">$BASHPID</span>         <span class="hljs-comment"># OK</span>
-y109297
-x112553
-
-$ { <span class="hljs-built_in">echo</span> <span class="hljs-variable">$BASHPID</span> &amp; } || <span class="hljs-built_in">echo</span> <span class="hljs-variable">$BASHPID</span>           <span class="hljs-comment"># OK</span>
-
-$ { <span class="hljs-built_in">echo</span> <span class="hljs-variable">$BASHPID</span> &amp; } | <span class="hljs-built_in">echo</span> <span class="hljs-variable">$BASHPID</span>            <span class="hljs-comment"># OK</span>
-</code></pre>
-<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xB2E4;&#xC74C; &#xCCAB; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xC758; &#xACBD;&#xC6B0; <code>mkfifo fifo</code> &#xAC00; &#xC2E4;&#xD589;&#xB418;&#xAE30; &#xC804;&#xC5D0;
-&#xBA3C;&#xC800; <code>exec &amp;&gt; fifo</code> &#xAC00; &#xC2E4;&#xD589;&#xB418;&#xC5B4; fifo &#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB418;&#xBBC0;&#xB85C; &#xC624;&#xB958;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.
-<code>mkfifo fifo</code> &#xAC00; &#xBA3C;&#xC800; &#xC2E4;&#xD589;&#xB418;&#xB824;&#xBA74; &#xB450; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xAD04;&#xD638;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; 
-&#xC6B0;&#xC120;&#xC21C;&#xC704;&#xB97C; &#xC124;&#xC815;&#xD574; &#xC918;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ mkfifo fifo &amp;&amp; tee &lt; fifo term.log &amp; <span class="hljs-built_in">exec</span> &amp;&gt; fifo          <span class="hljs-comment"># ERROR</span>
-mkfifo: cannot create fifo <span class="hljs-string">&apos;fifo&apos;</span>: File exists
-
-$ mkfifo fifo &amp;&amp; { tee &lt; fifo term.log &amp; <span class="hljs-built_in">exec</span> &amp;&gt; fifo ;}     <span class="hljs-comment"># OK</span>
-
-$ <span class="hljs-built_in">exec</span> <span class="hljs-number">1</span>&gt;&amp;<span class="hljs-number">0</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">0</span>
-[<span class="hljs-number">1</span>]+  Done
-</code></pre>
-<h3 id="shell-keyword">&apos;!&apos; shell keyword</h3>
-<p><code>!</code> logical NOT &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; <code>&amp;&amp;</code>, <code>||</code> &#xBCF4;&#xB2E4; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xB530;&#xB77C;&#xC11C; &#xC544;&#xB798; &#xCCAB; &#xBC88;&#xC9F8; &#xACBD;&#xC6B0;&#xB294; <code>!</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xAC00; <code>[ 1 -eq 2 ]</code> &#xC5D0;&#xB9CC; &#xC801;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
-<code>[ 1 -eq 2 ] || [ 3 -eq 3 ]</code> &#xC2DD; &#xC804;&#xCCB4;&#xC5D0; &#xC801;&#xC6A9;&#xD558;&#xB824;&#xBA74; &#xB450; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ <span class="hljs-keyword">if</span> ! [ <span class="hljs-number">1</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">2</span> ] || [ <span class="hljs-number">3</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">3</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES ;<span class="hljs-keyword">fi</span>
-YES
-
-$ <span class="hljs-keyword">if</span> ! { [ <span class="hljs-number">1</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">2</span> ] || [ <span class="hljs-number">3</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">3</span> ] ;} <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES ;<span class="hljs-keyword">fi</span>
-$
-
-<span class="hljs-comment"># &apos;!&apos; &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBA85;&#xB839; &#xC704;&#xCE58;&#xC5D0;&#xC11C; &#xB2E4;&#xC591;&#xD558;&#xAC8C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
-$ <span class="hljs-keyword">if</span> ! { ! [ ... ] || ! [ ... ] ;} <span class="hljs-keyword">then</span> ...
-</code></pre>
-<p>&#xD30C;&#xC774;&#xD504;&#xB294; &#xADF8;&#xB8F9;&#xC73C;&#xB85C; &#xD558;&#xB098;&#xC758; &#xBA85;&#xB839;&#xCC98;&#xB7FC; &#xC2E4;&#xD589;&#xB418;&#xBBC0;&#xB85C; <code>!</code> &#xBCF4;&#xB2E4; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
-<pre><code class="lang-bash">$ <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> | <span class="hljs-literal">false</span>; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES; <span class="hljs-keyword">fi</span>       <span class="hljs-comment"># true | false  &#xB294; &#xACB0;&#xACFC;&#xAC00; false &#xC774;&#xBBC0;&#xB85C;</span>
-$
-
-$ <span class="hljs-keyword">if</span> ! <span class="hljs-literal">true</span> | <span class="hljs-literal">false</span>; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES; <span class="hljs-keyword">fi</span>
-YES
-</code></pre>
 <h3 id="redirection-&#xC6B0;&#xC120;&#xC21C;&#xC704;">Redirection &#xC6B0;&#xC120;&#xC21C;&#xC704;</h3>
 <p>&#xC704;&#xC5D0;&#xC11C; &#xC0B4;&#xD3B4;&#xBCF8; &#xBC14;&#xC640; &#xAC19;&#xC774; redirection &#xC740; &#xBA54;&#xD0C0;&#xBB38;&#xC790; &#xC911;&#xC5D0;&#xC11C; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xC81C;&#xC77C; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;.
 redirection &#xB07C;&#xB9AC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC21C;&#xC11C;&#xB85C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
@@ -1473,6 +1400,63 @@ foobar
 $ cat z1
 foobar
 $ cat z2
+</code></pre>
+<h3 id="-&#xB294;-&#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00;-&#xC81C;&#xC77C;-&#xB192;&#xB2E4;">&amp;  &#xB294; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xC81C;&#xC77C; &#xB192;&#xB2E4;.</h3>
+<p><code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB294; <code>;</code> &#xC640; &#xAC19;&#xC740; &#xC5ED;&#xD560;&#xC744; &#xD558;&#xBBC0;&#xB85C;  <code>&amp;&amp;</code> , <code>||</code>, <code>|</code> &#xB85C; 
+&#xC5F0;&#xACB0;&#xB41C; &#xBA85;&#xB839;&#xB4E4;&#xC774; &#xBAA8;&#xB450; &#xD3EC;&#xD568;&#xB429;&#xB2C8;&#xB2E4;.
+&#xB2E4;&#xC74C;&#xC758; &#xACBD;&#xC6B0; <code>date</code> &#xBA85;&#xB839;&#xB3C4; background subshell &#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ date &amp;&amp; uname | grep hello &amp; seq <span class="hljs-number">3</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+Fri Nov <span class="hljs-number">20</span> <span class="hljs-number">20</span>:<span class="hljs-number">27</span>:<span class="hljs-number">40</span> KST <span class="hljs-number">2020</span>
+-------------------------------------
+
+<span class="hljs-number">1</span>. <span class="hljs-string">&quot;date &amp;&amp; uname | grep hello &amp;&quot;</span> &#xC2E4;&#xD589;&#xC744; &#xC704;&#xD574; background subshell &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC0DD;&#xC131;.
+
+<span class="hljs-number">2</span>. &#xC774;&#xD6C4; <span class="hljs-string">&quot;date &amp;&amp; uname | grep hello&quot;</span> &#xBA85;&#xB839;&#xB4E4;&#xC740; background &#xC5D0;&#xC11C;
+   <span class="hljs-string">&quot;seq 3&quot;</span> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC640;&#xB294; &#xBCC4;&#xAC1C;&#xB85C; &#xB3C5;&#xB9BD;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.
+
+<span class="hljs-number">3</span>. &#xBA3C;&#xC800; background subshell &#xC744; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC774; &#xD3EC;&#xD568;&#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC704;&#xC758; &#xACBD;&#xC6B0; 
+   <span class="hljs-string">&quot;seq 3&quot;</span> &#xBA85;&#xB839;&#xC758; &#xCD9C;&#xB825;&#xC774; &#xBA3C;&#xC800; &#xB098;&#xC624;&#xC9C0;&#xB9CC; date &#xBA85;&#xB839;&#xC758; &#xCD9C;&#xB825;&#xC774; &#xBA3C;&#xC800; &#xB098;&#xC62C; &#xC218;&#xB3C4; &#xC788;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
+</code></pre>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xB2E4;&#xC74C; &#xCCAB; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xC758; &#xACBD;&#xC6B0; <code>mkfifo fifo</code> &#xAC00; &#xC2E4;&#xD589;&#xB418;&#xAE30; &#xC804;&#xC5D0;
+&#xBA3C;&#xC800; <code>exec &amp;&gt; fifo</code> &#xAC00; &#xC2E4;&#xD589;&#xB418;&#xC5B4; fifo &#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB418;&#xBBC0;&#xB85C; &#xC624;&#xB958;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.
+<code>mkfifo fifo</code> &#xAC00; &#xBA3C;&#xC800; &#xC2E4;&#xD589;&#xB418;&#xB824;&#xBA74; &#xB450; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xAD04;&#xD638;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; 
+&#xC6B0;&#xC120;&#xC21C;&#xC704;&#xB97C; &#xC124;&#xC815;&#xD574; &#xC918;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ mkfifo fifo &amp;&amp; tee &lt; fifo term.log &amp; <span class="hljs-built_in">exec</span> &amp;&gt; fifo          <span class="hljs-comment"># ERROR</span>
+mkfifo: cannot create fifo <span class="hljs-string">&apos;fifo&apos;</span>: File exists
+
+$ mkfifo fifo &amp;&amp; { tee &lt; fifo term.log &amp; <span class="hljs-built_in">exec</span> &amp;&gt; fifo ;}     <span class="hljs-comment"># OK</span>
+
+$ <span class="hljs-built_in">exec</span> <span class="hljs-number">1</span>&gt;&amp;<span class="hljs-number">0</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">0</span>
+[<span class="hljs-number">1</span>]+  Done
+</code></pre>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">333</span>
+<span class="hljs-number">333</span>
+<span class="hljs-number">111</span>
+<span class="hljs-number">222</span>
+</code></pre>
+<p><img src="images/precedence1.png" alt=""></p>
+<h3 id="shell-keyword">&apos;!&apos; shell keyword</h3>
+<p><code>!</code> logical NOT &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; <code>&amp;&amp;</code>, <code>||</code> &#xBCF4;&#xB2E4; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;.
+&#xB530;&#xB77C;&#xC11C; &#xC544;&#xB798; &#xCCAB; &#xBC88;&#xC9F8; &#xACBD;&#xC6B0;&#xB294; <code>!</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xAC00; <code>[ 1 -eq 2 ]</code> &#xC5D0;&#xB9CC; &#xC801;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
+<code>[ 1 -eq 2 ] || [ 3 -eq 3 ]</code> &#xC2DD; &#xC804;&#xCCB4;&#xC5D0; &#xC801;&#xC6A9;&#xD558;&#xB824;&#xBA74; &#xB450; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ <span class="hljs-keyword">if</span> ! [ <span class="hljs-number">1</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">2</span> ] || [ <span class="hljs-number">3</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">3</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES ;<span class="hljs-keyword">fi</span>
+YES
+
+$ <span class="hljs-keyword">if</span> ! { [ <span class="hljs-number">1</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">2</span> ] || [ <span class="hljs-number">3</span> <span class="hljs-operator">-eq</span> <span class="hljs-number">3</span> ] ;} <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES ;<span class="hljs-keyword">fi</span>
+$
+
+<span class="hljs-comment"># &apos;!&apos; &#xD0A4;&#xC6CC;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBA85;&#xB839; &#xC704;&#xCE58;&#xC5D0;&#xC11C; &#xB2E4;&#xC591;&#xD558;&#xAC8C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-keyword">if</span> ! { ! [ ... ] || ! [ ... ] ;} <span class="hljs-keyword">then</span> ...
+</code></pre>
+<p>&#xD30C;&#xC774;&#xD504;&#xB294; &#xADF8;&#xB8F9;&#xC73C;&#xB85C; &#xD558;&#xB098;&#xC758; &#xBA85;&#xB839;&#xCC98;&#xB7FC; &#xC2E4;&#xD589;&#xB418;&#xBBC0;&#xB85C; <code>!</code> &#xBCF4;&#xB2E4; &#xC6B0;&#xC120;&#xC21C;&#xC704;&#xAC00; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
+<pre><code class="lang-bash">$ <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> | <span class="hljs-literal">false</span>; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES; <span class="hljs-keyword">fi</span>       <span class="hljs-comment"># true | false  &#xB294; &#xACB0;&#xACFC;&#xAC00; false &#xC774;&#xBBC0;&#xB85C;</span>
+$
+
+$ <span class="hljs-keyword">if</span> ! <span class="hljs-literal">true</span> | <span class="hljs-literal">false</span>; <span class="hljs-keyword">then</span> <span class="hljs-built_in">echo</span> YES; <span class="hljs-keyword">fi</span>
+YES
 </code></pre>
 <p><a name="quiz"></a></p>
 <h1 id="quiz">Quiz</h1>

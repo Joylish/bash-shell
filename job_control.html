@@ -1641,20 +1641,39 @@ lrwx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-nu
 . . .
 <span class="hljs-number">222</span>
 </code></pre>
-<h4 id="&#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C;-background-&#xB85C;-&#xC2E4;&#xD589;&#xD560;-&#xB54C;&#xB294;-&#xBA85;&#xB839;-&#xADF8;&#xB8F9;&#xC744;-&#xC0AC;&#xC6A9;&#xD574;&#xC57C;-&#xD569;&#xB2C8;&#xB2E4;">&#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C; background &#xB85C; &#xC2E4;&#xD589;&#xD560; &#xB54C;&#xB294; &#xBA85;&#xB839; &#xADF8;&#xB8F9;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</h4>
-<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; | cat
-bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>     <span class="hljs-comment"># &#xC624;&#xB958;</span>
+<h4 id="--&#xC55E;&#xC5D0;&#xC11C;&#xB294;--&#xC5F0;&#xC0B0;&#xC790;&#xB97C;-&#xC0AC;&#xC6A9;&#xD560;-&#xC218;-&#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;"><code>&amp;&amp;</code>, <code>||</code>, <code>|</code> &#xC55E;&#xC5D0;&#xC11C;&#xB294; <code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</h4>
+<p><code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB294; <code>;</code> &#xC640; &#xB3D9;&#xC77C;&#xD558;&#xAC8C; &#xBA85;&#xB839;&#xBB38;&#xC758; &#xC885;&#xB8CC;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xBBC0;&#xB85C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C;
+<code>&amp;&amp;</code>, <code>||</code>, <code>|</code> &#xC55E;&#xC5D0;&#xC11C;&#xB294; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
+bash: syntax error near unexpected token <span class="hljs-string">&apos;&amp;&amp;&apos;</span>      <span class="hljs-comment"># &#xC624;&#xB958;</span>
 
-<span class="hljs-comment"># &#xC704; &#xC624;&#xB958;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;</span>
-$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> ; | cat
+<span class="hljs-comment"># &#xC704; &#xC624;&#xB958;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</span>
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> ; &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
+bash: syntax error near unexpected token <span class="hljs-string">&apos;&amp;&amp;&apos;</span>
+
+$ date &amp; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>                           <span class="hljs-comment"># &#xC624;&#xB958;</span>
 bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>
 
-$ { <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &amp; } | cat                <span class="hljs-comment"># OK</span>
+<span class="hljs-comment"># &#xC704; &#xC624;&#xB958;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</span>
+$ date ; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
+bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>
+</code></pre>
+<p><code>&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB824;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; <code>{ }</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB098; <code>( )</code> &#xBA54;&#xD0C0;&#xBB38;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ { <span class="hljs-built_in">echo</span> x<span class="hljs-variable">$BASHPID</span> &amp; } &amp;&amp; <span class="hljs-built_in">echo</span> y<span class="hljs-variable">$BASHPID</span>         <span class="hljs-comment"># OK</span>
+y109297
+x112553
+
+$ { date &amp; } | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>                     <span class="hljs-comment"># OK</span>
+XFri Nov <span class="hljs-number">20</span> <span class="hljs-number">18</span>:<span class="hljs-number">05</span>:<span class="hljs-number">12</span> KST <span class="hljs-number">2020</span>
+</code></pre>
+<p>&#xB610;&#xD55C;  <code>&amp;&amp;</code>, <code>||</code> &#xC55E;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB420; &#xACBD;&#xC6B0; &#xC885;&#xB8CC; &#xC0C1;&#xD0DC; &#xAC12;&#xC740; &#xD56D;&#xC0C1; <code>true</code> &#xC640; &#xAC19;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># false &#xBA85;&#xB839;&#xC774;&#xC9C0;&#xB9CC; echo 111 &#xAC00; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.</span>
+$ { <span class="hljs-literal">false</span> &amp; } &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span>; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
 <span class="hljs-number">111</span>
 <span class="hljs-number">222</span>
 
-$ ( <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &amp; ) | cat                <span class="hljs-comment"># OK</span>
-<span class="hljs-number">111</span>
+<span class="hljs-comment"># false &#xBA85;&#xB839;&#xC774;&#xC9C0;&#xB9CC; echo 111 &#xB294; &#xC2E4;&#xD589;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
+$ { <span class="hljs-literal">false</span> &amp; } || <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span>; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span>
 <span class="hljs-number">222</span>
 </code></pre>
 <h4 id="&#xBA85;&#xB839;-&#xCE58;&#xD658;-&#xC5D0;&#xC11C;&#xC758;-background-&#xC2E4;&#xD589;">&#xBA85;&#xB839; &#xCE58;&#xD658; &#xC5D0;&#xC11C;&#xC758; background &#xC2E4;&#xD589;</h4>
