@@ -1312,6 +1312,18 @@
 { ... <span class="hljs-built_in">command</span> &amp; ;}      <span class="hljs-comment"># error</span>
 { ... <span class="hljs-built_in">command</span> &amp; }       <span class="hljs-comment"># OK</span>
 </code></pre>
+<p>&#xB2E4;&#xC74C; &#xCCAB; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xBB38;&#xC740; background &#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xAC83;&#xB9CC; &#xB2E4;&#xB97C; &#xBFD0; &#xB450; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xBB38;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
+&#xB530;&#xB77C;&#xC11C; &#xC624;&#xB958;&#xAC00; &#xC0DD;&#xAE30;&#xC9C0; &#xC54A;&#xC73C;&#xB824;&#xBA74; &#xC138; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ date &amp; date &amp; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
+bash: syntax error near unexpected token `|<span class="hljs-string">&apos;
+
+$ date ; date ; | sed &apos;</span>s/^/X/g<span class="hljs-string">&apos;
+bash: syntax error near unexpected token `|&apos;</span>
+
+$ { date &amp; date &amp; } | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
+XFri Nov <span class="hljs-number">20</span> <span class="hljs-number">18</span>:<span class="hljs-number">05</span>:<span class="hljs-number">12</span> KST <span class="hljs-number">2020</span>
+XFri Nov <span class="hljs-number">20</span> <span class="hljs-number">18</span>:<span class="hljs-number">05</span>:<span class="hljs-number">12</span> KST <span class="hljs-number">2020</span>
+</code></pre>
 <h2 id="">|</h2>
 <p>&#xBA85;&#xB839;&#xB4E4;&#xC744; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xC5F0;&#xACB0;&#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.<br><code>|&amp;</code> &#xB294; stdout, stderr &#xB458; &#xB2E4; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xBA70; <code>2&gt;&amp;1 |</code> &#xC640; &#xB3D9;&#xC77C;&#xD55C; &#xC758;&#xBBF8;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <h2 id="&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;">&lt;&#xA0;&#xA0;&#xA0;&gt;&#xA0;&#xA0;&#xA0;&gt;&gt;</h2>
