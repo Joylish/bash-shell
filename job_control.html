@@ -1646,7 +1646,7 @@ lrwx------ <span class="hljs-number">1</span> mug896 mug896 <span class="hljs-nu
 bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>     <span class="hljs-comment"># &#xC624;&#xB958;</span>
 
 <span class="hljs-comment"># &#xC704; &#xC624;&#xB958;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;</span>
-$ | cat
+$ <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> ; | cat
 bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>
 
 $ { <span class="hljs-built_in">echo</span> <span class="hljs-number">111</span> &amp; <span class="hljs-built_in">echo</span> <span class="hljs-number">222</span> &amp; } | cat                <span class="hljs-comment"># OK</span>
