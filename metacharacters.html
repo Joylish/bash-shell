@@ -1314,14 +1314,13 @@
 </code></pre>
 <p>&#xB2E4;&#xC74C; &#xCCAB; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xBB38;&#xC740; background &#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xAC83;&#xB9CC; &#xB2E4;&#xB97C; &#xBFD0; &#xB450; &#xBC88;&#xC9F8; &#xBA85;&#xB839;&#xBB38;&#xACFC; &#xAC19;&#xC740; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
 &#xB530;&#xB77C;&#xC11C; &#xC624;&#xB958;&#xAC00; &#xC0DD;&#xAE30;&#xC9C0; &#xC54A;&#xC73C;&#xB824;&#xBA74; &#xC138; &#xBC88;&#xC9F8;&#xC640; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ date &amp; date &amp; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
+<pre><code class="lang-bash">$ date &amp; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
 bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>
 
-$ date ; date ; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
+$ date ; | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
 bash: syntax error near unexpected token <span class="hljs-string">&apos;|&apos;</span>
 
-$ { date &amp; date &amp; } | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
-XFri Nov <span class="hljs-number">20</span> <span class="hljs-number">18</span>:<span class="hljs-number">05</span>:<span class="hljs-number">12</span> KST <span class="hljs-number">2020</span>
+$ { date &amp; } | sed <span class="hljs-string">&apos;s/^/X/g&apos;</span>
 XFri Nov <span class="hljs-number">20</span> <span class="hljs-number">18</span>:<span class="hljs-number">05</span>:<span class="hljs-number">12</span> KST <span class="hljs-number">2020</span>
 </code></pre>
 <h2 id="">|</h2>
