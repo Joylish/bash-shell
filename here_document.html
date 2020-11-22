@@ -1415,6 +1415,17 @@ EOF                                          EOF
                                              bash: foo: No such file or directory
 foo, bar, zoo 
 <span class="hljs-number">3</span>
+-----------------------------
+
+$ <span class="hljs-built_in">alias</span> bashx=<span class="hljs-string">&apos;bash &lt;&lt;\@ -s&apos;</span>
+
+$ bashx <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>
+&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$0</span>, <span class="hljs-variable">$1</span>, <span class="hljs-variable">$2</span>, <span class="hljs-variable">$3</span>
+&gt; <span class="hljs-built_in">echo</span> <span class="hljs-variable">$#</span>
+&gt; @
+
+bash, <span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>
+<span class="hljs-number">3</span>
 </code></pre>
 <h4 id="&#xC18C;&#xC2A4;&#xCF54;&#xB4DC;-&#xD30C;&#xC77C;-&#xC5C6;&#xC774;-heredoc-&#xC744;-&#xC774;&#xC6A9;&#xD574;-&#xCEF4;&#xD30C;&#xC77C;-&#xD558;&#xAE30;">&#xC18C;&#xC2A4;&#xCF54;&#xB4DC; &#xD30C;&#xC77C; &#xC5C6;&#xC774; heredoc &#xC744; &#xC774;&#xC6A9;&#xD574; &#xCEF4;&#xD30C;&#xC77C; &#xD558;&#xAE30;</h4>
 <pre><code class="lang-bash"><span class="hljs-comment"># &#xBA85;&#xB839;&#xD589; &#xC0C1;&#xC5D0;&#xC11C; &#xCCAB;&#xBC88;&#xC9F8; &apos;-&apos; &#xB294; stdout &#xC744;( -o &#xC635;&#xC158;&#xACFC; ), &#xB450;&#xBC88;&#xC9F8; &apos;-&apos; &#xB294; stdin &#xC744; &#xB098;&#xD0C0;&#xB0C4;</span>
