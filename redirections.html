@@ -1339,8 +1339,7 @@ wc: asdfgh: No such file or directory
 <p>&#xC815;&#xB9AC;&#xD558;&#xBA74; &#xC774;&#xB807;&#xC2B5;&#xB2C8;&#xB2E4;. redirection &#xAE30;&#xD638;&#xC744; &#xC911;&#xC2EC;&#xC73C;&#xB85C; &#xC67C;&#xCABD;&#xC5D0; &#xC624;&#xB294; FD &#xB294; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xB85C; &#xC778;&#xC2DD;&#xB418;&#xC9C0; &#xC54A;&#xAC8C; &#xBD99;&#xC5EC;&#xC4F0;&#xACE0;
 &#xC624;&#xB978;&#xCABD;&#xC5D0; &#xC624;&#xB294; FD &#xB294; &#xD30C;&#xC77C;&#xB85C; &#xC778;&#xC2DD;&#xB418;&#xC9C0; &#xC54A;&#xAC8C; <code>&amp;</code> &#xB97C; &#xBD99;&#xC5EC; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <h3 id="redirection-&#xAE30;&#xD638;&#xC758;-&#xC704;&#xCE58;">Redirection &#xAE30;&#xD638;&#xC758; &#xC704;&#xCE58;</h3>
-<p>redirection &#xAE30;&#xD638;&#xC758; &#xBA85;&#xB839; &#xD589;&#xC0C1; &#xC704;&#xCE58;&#xB294; &#xC5B4;&#xB514;&#xC5D0; &#xC640;&#xB3C4; &#xC0C1;&#xAD00;&#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xADF8;&#xB9AC;&#xACE0; redirection &#xC124;&#xC815;&#xC740; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>redirection &#xAE30;&#xD638;&#xC758; &#xBA85;&#xB839; &#xD589;&#xC0C1; &#xC704;&#xCE58;&#xB294; &#xC5B4;&#xB514;&#xC5D0; &#xC640;&#xB3C4; &#xC0C1;&#xAD00;&#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ <span class="hljs-built_in">echo</span> hello &gt; /tmp/out
 
 $ &gt; /tmp/out <span class="hljs-built_in">echo</span> hello
@@ -1362,12 +1361,6 @@ END
 $ &lt;&lt;END cat             
 hello
 END
-
-$ args.sh <span class="hljs-number">11</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span>          <span class="hljs-comment"># 2&gt;&amp;1 &#xB294; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
-<span class="hljs-variable">$0</span> : /home/mug896/bin/args.sh
-<span class="hljs-variable">$1</span> : <span class="hljs-number">11</span>
-<span class="hljs-variable">$2</span> : <span class="hljs-number">22</span>
-<span class="hljs-variable">$3</span> : <span class="hljs-number">33</span>
 </code></pre>
 <p><code>( ... )</code>, <code>{ ... ;}</code> &#xBA85;&#xB839;&#xADF8;&#xB8F9;,  compound commands &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xB4A4;&#xC5D0; &#xC640;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ <span class="hljs-number">2</span>&gt; /dev/null ( expr a + <span class="hljs-number">2</span> ) 
@@ -1406,6 +1399,17 @@ OK
 
 $ { <span class="hljs-built_in">echo</span> $( expr a + <span class="hljs-number">2</span> ) ;} <span class="hljs-number">2</span>&gt; /dev/null
 OK
+</code></pre>
+<h4 id="redirection-&#xC124;&#xC815;&#xC740;-&#xBA85;&#xB839;&#xC758;-&#xC778;&#xC218;&#xC5D0;-&#xD3EC;&#xD568;&#xB418;&#xC9C0;-&#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;">Redirection &#xC124;&#xC815;&#xC740; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</h4>
+<pre><code class="lang-bash">$ args.sh foo.c &lt; hello.c bar.c     <span class="hljs-comment"># hello.c &#xB294; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
+<span class="hljs-variable">$0</span> : /home/mug896/.bashrc.d/bin/args.sh
+<span class="hljs-variable">$1</span> : foo.c
+<span class="hljs-variable">$2</span> : bar.c
+
+$ args.sh foo.c <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> bar.c          <span class="hljs-comment"># 2&gt;&amp;1 &#xB294; &#xBA85;&#xB839;&#xC758; &#xC778;&#xC218;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
+<span class="hljs-variable">$0</span> : /home/mug896/bin/args.sh
+<span class="hljs-variable">$1</span> : foo.c
+<span class="hljs-variable">$2</span> : bar.c
 </code></pre>
 <h3 id="redirection-&#xAE30;&#xD638;&#xB294;-&#xC4F0;&#xB294;-&#xC21C;&#xC11C;&#xAC00;-&#xC911;&#xC694;&#xD558;&#xB2E4;">Redirection &#xAE30;&#xD638;&#xB294; &#xC4F0;&#xB294; &#xC21C;&#xC11C;&#xAC00; &#xC911;&#xC694;&#xD558;&#xB2E4;!</h3>
 <p>redirection &#xC744; &#xD560;&#xB54C; &#xC911;&#xC694;&#xD55C; &#xBD80;&#xBD84;&#xC774; &#xC21C;&#xC11C;&#xC785;&#xB2C8;&#xB2E4;. &#xC21C;&#xC11C;&#xAC00; &#xC62C;&#xBC14;&#xB974;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xC81C;&#xB300;&#xB85C; redirection &#xC774; &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xC74C;&#xC740; mycomm &#xC2E4;&#xD589;&#xACB0;&#xACFC; FD 2 (stderr) &#xB97C; FD 1 (stdout) &#xC73C;&#xB85C; &#xC5F0;&#xACB0;&#xD558;&#xC5EC; &#xB458; &#xBAA8;&#xB450;&#xB97C; outfile &#xC5D0; &#xC4F0;&#xB824;&#xACE0; &#xD558;&#xC9C0;&#xB9CC; &#xC774;&#xC911; &#xD558;&#xB098;&#xB294; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
