@@ -1938,7 +1938,7 @@ $ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
     <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
-    flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// flock &#xC2DC;&#xC2A4;&#xD15C; &#xCF5C;&#xC744; &#xC0AC;&#xC6A9;</span>
+    flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// tmp.txt &#xD30C;&#xC77C;&#xC758; fd &#xB97C; &#xC774;&#xC6A9;&#xD574; flock</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
         fgets( buf, <span class="hljs-keyword">sizeof</span> buf, file);
