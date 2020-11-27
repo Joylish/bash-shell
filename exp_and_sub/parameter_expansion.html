@@ -1772,6 +1772,25 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/#?}</
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${AA/%?}</span>
 X12345
 </code></pre>
+<p><a name="extended_pattern"></a>
+<a href="../pattern_matching.html#extended_pattern">&#xD655;&#xC7A5; &#xD328;&#xD134;</a> &#xC744; &#xD65C;&#xC6A9;&#xD558;&#xBA74;
+regex &#xC5D0;&#xC11C;&#xCC98;&#xB7FC; &#xAC00;&#xBCC0; &#xAE38;&#xC774;&#xC758; &#xBB38;&#xC790;&#xB3C4; &#xB9E4;&#xCE6D;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ AA=<span class="hljs-string">&apos;   #   include    &lt;stdio.h&gt;&apos;</span>
+$ <span class="hljs-built_in">echo</span> x<span class="hljs-variable">${AA/#*([[:blank:]])#*([[:blank:]])include*([[:blank:]])}</span>x
+x&lt;stdio.h&gt;x
+
+$ AA=<span class="hljs-string">&apos;   #include    &lt;stdio.h&gt;&apos;</span>
+$ <span class="hljs-built_in">echo</span> x<span class="hljs-variable">${AA/#*([[:blank:]])#*([[:blank:]])include*([[:blank:]])}</span>x
+x&lt;stdio.h&gt;x
+
+$ AA=<span class="hljs-string">&apos;   #include    #  include   &lt;stdio.h&gt;&apos;</span>
+$ <span class="hljs-built_in">echo</span> x<span class="hljs-variable">${AA/#+(*([[:blank:]])#*([[:blank:]])include*([[:blank:]]))}</span>x
+x&lt;stdio.h&gt;x
+
+$ AA=<span class="hljs-string">&apos;   #include    #  include   &lt;stdio.h&gt;    #  include&apos;</span>
+$ <span class="hljs-built_in">echo</span> x<span class="hljs-variable">${AA//*([[:blank:]])#*([[:blank:]])include*([[:blank:]])}</span>x
+x&lt;stdio.h&gt;x
+</code></pre>
 <p>Array &#xB294; &#xAC01;&#xAC01;&#xC758; &#xC6D0;&#xC18C;&#xBCC4;&#xB85C; &#xC801;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ AA=<span class="hljs-string">&quot;aaa.c bbb.c ccc.c&quot;</span>
 
