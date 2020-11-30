@@ -1916,7 +1916,7 @@ tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
-    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
+    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">10</span>];
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
         fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
@@ -1939,7 +1939,7 @@ $ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/file.h&gt;</span> </span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
-    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">20</span>];
+    <span class="hljs-keyword">char</span> buf[<span class="hljs-number">10</span>];
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// tmp.txt &#xD30C;&#xC77C;&#xC758; fd &#xB97C; &#xC774;&#xC6A9;&#xD574; flock</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
