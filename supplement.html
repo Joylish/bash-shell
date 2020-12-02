@@ -1965,43 +1965,49 @@ CLONE_FS &#xC740; &#xD30C;&#xC77C;&#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xACF5;&#xC7
 &#xC624;&#xB978;&#xCABD;&#xC73C;&#xB85C; &#xAC00;&#xC11C; tls (thread local storage) &#xC8FC;&#xC18C;&#xB3C4; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xC2A4;&#xB808;&#xB4DC;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC640; &#xC8FC;&#xC18C;&#xACF5;&#xAC04;&#xC744; &#xACF5;&#xC720;&#xD558;&#xBBC0;&#xB85C; clone &#xD6C4;&#xC5D0; exec &#xC744; &#xD558;&#xC9C0; &#xC54A;&#xB294;&#xAC78; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="images/thread3.png" alt=""></p>
-<p>&#xB2E4;&#xC74C;&#xC740; &#xD14C;&#xC2A4;&#xD2B8;&#xC5D0; &#xC0AC;&#xC6A9;&#xB41C; &#xCF54;&#xB4DC;&#xB85C; <a href="https://computing.llnl.gov/tutorials/pthreads/" target="_blank">https://computing.llnl.gov/tutorials/pthreads/</a> &#xC5D0;&#xC11C; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<pre><code class="lang-C"><span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> _GNU_SOURCE</span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span> </span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span></span>
-<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> NUM_THREADS     <span class="hljs-number">2</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdint.h&gt;</span></span>
 
- <span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">PrintHello</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *threadid)</span>
- </span>{
-    <span class="hljs-keyword">long</span> tid;
-    tid = (<span class="hljs-keyword">long</span>)threadid;
-    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Hello World! It&apos;s me, thread #%ld!\n&quot;</span>, tid);
-    pthread_exit(<span class="hljs-literal">NULL</span>);
- }
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">testfunc</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *arg)</span>
+</span>{
+    <span class="hljs-keyword">size_t</span> no = (<span class="hljs-keyword">size_t</span>)arg;
 
- <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span>
- </span>{
-    <span class="hljs-keyword">pthread_t</span> threads[NUM_THREADS];
-    <span class="hljs-keyword">int</span> rc;
-    <span class="hljs-keyword">long</span> t;
-    <span class="hljs-keyword">for</span>(t=<span class="hljs-number">0</span>; t &lt; NUM_THREADS; t++){
-       <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;In main: creating thread %ld\n&quot;</span>, t);
-       rc = pthread_create(&amp;threads[t], <span class="hljs-literal">NULL</span>, PrintHello, (<span class="hljs-keyword">void</span> *)t);
-       <span class="hljs-keyword">if</span> (rc){
-          <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;ERROR; return code from pthread_create() is %d\n&quot;</span>, rc);
-          <span class="hljs-built_in">exit</span>(-<span class="hljs-number">1</span>);
-       }
-    }
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;NO %ld, SELF : %ld, TID : %d, PID : %d\n&quot;</span>
+            ,no , pthread_self(), gettid(), getpid());
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
 
-    <span class="hljs-comment">/* Last thing that main() should do */</span>
-    pthread_exit(<span class="hljs-literal">NULL</span>);
- }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> 
+</span>{
+    <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
 
+    <span class="hljs-keyword">pthread_t</span> thread[num];
+
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+        pthread_create( &amp;thread[i], <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
+
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+        pthread_join( thread[i], <span class="hljs-literal">NULL</span>);
+
+    <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
+}
 -------------------------------------------------
 
-$ gcc -pthread -o thread thread.c
+$ gcc -pthread thread.c
 
-$ strace -o thread.strace -f -e %process ./thread
+$ ./a.out <span class="hljs-number">10</span>    <span class="hljs-preprocessor"># &#xC2A4;&#xB808;&#xB4DC; <span class="hljs-number">10</span> &#xAC1C;&#xB97C; &#xC0DD;&#xC131;</span>
+NO <span class="hljs-number">0</span>, SELF : <span class="hljs-number">140010508047936</span>, TID : <span class="hljs-number">1589737</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">3</span>, SELF : <span class="hljs-number">140010348652096</span>, TID : <span class="hljs-number">1589740</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">2</span>, SELF : <span class="hljs-number">140010491262528</span>, TID : <span class="hljs-number">1589739</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">4</span>, SELF : <span class="hljs-number">140010482869824</span>, TID : <span class="hljs-number">1589741</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">1</span>, SELF : <span class="hljs-number">140010499655232</span>, TID : <span class="hljs-number">1589738</span>, PID : <span class="hljs-number">1589736</span>
+. . .
+
+$ strace -o thread.strace -f -e %process ./a.out <span class="hljs-number">10</span>
 </code></pre>
 <blockquote>
 <p>thread &#xB294; &#xAC01; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4; &#xBC34;&#xB354;&#xB9C8;&#xB2E4; &#xAD6C;&#xD604;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xB2EC;&#xB77C;&#xC11C; &#xD504;&#xB85C;&#xADF8;&#xB798;&#xBA38;&#xAC00; portable &#xD55C; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xAE30; &#xC5B4;&#xB824;&#xC6E0;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.
