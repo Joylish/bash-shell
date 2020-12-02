@@ -2068,7 +2068,7 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
         <span class="hljs-keyword">if</span> ( childpid == <span class="hljs-number">0</span> ) <span class="hljs-keyword">break</span>;
     }
 
-    <span class="hljs-keyword">if</span> (childpid != <span class="hljs-number">0</span> ) {
+    <span class="hljs-keyword">if</span> ( childpid != <span class="hljs-number">0</span> ) {
         system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo &gt;&amp;2&quot;</span>);
         kill(<span class="hljs-number">0</span>, SIGTERM);
     }
