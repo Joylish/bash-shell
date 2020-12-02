@@ -2051,6 +2051,64 @@ real    <span class="hljs-number">0</span>m0<span class="hljs-number">.501</span
 user    <span class="hljs-number">0</span>m0<span class="hljs-number">.008</span>s                       user    <span class="hljs-number">0</span>m0<span class="hljs-number">.054</span>s
 sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span>s                       sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.319</span>s
 </code></pre>
+<p>&#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC6A9;&#xB7C9;&#xB3C4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; 89M &#xC2A4;&#xB808;&#xB4DC;&#xAC00; 35M &#xB85C; &#xB450; &#xBC30; &#xC774;&#xC0C1; &#xCC28;&#xC774;&#xAC00; &#xB0A9;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span>                  //  &#xD504;&#xB85C;&#xC138;&#xC2A4; </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> 
+</span>{
+    <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
+
+    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo &gt;&amp;2&quot;</span>);
+
+    <span class="hljs-keyword">pid_t</span> childpid;
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ ) {
+        childpid = fork();
+        <span class="hljs-keyword">if</span> ( childpid == <span class="hljs-number">0</span> ) <span class="hljs-keyword">break</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (childpid != <span class="hljs-number">0</span> ) {
+        system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo &gt;&amp;2&quot;</span>);
+        kill(<span class="hljs-number">0</span>, SIGTERM);
+    }
+    pause();
+}
+--------------------------------------------------------------
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span>                   //  &#xC2A4;&#xB808;&#xB4DC; </span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">testfunc</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *arg)</span>
+</span>{
+    pause();
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> 
+</span>{
+    <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">pthread_t</span> thread[num];
+
+    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo &gt;&amp;2&quot;</span>);
+
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+        pthread_create( &amp;thread[i], <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
+
+    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo &gt;&amp;2&quot;</span>);
+    raise(SIGTERM);
+}
+----------------------------------------------------------------
+
+&lt; &#xD504;&#xB85C;&#xC138;&#xC2A4; &gt;                                  &lt; &#xC2A4;&#xB808;&#xB4DC; &gt;
+
+$ ./a.out <span class="hljs-number">10000</span>                             $ ./a.out <span class="hljs-number">10000</span> 
+MemAvailable:    <span class="hljs-number">9875256</span> kB                 MemAvailable:    <span class="hljs-number">9875772</span> kB
+MemAvailable:    <span class="hljs-number">8988536</span> kB                 MemAvailable:    <span class="hljs-number">9526088</span> kB
+Terminated                                  Terminated
+</code></pre>
 <h2 id="ltrace">ltrace</h2>
 <p>ltrace &#xB294; dynamic library calls &#xC744; &#xD2B8;&#xB808;&#xC774;&#xC2A4; &#xD560; &#xC218; &#xC788;&#xB294; &#xBA85;&#xB839;&#xC785;&#xB2C8;&#xB2E4;.
 ( &#xADF8;&#xB7EC;&#xBBC0;&#xB85C; static &#xC73C;&#xB85C; &#xBE4C;&#xB4DC;&#xB41C; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC740; &#xC548;&#xB429;&#xB2C8;&#xB2E4;.)
