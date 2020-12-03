@@ -1559,7 +1559,10 @@ $ head x1      <span class="hljs-comment"># &#xC800;&#xC7A5;&#xB418;&#xB294; &#x
 --- <span class="hljs-number">5</span>
 </code></pre>
 <p>&#xB2E4;&#xC74C;&#xC740; multiple readers, single writer &#xC758; &#xC608;&#xC778;&#xB370; &#xC774; &#xACBD;&#xC6B0;&#xC5D0;&#xB294;
-&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xB77C;&#xC778; &#xB2E8;&#xC704;&#xB85C; &#xC77D;&#xAE30;&#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xB77C;&#xC778; &#xB2E8;&#xC704;&#xB85C; &#xC77D;&#xAE30;&#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.
+writer &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xC790;&#xAE30;&#xAC00; &#xC4F0;&#xB294; &#xB0B4;&#xC6A9;&#xC744; &#xC54C;&#xACE0; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB77C;&#xC778; &#xB2E8;&#xC704;&#xB85C; &#xC4F0;&#xB294; &#xAC8C; &#xAC00;&#xB2A5;&#xD558;&#xC9C0;&#xB9CC;
+reader &#xC758; &#xACBD;&#xC6B0;&#xB294; &#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C; 5 &#xBB38;&#xC790; &#xB4A4;&#xC5D0; newline &#xC774; &#xC62C;&#xC9C0; 10 &#xBB38;&#xC790; &#xB4A4;&#xC5D0; newline &#xC774; &#xC62C;&#xC9C0;
+&#xC54C; &#xC218; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB77C;&#xC778; &#xB2E8;&#xC704;&#xB85C; &#xC77D;&#xB294;&#xB2E4;&#xB294; &#xAC83;&#xC740; meaningless &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># 2 &#xAC1C;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xB3D9;&#xC2DC;&#xC5D0; &#xD558;&#xB098;&#xC758; &#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C; &#xC77D;&#xAE30;&#xB97C; &#xD558;&#xC5EC; &#xAC01;&#xAC01; &#xD30C;&#xC77C;&#xB85C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. </span>
 $ <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> v; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$v</span>&quot;</span>; <span class="hljs-keyword">done</span> &lt; mypipe &gt; x1 &amp;        
 [<span class="hljs-number">1</span>] <span class="hljs-number">20445</span>
@@ -1595,38 +1598,6 @@ $ less x1        <span class="hljs-comment"># &#xD30C;&#xC77C;&#xC744; &#xC5F4;&
 <span class="hljs-number">17116742</span>
 ....
 ....
-</code></pre>
-<p>&#xC774;&#xC640; &#xAC19;&#xC774; shell &#xC758; builtin &#xBA85;&#xB839;&#xC778; read &#xB97C; &#xC774;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0; ( <code>sh</code> &#xB3C4; &#xB3D9;&#xC77C;&#xD558;&#xAC8C; &#xB3D9;&#xC791; )
-strace &#xB97C; &#xD574;&#xBCF4;&#xBA74; 1 &#xBB38;&#xC790;&#xC529; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
-&#xADF8;&#xB7EC;&#xB2C8;&#xAE4C; &#xD504;&#xB85C;&#xC138;&#xC2A4; A &#xAC00; &#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; newline &#xBB38;&#xC790;&#xB97C; &#xC77D;&#xC5B4;&#xB4E4;&#xC5EC;&#xC57C; &#xD560; &#xB54C; 
-&#xD504;&#xB85C;&#xC138;&#xC2A4; B &#xAC00; &#xAC00;&#xC838;&#xAC00;&#xBC84;&#xB9AC;&#xBA74; &#xC704;&#xC640; &#xAC19;&#xC740; &#xD604;&#xC0C1;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.
-cat, sed, awk &#xAC19;&#xC740; &#xBA85;&#xB839;&#xB4E4;&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; newline &#xC744; &#xAD6C;&#xBD84;&#xC790;&#xB85C; &#xD574;&#xC11C; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xBBC0;&#xB85C;
-&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; cat &#xBA85;&#xB839;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xBA74; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ cat mypipe &gt; x1 &amp;
-$ cat mypipe &gt; x2 &amp;
-
-<span class="hljs-comment"># &#xB610;&#xB294;</span>
-$ cat mypipe | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> v; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$v</span>&quot;</span>; <span class="hljs-keyword">done</span> &gt; x1 &amp;
-$ cat mypipe | <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> v; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$v</span>&quot;</span>; <span class="hljs-keyword">done</span> &gt; x2 &amp;
-
-<span class="hljs-comment"># &#xB610;&#xB294;</span>
-$ <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> v; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$v</span>&quot;</span>; <span class="hljs-keyword">done</span> &lt; &lt;(cat mypipe) &gt; x1 &amp;
-$ <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> v; <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;<span class="hljs-variable">$v</span>&quot;</span>; <span class="hljs-keyword">done</span> &lt; &lt;(cat mypipe) &gt; x2 &amp;
-
-$ <span class="hljs-keyword">for</span> (( i=<span class="hljs-number">1</span>; i&lt;=<span class="hljs-number">20000</span>; i++ )) <span class="hljs-keyword">do</span> <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>; <span class="hljs-keyword">done</span> &gt; mypipe
-
-$ less x1      <span class="hljs-comment"># &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xB77C;&#xC778; &#xB2E8;&#xC704;&#xB85C; &#xC77D;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
-. . .
-. . .
-<span class="hljs-number">19809</span>
-<span class="hljs-number">19811</span>
-<span class="hljs-number">19813</span>
-<span class="hljs-number">19815</span>
-<span class="hljs-number">19817</span>
-<span class="hljs-number">19819</span>
-<span class="hljs-number">19821</span>
-. . .
-. . .
 </code></pre>
 <h3 id="pipe-buffer-size">Pipe buffer size</h3>
 <p>Reader &#xAC00; &#xC5C6;&#xB294; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; writer &#xAC00; &#xD30C;&#xC774;&#xD504;&#xC5D0; &#xC4F0;&#xAE30;&#xB97C; &#xD558;&#xBA74; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; pipe buffer size &#xB97C; &#xC54C;&#xC544;&#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  <code>ulimit -a</code> &#xBA85;&#xB839;&#xC73C;&#xB85C; &#xC870;&#xD68C;&#xD574; &#xBCF4;&#xBA74; pipe size &#xAC00; 8 * 512 bytes = 4096 &#xB85C; &#xB098;&#xC624;&#xC9C0;&#xB9CC; &#xB9AC;&#xB205;&#xC2A4;&#xC758; &#xACBD;&#xC6B0; 16 &#xAC1C;&#xAE4C;&#xC9C0; &#xBC84;&#xD37C;&#xB97C; &#xD560;&#xB2F9;&#xD574; &#xC0AC;&#xC6A9;&#xD558;&#xBBC0;&#xB85C; 4096 * 16 = 65,536 &#xAE4C;&#xC9C0; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC11C; 4096 &#xC740; &#xC5EC;&#xB7EC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xB3D9;&#xC2DC;&#xC5D0; &#xAC19;&#xC740; &#xD30C;&#xC77C;&#xC5D0; write &#xD560;&#xB54C; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC11C;&#xB85C; &#xACB9;&#xCE58;&#xC9C0; &#xC54A;&#xACE0; atomic &#xD558;&#xAC8C; &#xC4F8; &#xC218; &#xC788;&#xB294; &#xD06C;&#xAE30;&#xC5D0; &#xD574;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. </p>
@@ -1832,6 +1803,7 @@ i=<span class="hljs-number">1</span>
 <hr>
 <p>&#xB2E4;&#xC74C; &#xC608;&#xC81C;&#xB294; &#xD30C;&#xC774;&#xD504;&#xC5D0;&#xC11C; &#xC77D;&#xC744; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC5C6;&#xC744; &#xACBD;&#xC6B0; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xBE14;&#xB85D; &#xB41C;&#xB2E4;&#xB294; &#xC810;&#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C;
 &#xC77C;&#xC885;&#xC758; process pool &#xC744; &#xB9CC;&#xB4DC;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.
+multiple processes &#xAC00; &#xB3D9;&#xC2DC;&#xC5D0; &#xD558;&#xB098;&#xC758; &#xD30C;&#xC774;&#xD504;&#xB97C; &#xC77D;&#xAE30; &#xD558;&#xB294; &#xAC83;&#xC740; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC9C0;&#xB9CC; 1 byte &#xC529;&#xC740; &#xAD1C;&#xCC2E;&#xC2B5;&#xB2C8;&#xB2E4;.
 fifo_work &#xD30C;&#xC774;&#xD504;&#xB294; main &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; worker &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB4E4;&#xC5D0;&#xAC8C; 1 byte &#xC529; &#xC804;&#xB2EC;&#xD558;&#xC5EC; &#xAE68;&#xC5B4;&#xB098;&#xAC8C; &#xD558;&#xB294; &#xC6A9;&#xB3C4;&#xB85C; &#xC0AC;&#xC6A9;&#xB418;&#xACE0;
 fifo_exit &#xD30C;&#xC774;&#xD504;&#xB294; worker &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; main &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xAC8C; &#xC885;&#xB8CC; &#xC0C1;&#xD0DC; &#xAC12;&#xC744; &#xC804;&#xB2EC;&#xD558;&#xB294; &#xC6A9;&#xB3C4;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <p><strong>&#xC0AC;&#xC6A9;&#xBC29;&#xBC95; )</strong></p>
