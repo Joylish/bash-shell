@@ -1344,12 +1344,12 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$v1</span>
 <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>
 </code></pre>
 <h4 id="&#xB77C;&#xC778;&#xC758;-&#xC55E;-&#xB4A4;-&#xACF5;&#xBC31;&#xC740;-&#xC81C;&#xAC70;&#xB429;&#xB2C8;&#xB2E4;">&#xB77C;&#xC778;&#xC758; &#xC55E;, &#xB4A4; &#xACF5;&#xBC31;&#xC740; &#xC81C;&#xAC70;&#xB429;&#xB2C8;&#xB2E4;.</h4>
-<p>&#xB77C;&#xC778;&#xC758; &#xC55E;, &#xB4A4; &#xACF5;&#xBC31;&#xC744; &#xC720;&#xC9C0;&#xD558;&#xB824;&#xBA74; IFS &#xAC12;&#xC744; NUL &#xB85C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB77C;&#xC778;&#xC758; &#xC55E;, &#xB4A4; &#xACF5;&#xBC31;&#xC744; &#xC720;&#xC9C0;&#xD558;&#xB824;&#xBA74; IFS &#xAC12;&#xC744; null &#xB85C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash">$ cat test.txt               <span class="hljs-comment"># &#xB77C;&#xC778; &#xC55E;,&#xB4A4;&#xC5D0; &#xACF5;&#xBC31;&#xC774; &#xC788;&#xB2E4;.</span>
 empty    space    
     empty    space
 
-$ <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> line; <span class="hljs-keyword">do</span>    <span class="hljs-comment"># &#xB77C;&#xC778; &#xC55E;,&#xB4A4; &#xACF5;&#xBC31;&#xC774; &#xC5C6;&#xC5B4;&#xC9C4;&#xB2E4;.</span>
+$ <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> line; <span class="hljs-keyword">do</span>        <span class="hljs-comment"># &#xB77C;&#xC778; &#xC55E;,&#xB4A4; &#xACF5;&#xBC31;&#xC774; &#xC5C6;&#xC5B4;&#xC9C4;&#xB2E4;.</span>
     <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;X<span class="hljs-variable">${line}</span>X&quot;</span>
 <span class="hljs-keyword">done</span> &lt; test.txt
 
