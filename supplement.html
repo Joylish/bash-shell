@@ -1919,10 +1919,10 @@ tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>
     <span class="hljs-keyword">char</span> buf[<span class="hljs-number">10</span>];
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
-        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        rewind(file);
         fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), file);
         <span class="hljs-keyword">int</span> num = atoi(buf) + <span class="hljs-number">1</span>;
-        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        rewind(file);
         <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
     }
 }
@@ -1943,10 +1943,10 @@ $ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &
     FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// tmp.txt &#xD30C;&#xC77C;&#xC758; fd &#xB97C; &#xC774;&#xC6A9;&#xD574; flock</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
-        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        rewind(file);
         fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), file);
         <span class="hljs-keyword">int</span> num = atoi(buf) + <span class="hljs-number">1</span>;
-        fseek( file, <span class="hljs-number">0</span>, SEEK_SET);
+        rewind(file);
         <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
     }
     flock( fileno(file), LOCK_UN);           <span class="hljs-comment">// flock &#xD574;&#xC81C;</span>
