@@ -1694,8 +1694,8 @@ FD 3 &#xBC88;&#xC744; FD 0 &#xBC88;&#xC73C;&#xB85C; copy &#xD569;&#xB2C8;&#xB2E4
     <span class="hljs-keyword">if</span> (childpid == <span class="hljs-number">0</span>)    <span class="hljs-comment">// child &#xD504;&#xB85C;&#xC138;&#xC2A4; </span>
     {
         dup2(fd[<span class="hljs-number">1</span>], STDOUT_FILENO); close(fd[<span class="hljs-number">0</span>]); close(fd[<span class="hljs-number">1</span>]);
-        FILE *file = fopen (<span class="hljs-string">&quot;/proc/self/maps&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
-        <span class="hljs-keyword">while</span> ((getline(&amp;line, &amp;len, file)) != -<span class="hljs-number">1</span>) 
+        FILE *fp = fopen (<span class="hljs-string">&quot;/proc/self/maps&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>);
+        <span class="hljs-keyword">while</span> ((getline(&amp;line, &amp;len, fp)) != -<span class="hljs-number">1</span>) 
             <span class="hljs-built_in">fputs</span>(line, <span class="hljs-built_in">stdout</span>);     <span class="hljs-comment">// &#xC774;&#xC81C; stdout &#xC73C;&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xBA74; &#xD30C;&#xC774;&#xD504;&#xB85C; &#xC4F0;&#xAE30;&#xAC00; &#xB41C;&#xB2E4;.</span>
         fflush(<span class="hljs-built_in">stdout</span>); _exit(EXIT_SUCCESS);
     }
@@ -1917,13 +1917,13 @@ tmp.txt &#xD30C;&#xC77C;&#xC5D0; &#xCD08;&#xAE30;&#xAC12;&#xC73C;&#xB85C; <code>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span> </span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
     <span class="hljs-keyword">char</span> buf[<span class="hljs-number">10</span>];
-    FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
+    FILE *fp = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
-        rewind(file);
-        fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), file);
+        rewind(fp);
+        fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), fp);
         <span class="hljs-keyword">int</span> num = atoi(buf) + <span class="hljs-number">1</span>;
-        rewind(file);
-        <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
+        rewind(fp);
+        <span class="hljs-built_in">fprintf</span>( fp, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
     }
 }
 @
@@ -1940,16 +1940,16 @@ $ echo <span class="hljs-number">0</span> &gt; tmp.txt &amp;&amp; gcc -g -xc - &
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;sys/file.h&gt;</span> </span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{ 
     <span class="hljs-keyword">char</span> buf[<span class="hljs-number">10</span>];
-    FILE *file = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
-    flock( fileno(file), LOCK_EX);           <span class="hljs-comment">// tmp.txt &#xD30C;&#xC77C;&#xC758; fd &#xB97C; &#xC774;&#xC6A9;&#xD574; flock</span>
+    FILE *fp = fopen(<span class="hljs-string">&quot;tmp.txt&quot;</span>, <span class="hljs-string">&quot;r+&quot;</span>);
+    flock( fileno(fp), LOCK_EX);            <span class="hljs-comment">// tmp.txt &#xD30C;&#xC77C;&#xC758; fd &#xB97C; &#xC774;&#xC6A9;&#xD574; flock</span>
     <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">100000</span>; i++) {
-        rewind(file);
-        fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), file);
+        rewind(fp);
+        fgets( buf, <span class="hljs-keyword">sizeof</span>(buf), fp);
         <span class="hljs-keyword">int</span> num = atoi(buf) + <span class="hljs-number">1</span>;
-        rewind(file);
-        <span class="hljs-built_in">fprintf</span>( file, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
+        rewind(fp);
+        <span class="hljs-built_in">fprintf</span>( fp, <span class="hljs-string">&quot;%d\n&quot;</span>, num); 
     }
-    flock( fileno(file), LOCK_UN);           <span class="hljs-comment">// flock &#xD574;&#xC81C;</span>
+    flock( fileno(fp), LOCK_UN);            <span class="hljs-comment">// flock &#xD574;&#xC81C;</span>
 }
 @
 
