@@ -2051,16 +2051,24 @@ real    <span class="hljs-number">0</span>m0<span class="hljs-number">.501</span
 user    <span class="hljs-number">0</span>m0<span class="hljs-number">.008</span>s                       user    <span class="hljs-number">0</span>m0<span class="hljs-number">.054</span>s
 sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span>s                       sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.319</span>s
 </code></pre>
-<p>&#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC6A9;&#xB7C9;&#xB3C4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; 97M &#xC2A4;&#xB808;&#xB4DC;&#xAC00; 35M &#xB85C; &#xB450; &#xBC30; &#xC774;&#xC0C1; &#xCC28;&#xC774;&#xAC00; &#xB0A9;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span>                  //  &#xD504;&#xB85C;&#xC138;&#xC2A4; </span>
+<p>&#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC6A9;&#xB7C9;&#xB3C4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; 950M &#xC2A4;&#xB808;&#xB4DC;&#xAC00; 350M &#xB85C; &#xB450; &#xBC30; &#xC774;&#xC0C1; &#xCC28;&#xC774;&#xAC00; &#xB0A9;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdlib.h&gt;</span>                   //  &#xD504;&#xB85C;&#xC138;&#xC2A4;</span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> COMMAND <span class="hljs-string">&quot;sed -En &apos;/MemAvail/{ s/.*\\b([0-9]+).*/\\1/p }&apos; /proc/meminfo&quot;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GET_MEM_SIZE(var) do { char buf[<span class="hljs-number">20</span>];  \
+    FILE *fp = popen( COMMAND, <span class="hljs-string">&quot;r&quot;</span>);          \
+    var = atoi( fgets( buf, sizeof buf, fp)); \
+    pclose(fp); } while(<span class="hljs-number">0</span>)</span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> 
 </span>{
     <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
 
-    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo&quot;</span>);
+    <span class="hljs-keyword">int</span> size1, size2;
+    GET_MEM_SIZE( size1 );
 
     <span class="hljs-keyword">pid_t</span> childpid;
     <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ ) {
@@ -2069,7 +2077,8 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
     }
 
     <span class="hljs-keyword">if</span> ( childpid != <span class="hljs-number">0</span> ) {
-        system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo&quot;</span>);
+        GET_MEM_SIZE( size2 );
+        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d KB\n&quot;</span>, size1 - size2);
         kill(<span class="hljs-number">0</span>, SIGTERM);
     }
     pause();
@@ -2080,6 +2089,13 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;pthread.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unistd.h&gt;</span></span>
 <span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;signal.h&gt;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> COMMAND <span class="hljs-string">&quot;sed -En &apos;/MemAvail/{ s/.*\\b([0-9]+).*/\\1/p }&apos; /proc/meminfo&quot;</span></span>
+<span class="hljs-preprocessor">#<span class="hljs-keyword">define</span> GET_MEM_SIZE(var) do { char buf[<span class="hljs-number">20</span>];  \
+    FILE *fp = popen( COMMAND, <span class="hljs-string">&quot;r&quot;</span>);          \
+    var = atoi( fgets( buf, sizeof buf, fp)); \
+    pclose(fp); } while(<span class="hljs-number">0</span>)</span>
 
 <span class="hljs-function"><span class="hljs-keyword">void</span> *<span class="hljs-title">testfunc</span><span class="hljs-params">(<span class="hljs-keyword">void</span> *arg)</span>
 </span>{
@@ -2089,14 +2105,16 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> 
 </span>{
     <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">pthread_t</span> thread[num];
 
-    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo&quot;</span>);
+    <span class="hljs-keyword">pthread_t</span> thread;
+    <span class="hljs-keyword">int</span> size1, size2;
+    GET_MEM_SIZE( size1 );
 
     <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
-        pthread_create( &amp;thread[i], <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
+        pthread_create( &amp;thread, <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
 
-    system(<span class="hljs-string">&quot;grep MemAvailable /proc/meminfo&quot;</span>);
+    GET_MEM_SIZE( size2 );
+    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d KB\n&quot;</span>, size1 - size2);
     raise(SIGTERM);
 }
 ----------------------------------------------------------------
@@ -2104,8 +2122,7 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
 &lt; &#xD504;&#xB85C;&#xC138;&#xC2A4; &gt;                                  &lt; &#xC2A4;&#xB808;&#xB4DC; &gt;
 
 $ ./a.out <span class="hljs-number">10000</span>                             $ ./a.out <span class="hljs-number">10000</span> 
-MemAvailable:   <span class="hljs-number">10161684</span> kB                 MemAvailable:   <span class="hljs-number">10163612</span> kB
-MemAvailable:    <span class="hljs-number">9189536</span> kB                 MemAvailable:    <span class="hljs-number">9809308</span> kB
+<span class="hljs-number">934012</span> KB                                   <span class="hljs-number">348504</span> KB
 Terminated                                  Terminated
 </code></pre>
 <h2 id="ltrace">ltrace</h2>
