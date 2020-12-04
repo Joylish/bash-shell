@@ -1987,10 +1987,10 @@ CLONE_FS &#xC740; &#xD30C;&#xC77C;&#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xACF5;&#xC7
 
     <span class="hljs-keyword">pthread_t</span> thread[num];
 
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++ )
         pthread_create( &amp;thread[i], <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
 
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++ )
         pthread_join( thread[i], <span class="hljs-literal">NULL</span>);
 
     <span class="hljs-built_in">exit</span>(EXIT_SUCCESS);
@@ -2000,11 +2000,11 @@ CLONE_FS &#xC740; &#xD30C;&#xC77C;&#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xACF5;&#xC7
 $ gcc -pthread thread.c
 
 $ ./a.out <span class="hljs-number">10</span>    <span class="hljs-preprocessor"># &#xC2A4;&#xB808;&#xB4DC; <span class="hljs-number">10</span> &#xAC1C;&#xB97C; &#xC0DD;&#xC131;</span>
-NO <span class="hljs-number">0</span>, SELF : <span class="hljs-number">140010508047936</span>, TID : <span class="hljs-number">1589737</span>, PID : <span class="hljs-number">1589736</span>
-NO <span class="hljs-number">3</span>, SELF : <span class="hljs-number">140010348652096</span>, TID : <span class="hljs-number">1589740</span>, PID : <span class="hljs-number">1589736</span>
-NO <span class="hljs-number">2</span>, SELF : <span class="hljs-number">140010491262528</span>, TID : <span class="hljs-number">1589739</span>, PID : <span class="hljs-number">1589736</span>
-NO <span class="hljs-number">4</span>, SELF : <span class="hljs-number">140010482869824</span>, TID : <span class="hljs-number">1589741</span>, PID : <span class="hljs-number">1589736</span>
-NO <span class="hljs-number">1</span>, SELF : <span class="hljs-number">140010499655232</span>, TID : <span class="hljs-number">1589738</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">1</span>, SELF : <span class="hljs-number">140010508047936</span>, TID : <span class="hljs-number">1589737</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">4</span>, SELF : <span class="hljs-number">140010348652096</span>, TID : <span class="hljs-number">1589740</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">3</span>, SELF : <span class="hljs-number">140010491262528</span>, TID : <span class="hljs-number">1589739</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">5</span>, SELF : <span class="hljs-number">140010482869824</span>, TID : <span class="hljs-number">1589741</span>, PID : <span class="hljs-number">1589736</span>
+NO <span class="hljs-number">2</span>, SELF : <span class="hljs-number">140010499655232</span>, TID : <span class="hljs-number">1589738</span>, PID : <span class="hljs-number">1589736</span>
 . . .
 
 $ strace -o thread.strace -f -e %process ./a.out <span class="hljs-number">10</span>
@@ -2025,7 +2025,7 @@ $ strace -o thread.strace -f -e %process ./a.out <span class="hljs-number">10</s
     <span class="hljs-keyword">int</span> num = argc &gt; <span class="hljs-number">1</span> ?  atoi(argv[<span class="hljs-number">1</span>]) : <span class="hljs-number">1</span>;
 
     <span class="hljs-keyword">pid_t</span> childpid;
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ ) {
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++ ) {
         childpid = fork();
         <span class="hljs-keyword">if</span> ( childpid == <span class="hljs-number">0</span> ) <span class="hljs-keyword">break</span>;
     }
@@ -2071,7 +2071,7 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
     GET_MEM_SIZE( size1 );
 
     <span class="hljs-keyword">pid_t</span> childpid;
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ ) {
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++ ) {
         childpid = fork();
         <span class="hljs-keyword">if</span> ( childpid == <span class="hljs-number">0</span> ) <span class="hljs-keyword">break</span>;
     }
@@ -2110,7 +2110,7 @@ sys     <span class="hljs-number">0</span>m0<span class="hljs-number">.481</span
     <span class="hljs-keyword">int</span> size1, size2;
     GET_MEM_SIZE( size1 );
 
-    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++ )
+    <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= num; i++ )
         pthread_create( &amp;thread, <span class="hljs-literal">NULL</span>, testfunc, (<span class="hljs-keyword">void</span> *)(<span class="hljs-keyword">size_t</span>)i );
 
     GET_MEM_SIZE( size2 );
