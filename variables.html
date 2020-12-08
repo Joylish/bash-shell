@@ -1547,15 +1547,30 @@ $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$AA</span>
 </code></pre>
 <hr>
 <h3 id="&#xC774;&#xD6C4;&#xBD80;&#xD130;&#xB294;-bash-&#xC804;&#xC6A9;">&#xC774;&#xD6C4;&#xBD80;&#xD130;&#xB294; Bash &#xC804;&#xC6A9;</h3>
-<p>&#xBCC0;&#xC218; &#xC774;&#xB984;&#xC758; indirection &#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<pre><code class="lang-bash">$ hello=<span class="hljs-number">100</span>
+<p>&#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C; &#xBCC0;&#xC218; &#xC774;&#xB984;&#xC744; &#xC785;&#xB825;&#xBC1B;&#xACE0; &#xD574;&#xB2F9; &#xBCC0;&#xC218;&#xAC12;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xB824;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C; &#xD560;&#xAE4C;&#xC694;?<br>&#xC774;&#xB54C;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; indirection &#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="lang-bash">$ foobar=<span class="hljs-number">100</span>
+
+$ <span class="hljs-built_in">read</span> varname         <span class="hljs-comment"># &#xC0AC;&#xC6A9;&#xC790;&#xAC00; foobar &#xC785;&#xB825;</span>
+foobar
+
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$varname</span>
+foobar
+
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${$varname}</span>     <span class="hljs-comment"># ${$varname} -&gt; ${foobar} -&gt; 100  &#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</span>
+bash: <span class="hljs-variable">${$varname}</span>: bad substitution
+
+$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${!varname}</span>     <span class="hljs-comment"># &apos;!&apos; &#xBB38;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. </span>
+<span class="hljs-number">100</span>
+---------------------------------------------------
+
+$ hello=<span class="hljs-number">200</span>
 $ linux=hello
 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${$linux}</span>              <span class="hljs-comment"># &#xC624;&#xB958;</span>
 bash: <span class="hljs-variable">${$linux}</span>: bad substitution
 
 $ <span class="hljs-built_in">echo</span> <span class="hljs-variable">${!linux}</span>              <span class="hljs-comment"># !linux -&gt; $linux -&gt; hello</span>
-<span class="hljs-number">100</span>
+<span class="hljs-number">200</span>
 --------------------------------------------------
 
 $ arr=( <span class="hljs-number">11</span> <span class="hljs-number">22</span> <span class="hljs-number">33</span> <span class="hljs-number">44</span> )
