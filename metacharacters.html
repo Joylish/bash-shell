@@ -1386,12 +1386,12 @@ bash: syntax error near unexpected token `}<span class="hljs-string">&apos;
 <h3 id="&#xB85C;-&#xBA85;&#xB839;&#xB4E4;&#xC744;-&#xC5F0;&#xACB0;&#xD560;-&#xACBD;&#xC6B0;"><code>&amp;&amp;</code> &#xB85C; &#xBA85;&#xB839;&#xB4E4;&#xC744; &#xC5F0;&#xACB0;&#xD560; &#xACBD;&#xC6B0;</h3>
 <p>&#xBA85;&#xB839;&#xB4E4;&#xC744; <code>&amp;&amp;</code> &#xC5F0;&#xC0B0;&#xC790;&#xB85C; &#xC5F0;&#xACB0;&#xD558;&#xBA74; &#xC774;&#xC804; &#xBA85;&#xB839;&#xC774; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC644;&#xB8CC;&#xB41C; &#xAC83;&#xC744; &#xBCF4;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
 &#xB610;&#xD55C; &#xC911;&#xAC04;&#xC5D0; &#xD558;&#xB098;&#xB77C;&#xB3C4; &#xBA85;&#xB839;&#xC774; &#xBE44;&#xC815;&#xC0C1; &#xC885;&#xB8CC;&#xB420; &#xACBD;&#xC6B0; &#xB098;&#xBA38;&#xC9C0; &#xBA85;&#xB839;&#xB4E4;&#xC740; &#xC2E4;&#xD589;&#xB418;&#xC9C0; &#xC54A;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
-<p>&#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xD604;&#xC7AC; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0; GNU bash 5.0 &#xBC84;&#xC804; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xD604;&#xC7AC; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0; bash 5.1 &#xBC84;&#xC804; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="lang-bash"><span class="hljs-comment"># &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC774; &#xC644;&#xB8CC;&#xB418;&#xB824;&#xBA74; gcc, make &#xBA85;&#xB839;&#xACFC; libtinfo-dev &#xD328;&#xD0A4;&#xC9C0;&#xAC00; &#xC124;&#xCE58;&#xB418;&#xC5B4; &#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</span>
 $ <span class="hljs-built_in">cd</span> `mktemp <span class="hljs-operator">-d</span> -p /dev/shm` &amp;&amp; 
-    ( curl -L https://ftp.gnu.org/gnu/bash/bash-<span class="hljs-number">5.0</span>.tar.gz | tar xvz &amp;&amp; 
-    <span class="hljs-built_in">cd</span> bash-<span class="hljs-number">5.0</span> &amp;&amp; ./configure &amp;&amp; make -j `nproc` &amp;&amp; strip bash ) &amp;&amp; 
-    mv bash-<span class="hljs-number">5.0</span>/bash <span class="hljs-string">&quot;<span class="hljs-variable">$OLDPWD</span>&quot;</span> &amp;&amp; rm -rf <span class="hljs-string">&quot;<span class="hljs-variable">$PWD</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">cd</span> -
+    ( curl -L https://ftp.gnu.org/gnu/bash/bash-<span class="hljs-number">5.1</span>.tar.gz | tar xvz &amp;&amp; 
+    <span class="hljs-built_in">cd</span> bash-<span class="hljs-number">5.1</span> &amp;&amp; ./configure &amp;&amp; make -j `nproc` &amp;&amp; strip bash ) &amp;&amp; 
+    mv bash-<span class="hljs-number">5.1</span>/bash <span class="hljs-string">&quot;<span class="hljs-variable">$OLDPWD</span>&quot;</span> &amp;&amp; rm -rf <span class="hljs-string">&quot;<span class="hljs-variable">$PWD</span>&quot;</span> &amp;&amp; <span class="hljs-built_in">cd</span> -
 </code></pre>
 <h3 id="-&#xB294;-shell-keyword">{ } &#xB294; shell keyword</h3>
 <p><code>{ }</code> &#xB294; &#xBA54;&#xD0C0;&#xBB38;&#xC790;&#xAC00; &#xC544;&#xB2C8;&#xACE0; &#xD0A4;&#xC6CC;&#xB4DC;&#xB85C; &#xBA85;&#xB839; &#xADF8;&#xB8F9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xBA70;,
