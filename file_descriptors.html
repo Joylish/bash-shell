@@ -1838,9 +1838,7 @@ C &#xC5B8;&#xC5B4;&#xB85C; &#xC791;&#xC131;&#xD55C; &#xBA85;&#xB839;&#xC774; 3 &
         <span class="hljs-keyword">if</span> (<span class="hljs-built_in">strcmp</span>( de-&gt;d_name, <span class="hljs-string">&quot;.&quot;</span>) &amp;&amp; <span class="hljs-built_in">strcmp</span>( de-&gt;d_name, <span class="hljs-string">&quot;..&quot;</span>))   <span class="hljs-comment">// &quot;.&quot; &quot;..&quot; &#xB294; &#xC81C;&#xC678;</span>
         {
             <span class="hljs-keyword">char</span> *path = <span class="hljs-built_in">malloc</span>( <span class="hljs-built_in">strlen</span>(dirname) + <span class="hljs-built_in">strlen</span>(de-&gt;d_name) + <span class="hljs-number">2</span> );
-            <span class="hljs-built_in">strcpy</span>( path, dirname);
-            <span class="hljs-built_in">strcat</span>( path, <span class="hljs-string">&quot;/&quot;</span>); 
-            <span class="hljs-built_in">strcat</span>( path, de-&gt;d_name); 
+            <span class="hljs-built_in">sprintf</span>( path, <span class="hljs-string">&quot;%s%s%s&quot;</span>, dirname, <span class="hljs-string">&quot;/&quot;</span>, de-&gt;d_name);
             <span class="hljs-keyword">if</span> ( de-&gt;d_type == DT_REG) {            <span class="hljs-comment">// regular file &#xB9CC; &#xACC4;&#xC0B0;</span>
                 <span class="hljs-keyword">struct</span> stat buf;
                 <span class="hljs-keyword">if</span> ( stat( path, &amp;buf) == -<span class="hljs-number">1</span> ) errExit( path, <span class="hljs-string">&quot;stat()&quot;</span>);
