@@ -1858,10 +1858,12 @@ C &#xC5B8;&#xC5B4;&#xB85C; &#xC791;&#xC131;&#xD55C; &#xBA85;&#xB839;&#xC774; 3 &
 </span>{
     <span class="hljs-keyword">char</span> *dir;
 
-    <span class="hljs-keyword">if</span> (argc &gt; <span class="hljs-number">1</span>) dir = realpath(argv[<span class="hljs-number">1</span>], <span class="hljs-literal">NULL</span>);
-    <span class="hljs-keyword">else</span> dir = realpath(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-literal">NULL</span>);
+    <span class="hljs-keyword">if</span> (argc &gt; <span class="hljs-number">1</span>) {
+        dir = realpath(argv[<span class="hljs-number">1</span>], <span class="hljs-literal">NULL</span>);
+        <span class="hljs-keyword">if</span> ( dir == <span class="hljs-literal">NULL</span> ) errExit( argv[<span class="hljs-number">1</span>], <span class="hljs-string">&quot;realpath()&quot;</span>);
+    } <span class="hljs-keyword">else</span> 
+        dir = realpath(<span class="hljs-string">&quot;.&quot;</span>, <span class="hljs-literal">NULL</span>);
 
-    <span class="hljs-keyword">if</span> ( dir == <span class="hljs-literal">NULL</span> ) errExit( argv[<span class="hljs-number">1</span>], <span class="hljs-string">&quot;realpath()&quot;</span>);
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%ju\n&quot;</span>, get_total_size(dir));
 }
 </code></pre>
