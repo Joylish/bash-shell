@@ -1689,16 +1689,18 @@ internet domain socket &#xC740; &#xC11C;&#xB85C; &#xB5A8;&#xC5B4;&#xC838; &#xC78
 <ul>
 <li>computer1</li>
 </ul>
-<pre><code class="lang-bash">$ nc <span class="hljs-operator">-l</span> <span class="hljs-number">8080</span>
-hello
-internet domain socket
+<pre><code class="lang-bash"><span class="hljs-comment"># TCP                                    # UDP</span>
+$ nc <span class="hljs-operator">-l</span> <span class="hljs-number">8080</span>                             $ nc <span class="hljs-operator">-l</span> -u <span class="hljs-number">8080</span>
+hello                                    hello
+internet domain socket                   internet domain socket
 </code></pre>
 <ul>
 <li>computer2</li>
 </ul>
-<pre><code class="lang-bash">$ nc <span class="hljs-number">12.34</span>.<span class="hljs-number">56.78</span> <span class="hljs-number">8080</span>
-hello
-internet domain socket
+<pre><code class="lang-bash"><span class="hljs-comment"># TCP                                    # UDP</span>
+$ nc <span class="hljs-number">12.34</span>.<span class="hljs-number">56.78</span> <span class="hljs-number">8080</span>                    $ nc -u <span class="hljs-number">12.34</span>.<span class="hljs-number">56.78</span> <span class="hljs-number">8080</span>
+hello                                    hello
+internet domain socket                   internet domain socket
 </code></pre>
 <p>&#xB2E4;&#xC74C;&#xC740; socket &#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; tar &#xD30C;&#xC77C;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xB294; &#xC608;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <ul>
