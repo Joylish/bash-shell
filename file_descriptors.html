@@ -1284,9 +1284,14 @@
 shell &#xC5D0;&#xC11C; FD &#xB97C; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xC740; &#xBBF8;&#xB9AC; &#xD30C;&#xC77C;&#xC744; open &#xD574;&#xB193;&#xB294;&#xB2E4;&#xB294; &#xC758;&#xBBF8;&#xB85C;
 FD &#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; &#xD30C;&#xC77C; &#xD3EC;&#xC9C0;&#xC158;&#xC744; &#xC774;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xACE0; pipe &#xB098; socket &#xC758; &#xACBD;&#xC6B0;&#xC5D0;&#xB294;
 &#xC77D;&#xC5B4;&#xB4E4;&#xC77C; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC5C6;&#xC5B4;&#xB3C4; &#xC5F0;&#xACB0;&#xC744; &#xC720;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xBC84;&#xD37C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
-<blockquote>
-<p>parent process &#xC5D0; &#xC124;&#xC815;&#xB418;&#xC5B4;&#xC788;&#xB294; FD &#xB4E4;&#xC740; child process &#xC5D0;&#xAC8C; &#xC0C1;&#xC18D;&#xB429;&#xB2C8;&#xB2E4;.</p>
-</blockquote>
+<p><img src="images/file_descriptor.jpg" alt=""></p>
+<p>&#xBA85;&#xCE6D;&#xACFC; &#xAD00;&#xB828;&#xD574;&#xC11C;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC0DD;&#xC131;&#xD574; &#xC0AC;&#xC6A9;&#xD558;&#xB294;  FD &#xB97C; <code>File Descriptor</code> &#xB77C;&#xACE0; &#xD558;&#xACE0; 
+( &#xC704;&#xC5D0;&#xC11C; &#xC67C;&#xCABD; &#xD14C;&#xC774;&#xBE14; ) &#xCEE4;&#xB110;&#xC774; &#xAD00;&#xB9AC;&#xD558;&#xB294; &#xAC83;&#xC740; <code>File Description</code> &#xC774;&#xB77C;&#xACE0; &#xD569;&#xB2C8;&#xB2E4; 
+( &#xAC00;&#xC6B4;&#xB370; &#xD14C;&#xC774;&#xBE14; ). &#xC774; &#xB458;&#xC744; &#xAD6C;&#xBD84;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC911;&#xC694;&#xD55C;&#xB370;
+&#xCC98;&#xC74C;&#xC5D0; &#xC2E4;&#xC81C; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xC5F0;&#xACB0;&#xD574;&#xC11C; FD &#xB97C; &#xC0DD;&#xC131;&#xD560; &#xB54C;&#xB294; File Descriptor &#xC640; File Description &#xC774;
+&#xAC01;&#xAC01; &#xC0DD;&#xC131;&#xB418;&#xC9C0;&#xB9CC; &#xC774;&#xD6C4;&#xC5D0; File Descriptor &#xB294; user space &#xC5D0;&#xC11C; &#xBCF5;&#xC0AC;&#xD574;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.
+&#xADF8;&#xB9AC;&#xACE0; FD &#xB97C; close &#xD560; &#xB54C;&#xB294; File Description &#xACFC; &#xC5F0;&#xACB0;&#xB41C; &#xBAA8;&#xB4E0; File Descriptor &#xAC00; 
+close &#xB418;&#xC5B4;&#xC57C; &#xCEE4;&#xB110;&#xC774; &#xAD00;&#xB9AC;&#xD558;&#xB294; File Description &#xC774; &#xC0AD;&#xC81C;&#xB418;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <h3 id="file-descriptor-&#xC758;-&#xC0DD;&#xC131;-&#xBCF5;&#xC0AC;-&#xC0AD;&#xC81C;">File descriptor &#xC758; &#xC0DD;&#xC131;, &#xBCF5;&#xC0AC;, &#xC0AD;&#xC81C;</h3>
 <p>&#xD130;&#xBBF8;&#xB110;&#xC744; &#xC5F4;&#xBA74; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xB418;&#xB294; FD 0, 1, 2 &#xC678;&#xC5D0; &#xD544;&#xC694;&#xD558;&#xBA74; &#xB2E4;&#xB978; &#xBC88;&#xD638;&#xC758; FD &#xB97C; &#xC0DD;&#xC131;, &#xBCF5;&#xC0AC;, &#xC0AD;&#xC81C; &#xD560;&#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
